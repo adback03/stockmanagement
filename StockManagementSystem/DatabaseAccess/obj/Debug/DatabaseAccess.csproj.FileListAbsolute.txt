@@ -1,0 +1,4 @@
+F:\Dropbox\Computer Science\CS_744\StockManagementSystem\DatabaseAccess\bin\Debug\DatabaseAccess.dll
+F:\Dropbox\Computer Science\CS_744\StockManagementSystem\DatabaseAccess\bin\Debug\DatabaseAccess.pdb
+F:\Dropbox\Computer Science\CS_744\StockManagementSystem\DatabaseAccess\obj\Debug\DatabaseAccess.dll
+F:\Dropbox\Computer Science\CS_744\StockManagementSystem\DatabaseAccess\obj\Debug\DatabaseAccess.pdb

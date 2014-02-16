@@ -1,0 +1,82 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Skytrade(1)", "http://localhost:51616", "{0D524DC6-F66A-4C51-ACF6-AC564D2A4D0B}"
+	ProjectSection(WebsiteProperties) = preProject
+		UseIISExpress = "true"
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.5"
+		ProjectReferences = "{c5d0eee5-50cc-4920-8392-d5fa542c2c3f}|DatabaseAccess.dll;{ccb103c7-b04b-45fd-941c-aed2fb26b148}|GoogleChart.dll;"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_51616"
+		Debug.AspNetCompiler.PhysicalPath = "StockManagementSystem\Skytrade\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_51616\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_51616"
+		Release.AspNetCompiler.PhysicalPath = "StockManagementSystem\Skytrade\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_51616\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		SlnRelativePath = "StockManagementSystem\Skytrade\"
+		DefaultWebSiteLanguage = "Visual C#"
+	EndProjectSection
+EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "StockMarket(2)", "http://localhost:51627", "{B657B579-EB81-406F-9DB9-4DBE9C532153}"
+	ProjectSection(WebsiteProperties) = preProject
+		UseIISExpress = "true"
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.5"
+		ProjectReferences = "{c5d0eee5-50cc-4920-8392-d5fa542c2c3f}|DatabaseAccess.dll;"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_51627"
+		Debug.AspNetCompiler.PhysicalPath = "StockManagementSystem\StockMarket\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_51627\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_51627"
+		Release.AspNetCompiler.PhysicalPath = "StockManagementSystem\StockMarket\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_51627\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		SlnRelativePath = "StockManagementSystem\StockMarket\"
+		DefaultWebSiteLanguage = "Visual C#"
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatabaseAccess", "StockManagementSystem\DatabaseAccess\DatabaseAccess.csproj", "{C5D0EEE5-50CC-4920-8392-D5FA542C2C3F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoogleChart", "StockManagementSystem\GoogleChart\GoogleChart.csproj", "{CCB103C7-B04B-45FD-941C-AED2FB26B148}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0D524DC6-F66A-4C51-ACF6-AC564D2A4D0B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D524DC6-F66A-4C51-ACF6-AC564D2A4D0B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0D524DC6-F66A-4C51-ACF6-AC564D2A4D0B}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D524DC6-F66A-4C51-ACF6-AC564D2A4D0B}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{B657B579-EB81-406F-9DB9-4DBE9C532153}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B657B579-EB81-406F-9DB9-4DBE9C532153}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B657B579-EB81-406F-9DB9-4DBE9C532153}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{B657B579-EB81-406F-9DB9-4DBE9C532153}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{C5D0EEE5-50CC-4920-8392-D5FA542C2C3F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C5D0EEE5-50CC-4920-8392-D5FA542C2C3F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C5D0EEE5-50CC-4920-8392-D5FA542C2C3F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C5D0EEE5-50CC-4920-8392-D5FA542C2C3F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CCB103C7-B04B-45FD-941C-AED2FB26B148}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CCB103C7-B04B-45FD-941C-AED2FB26B148}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CCB103C7-B04B-45FD-941C-AED2FB26B148}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CCB103C7-B04B-45FD-941C-AED2FB26B148}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
