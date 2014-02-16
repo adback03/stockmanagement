@@ -34,7 +34,7 @@ public partial class Login : System.Web.UI.Page
                     Response.Redirect(Request.ApplicationPath);
                     break;
                 case Enums.enuType.Staff:
-                    Response.Redirect(Request.ApplicationPath + "Staff");
+                    Response.Redirect("Staff");
                     break;
                 default:
                     break;

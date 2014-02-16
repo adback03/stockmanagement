@@ -1,7 +1,7 @@
 ﻿body {
   font-family: 'PT Sans';
   background-color: #acacac;
-  background-image: url("/Assets/Images/sky.jpg");
+  background-image: url("../Images/sky.jpg");
   font-size: 14px;
   color: #f5f5f5;
   background-attachment: fixed;

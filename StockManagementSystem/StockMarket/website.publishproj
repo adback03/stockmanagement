@@ -16,12 +16,12 @@ Copyright (C) Microsoft Corporation. All rights reserved.
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.30319</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{57145ff1-c25b-42bc-9ae6-a5d8f3daecca}</ProjectGuid>
+    <ProjectGuid>{71129596-27cd-407b-bb02-77c3b6658379}</ProjectGuid>
     <SourceWebPhysicalPath>$(MSBuildThisFileDirectory)</SourceWebPhysicalPath>
-    <SourceWebVirtualPath>/Skytrade</SourceWebVirtualPath>
+    <SourceWebVirtualPath>/StockMarket</SourceWebVirtualPath>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <SourceWebProject>http://localhost:51616</SourceWebProject>
-    <SourceWebMetabasePath>/IISExpress/7.5/LM/W3SVC/11/ROOT</SourceWebMetabasePath>
+    <SourceWebProject>http://localhost:51627</SourceWebProject>
+    <SourceWebMetabasePath>/IISExpress/7.5/LM/W3SVC/12/ROOT</SourceWebMetabasePath>
   </PropertyGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -45,10 +45,6 @@ Copyright (C) Microsoft Corporation. All rights reserved.
     <ProjectReference Include="..\DatabaseAccess\DatabaseAccess.csproj">
       <Project>{C5D0EEE5-50CC-4920-8392-D5FA542C2C3F}</Project>
       <Name>DatabaseAccess</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\GoogleChart\GoogleChart.csproj">
-      <Project>{CCB103C7-B04B-45FD-941C-AED2FB26B148}</Project>
-      <Name>GoogleChart</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(_WebPublishTargetsPath)\Web\Microsoft.WebSite.Publishing.targets" />
