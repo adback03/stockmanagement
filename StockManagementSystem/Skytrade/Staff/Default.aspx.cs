@@ -9,6 +9,17 @@ public partial class Staff_Default : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        if (Account.IsLoggedIn())
+        {
+            if (Account.CurrentUser().Type != Enums.enuType.Staff)
+            {
+                Response.Redirect(Request.ApplicationPath);
+            }
+        }
+        else
+        {
+            Response.Redirect("Login.aspx");
+        }
+        
     }
 }
