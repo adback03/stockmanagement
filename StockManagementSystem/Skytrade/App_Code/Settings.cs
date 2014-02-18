@@ -15,12 +15,14 @@ public static class Settings
 
     public static void Initialize()
     {
-        if (System.Environment.MachineName == "WNGCSP04")
+        string machineName = System.Environment.MachineName;
+
+        if (machineName == "WNGCSP04" || machineName == "AMANDAECKHA1EB4")
         {
             SkyTradeConn = System.Configuration.ConfigurationManager.ConnectionStrings["SkyTrade"].ToString();
             StockMarketConn = System.Configuration.ConfigurationManager.ConnectionStrings["StockMarket"].ToString();
         }
-        else if (System.Environment.MachineName == "DIDIERDROGBA")
+        else if (machineName == "DIDIERDROGBA")
         {
             SkyTradeConn = System.Configuration.ConfigurationManager.ConnectionStrings["AndrewSkyTrade"].ToString();
             StockMarketConn = System.Configuration.ConfigurationManager.ConnectionStrings["AndrewStockMarket"].ToString();

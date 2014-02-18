@@ -18,7 +18,7 @@ public partial class Staff_Default : System.Web.UI.Page
         }
         else
         {
-            Response.Redirect("Login.aspx");
+            Response.Redirect(Request.ApplicationPath + "Login.aspx");
         }
         
     }
