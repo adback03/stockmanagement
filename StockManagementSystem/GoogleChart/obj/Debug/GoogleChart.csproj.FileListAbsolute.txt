@@ -1,4 +1,0 @@
-F:\Dropbox\Computer Science\CS_744\StockManagementSystem\GoogleChart\bin\Debug\GoogleChart.dll
-F:\Dropbox\Computer Science\CS_744\StockManagementSystem\GoogleChart\bin\Debug\GoogleChart.pdb
-F:\Dropbox\Computer Science\CS_744\StockManagementSystem\GoogleChart\obj\Debug\GoogleChart.dll
-F:\Dropbox\Computer Science\CS_744\StockManagementSystem\GoogleChart\obj\Debug\GoogleChart.pdb
