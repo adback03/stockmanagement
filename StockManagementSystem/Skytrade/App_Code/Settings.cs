@@ -17,15 +17,17 @@ public static class Settings
     {
         string machineName = System.Environment.MachineName;
 
-        if (machineName == "WNGCSP04" || machineName == "AMANDAECKHA1EB4")
-        {
-            SkyTradeConn = System.Configuration.ConfigurationManager.ConnectionStrings["SkyTrade"].ToString();
-            StockMarketConn = System.Configuration.ConfigurationManager.ConnectionStrings["StockMarket"].ToString();
-        }
-        else if (machineName == "DIDIERDROGBA")
+        if (machineName == "DIDIERDROGBA")
         {
             SkyTradeConn = System.Configuration.ConfigurationManager.ConnectionStrings["AndrewSkyTrade"].ToString();
             StockMarketConn = System.Configuration.ConfigurationManager.ConnectionStrings["AndrewStockMarket"].ToString();
+        }
+        // If not Andrew's local machine, use our server connection strings by default
+        else
+        {
+            // Note that these connections will only work while on campus (or remotted in)
+            SkyTradeConn = System.Configuration.ConfigurationManager.ConnectionStrings["SkyTrade"].ToString();
+            StockMarketConn = System.Configuration.ConfigurationManager.ConnectionStrings["StockMarket"].ToString();
         }
     }
 }
