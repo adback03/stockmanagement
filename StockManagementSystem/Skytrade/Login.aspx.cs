@@ -7,12 +7,15 @@ using System.Web.UI.WebControls;
 using System.Data;
 using System.Data.SqlClient;
 using DatabaseAccess;
+using Common;
 
 public partial class Login : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
         Settings.Initialize();
+        InitHiddenFields();
+        InitJavascript();
         // Test comment for commit
         if (Request.Params["r"] != null)
         {
@@ -74,7 +77,7 @@ public partial class Login : System.Web.UI.Page
         sLine1 += txtAddress1.Text;
         sLine2 += txtAddress2.Text;
         sCity += txtCity.Text;
-        sState += txtState.Text;
+        sState += ddlState.SelectedValue;
         sZip += txtZip.Text;
         sBank += txtBankName.Text;
         sAccount += txtAcctNumber.Text;
@@ -107,5 +110,57 @@ public partial class Login : System.Web.UI.Page
         cmd.Parameters.Add("@routing_number", SqlDbType.VarChar).Value = sRouting;
         SqlHelper.ExecuteNonQuery(cmd, Settings.SkyTradeConn);
         Response.Redirect("Login.aspx?r=s");
+    }
+
+    /// <summary>
+    /// Initialize all hidden fields.
+    /// These fields all used so that the values of our regexes can be determined
+    /// at runtime and used within our javascript, so we don't have to repeat the 
+    /// same regex multiple times in different areas of the program.
+    /// </summary>
+    private void InitHiddenFields()
+    {
+        // Social Security
+        hfSSN.Value = Regex.SSN;
+        revSocialSecurity.ValidationExpression = Regex.SSN;
+
+        // Email
+        hfEmail.Value = Regex.Email;
+        revEmail.ValidationExpression = Regex.Email;
+
+        // First Name
+        hfFirstName.Value = Regex.Name;
+        revFirstName.ValidationExpression = Regex.Name;
+
+        // Last Name
+        hfLastName.Value = Regex.Name;
+        revLastName.ValidationExpression = Regex.Name;
+
+        // Phone
+        hfPhone.Value = Regex.Phone;
+        revPhone.ValidationExpression = Regex.Phone;
+
+        // Address1
+        hfAddress1.Value = Regex.Address;
+        revAddress1.ValidationExpression = Regex.Address;
+
+        // Zip
+        hfZip.Value = Regex.Zip;
+        revZip.ValidationExpression = Regex.Zip;
+    }
+
+    /// <summary>
+    /// Add key up events to all our fields that require validation,
+    /// so client side validation can also take place.
+    /// </summary>
+    private void InitJavascript()
+    {
+        txtFirstName.Attributes.Add("onkeyup", "jsFormatName(this);");
+        txtLastName.Attributes.Add("onkeyup", "jsFormatName(this);");
+        txtSocialSecurity.Attributes.Add("onkeyup", "jsFormatSSN(this);");
+        txtEmail.Attributes.Add("onkeyup", "jsFormatEmail(this);");
+        txtPhone.Attributes.Add("onkeyup", "jsFormatPhone(this);");
+        txtAddress1.Attributes.Add("onkeyup", "jsFormatAddress(this);");
+        txtZip.Attributes.Add("onkeyup", "jsFormatZip(this);");
     }
 }

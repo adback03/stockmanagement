@@ -73,39 +73,95 @@
                                         <h4><i class="icon-user"></i>&nbsp;&nbsp; Account Information</h4>
                                         <label>First Name</label>
                                         <asp:TextBox ID="txtFirstName" runat="server" CssClass="input-block-level"></asp:TextBox>
-                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="First Name" Display="None" ControlToValidate="txtFirstName" ValidationGroup="Register"/>
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtFirstName" ErrorMessage="First Name" ValidationGroup="Register" Display="None" />
+                                        <asp:RegularExpressionValidator runat="server" ID="revFirstName" ControlToValidate="txtFirstName" ErrorMessage="First Name" Display="None" ValidationGroup="Register" />
                                         <label>Last Name</label>
                                         <asp:TextBox ID="txtLastName" runat="server" CssClass="input-block-level"></asp:TextBox>
-                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="Last Name" Display="None" ControlToValidate="txtLastName" ValidationGroup="Register"/>
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtLastName" ErrorMessage="Last Name" ValidationGroup="Register" Display="None" />
+                                        <asp:RegularExpressionValidator runat="server" ID="revLastName" ControlToValidate="txtLastName" ErrorMessage="Last Name" Display="None" ValidationGroup="Register" />
                                         <label>Social Security Number (###-##-####)</label>
-                                        <asp:TextBox ID="txtSocialSecurity" runat="server" CssClass="input-block-level"></asp:TextBox>
-                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="Social Security" Display="None" ControlToValidate="txtSocialSecurity" ValidationGroup="Register"/>
-                                        <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server" ErrorMessage="Social Security Number must be in format XXX-XX-XXXX" Display="None" ControlToValidate="txtSocialSecurity" ValidationExpression="^\d{3}-\d{2}-\d{4}$" ValidationGroup="Register"/>    
+                                        <asp:TextBox ID="txtSocialSecurity" runat="server" CssClass="input-block-level"></asp:TextBox>   
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtSocialSecurity" ErrorMessage="Social Security" ValidationGroup="Register" Display="None" />
+                                        <asp:RegularExpressionValidator runat="server" ID="revSocialSecurity" ControlToValidate="txtSocialSecurity" ErrorMessage="Social Security" Display="None" ValidationGroup="Register" />
                                         <label>Email</label>
                                         <asp:TextBox ID="txtEmail" runat="server" CssClass="input-block-level" TextMode="Email"></asp:TextBox>
-                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ErrorMessage="Email" Display="None" ControlToValidate="txtEmail" ValidationGroup="Register"/>
-                                        <asp:RegularExpressionValidator ID="RegularExpressionValidator3" runat="server" ErrorMessage="Email address not in a valid format." Display="None" ControlToValidate="txtEmail" ValidationExpression="^([0-9a-zA-Z]([-\.\w]*[0-9a-zA-Z])*@([0-9a-zA-Z][-\w]*[0-9a-zA-Z]\.)+[a-zA-Z]{2,9})$" ValidationGroup="Register"/> 
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="txtEmail" ErrorMessage="Email" ValidationGroup="Register" Display="None" />
+                                        <asp:RegularExpressionValidator runat="server" ID="revEmail" ControlToValidate="txtEmail" ErrorMessage="Email" Display="None" ValidationGroup="Register" />
                                         <label>Phone</label>
                                         <asp:TextBox ID="txtPhone" runat="server" CssClass="input-block-level"></asp:TextBox>
-                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ErrorMessage="Phone" Display="None" ControlToValidate="txtPhone" ValidationGroup="Register"/>
-                                        <asp:RegularExpressionValidator ID="RegularExpressionValidator4" runat="server" ErrorMessage="Phone Number not in a valid format." Display="None" ControlToValidate="txtPhone" ValidationExpression="^[01]?[- .]?(\([2-9]\d{2}\)|[2-9]\d{2})[- .]?\d{3}[- .]?\d{4}$" ValidationGroup="Register"/>  
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="txtPhone" ErrorMessage="Phone" ValidationGroup="Register" Display="None" />
+                                        <asp:RegularExpressionValidator runat="server" ID="revPhone" ControlToValidate="txtPhone" ErrorMessage="Phone" Display="None" ValidationGroup="Register" />
                                     </div>
                                     <div class="span6">
                                         <h4><i class="icon-user"></i>&nbsp;&nbsp; Mailing Address</h4>
                                         <label>Address 1</label>
                                         <asp:TextBox ID="txtAddress1" runat="server" CssClass="input-block-level"></asp:TextBox>
-                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ErrorMessage="Address 1" Display="None" ControlToValidate="txtAddress1" ValidationGroup="Register"/>
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ControlToValidate="txtAddress1" ErrorMessage="Address1" ValidationGroup="Register" Display="None" />
+                                        <asp:RegularExpressionValidator runat="server" ID="revAddress1" ControlToValidate="txtAddress1" ErrorMessage="Address1" Display="None" ValidationGroup="Register" />
                                         <label>Address2</label>
                                         <asp:TextBox ID="txtAddress2" runat="server" CssClass="input-block-level"></asp:TextBox>
                                         <label>City</label>
                                         <asp:TextBox ID="txtCity" runat="server" CssClass="input-block-level"></asp:TextBox>
-                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ErrorMessage="City" Display="None" ControlToValidate="txtCity" ValidationGroup="Register"/>
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ControlToValidate="txtCity" ErrorMessage="City" ValidationGroup="Register" Display="None" />
+                                        <asp:RegularExpressionValidator runat="server" ID="revCity" ControlToValidate="txtCity" ErrorMessage="City" Display="None" ValidationGroup="Register" />
                                         <label>State</label>
-                                        <asp:TextBox ID="txtState" runat="server" CssClass="input-block-level"></asp:TextBox>
-                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator8" runat="server" ErrorMessage="State" Display="None" ControlToValidate="txtState" ValidationGroup="Register"/>
+                                        <asp:DropDownList id="ddlState" runat="server" CssClass="input-block-level">
+                                            <asp:ListItem Value="AL">Alabama</asp:ListItem>
+                                            <asp:ListItem Value="AK">Alaska</asp:ListItem>
+                                            <asp:ListItem Value="AZ">Arizona</asp:ListItem>
+                                            <asp:ListItem Value="AR">Arkansas</asp:ListItem>
+                                            <asp:ListItem Value="CA">California</asp:ListItem>
+                                            <asp:ListItem Value="CO">Colorado</asp:ListItem>
+                                            <asp:ListItem Value="CT">Connecticut</asp:ListItem>
+                                            <asp:ListItem Value="DC">District of Columbia</asp:ListItem>
+                                            <asp:ListItem Value="DE">Delaware</asp:ListItem>
+                                            <asp:ListItem Value="FL">Florida</asp:ListItem>
+                                            <asp:ListItem Value="GA">Georgia</asp:ListItem>
+                                            <asp:ListItem Value="HI">Hawaii</asp:ListItem>
+                                            <asp:ListItem Value="ID">Idaho</asp:ListItem>
+                                            <asp:ListItem Value="IL">Illinois</asp:ListItem>
+                                            <asp:ListItem Value="IN">Indiana</asp:ListItem>
+                                            <asp:ListItem Value="IA">Iowa</asp:ListItem>
+                                            <asp:ListItem Value="KS">Kansas</asp:ListItem>
+                                            <asp:ListItem Value="KY">Kentucky</asp:ListItem>
+                                            <asp:ListItem Value="LA">Louisiana</asp:ListItem>
+                                            <asp:ListItem Value="ME">Maine</asp:ListItem>
+                                            <asp:ListItem Value="MD">Maryland</asp:ListItem>
+                                            <asp:ListItem Value="MA">Massachusetts</asp:ListItem>
+                                            <asp:ListItem Value="MI">Michigan</asp:ListItem>
+                                            <asp:ListItem Value="MN">Minnesota</asp:ListItem>
+                                            <asp:ListItem Value="MS">Mississippi</asp:ListItem>
+                                            <asp:ListItem Value="MO">Missouri</asp:ListItem>
+                                            <asp:ListItem Value="MT">Montana</asp:ListItem>
+                                            <asp:ListItem Value="NE">Nebraska</asp:ListItem>
+                                            <asp:ListItem Value="NV">Nevada</asp:ListItem>
+                                            <asp:ListItem Value="NH">New Hampshire</asp:ListItem>
+                                            <asp:ListItem Value="NJ">New Jersey</asp:ListItem>
+                                            <asp:ListItem Value="NM">New Mexico</asp:ListItem>
+                                            <asp:ListItem Value="NY">New York</asp:ListItem>
+                                            <asp:ListItem Value="NC">North Carolina</asp:ListItem>
+                                            <asp:ListItem Value="ND">North Dakota</asp:ListItem>
+                                            <asp:ListItem Value="OH">Ohio</asp:ListItem>
+                                            <asp:ListItem Value="OK">Oklahoma</asp:ListItem>
+                                            <asp:ListItem Value="OR">Oregon</asp:ListItem>
+                                            <asp:ListItem Value="PA">Pennsylvania</asp:ListItem>
+                                            <asp:ListItem Value="RI">Rhode Island</asp:ListItem>
+                                            <asp:ListItem Value="SC">South Carolina</asp:ListItem>
+                                            <asp:ListItem Value="SD">South Dakota</asp:ListItem>
+                                            <asp:ListItem Value="TN">Tennessee</asp:ListItem>
+                                            <asp:ListItem Value="TX">Texas</asp:ListItem>
+                                            <asp:ListItem Value="UT">Utah</asp:ListItem>
+                                            <asp:ListItem Value="VT">Vermont</asp:ListItem>
+                                            <asp:ListItem Value="VA">Virginia</asp:ListItem>
+                                            <asp:ListItem Value="WA">Washington</asp:ListItem>
+                                            <asp:ListItem Value="WV">West Virginia</asp:ListItem>
+                                            <asp:ListItem Value="WI">Wisconsin</asp:ListItem>
+                                            <asp:ListItem Value="WY">Wyoming</asp:ListItem>
+                                        </asp:DropDownList>
                                         <label>Zip</label>
-                                        <asp:TextBox ID="txtZip" runat="server" CssClass="input-block-level"></asp:TextBox>
-                                        <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ErrorMessage="Zip code" Display="None" ControlToValidate="txtZip" ValidationExpression="[0-9]+" ValidationGroup="Register"/>                                
+                                        <asp:TextBox ID="txtZip" runat="server" CssClass="input-block-level"></asp:TextBox>             
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator8" runat="server" ControlToValidate="txtZip" ErrorMessage="Zip" ValidationGroup="Register" Display="None" />
+                                        <asp:RegularExpressionValidator runat="server" ID="revZip" ControlToValidate="txtZip" ErrorMessage="Zip" Display="None" ValidationGroup="Register" />                
                                     </div>
                                 </div>
                             </div>
@@ -115,34 +171,28 @@
                                         <h4><i class="icon-user"></i>&nbsp;&nbsp; Bank Information</h4>
                                         <label>Bank Name</label>
                                         <asp:TextBox ID="txtBankName" runat="server" CssClass="input-block-level"></asp:TextBox>
-                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator9" runat="server" ErrorMessage="Bank Name" Display="None" ControlToValidate="txtBankName" ValidationGroup="Register"/>
                                         <label>Account Number</label>
                                         <asp:TextBox ID="txtAcctNumber" runat="server" CssClass="input-block-level"></asp:TextBox>
-                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator10" runat="server" ErrorMessage="Account Number" Display="None" ControlToValidate="txtAcctNumber" ValidationGroup="Register"/>
                                         <label>Routing Number</label>
-                                        <asp:TextBox ID="txtRoutingNumber" runat="server" CssClass="input-block-level"></asp:TextBox>  
-                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator11" runat="server" ErrorMessage="Routing Number" Display="None" ControlToValidate="txtRoutingNumber" ValidationGroup="Register"/>                                
+                                        <asp:TextBox ID="txtRoutingNumber" runat="server" CssClass="input-block-level"></asp:TextBox>                          
                                     </div>
                                     <div class="span6">
                                         <h4><i class="icon-user"></i>&nbsp;&nbsp; Billing Address</h4>
                                         <label>Address 1</label>
                                         <asp:TextBox ID="txtBillingAddress1" runat="server" CssClass="input-block-level"></asp:TextBox>
-                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator12" runat="server" ErrorMessage="Billing Address 1" Display="None" ControlToValidate="txtBillingAddress1" ValidationGroup="Register"/>
                                         <label>Address2</label>
                                         <asp:TextBox ID="txtBillingAddress2" runat="server" CssClass="input-block-level"></asp:TextBox>
                                         <label>City</label>
                                         <asp:TextBox ID="txtBillingCity" runat="server" CssClass="input-block-level"></asp:TextBox>
-                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator13" runat="server" ErrorMessage="Billing City" Display="None" ControlToValidate="txtBillingCity" ValidationGroup="Register"/>
                                         <label>State</label>
                                         <asp:TextBox ID="txtBillingState" runat="server" CssClass="input-block-level"></asp:TextBox>
-                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator14" runat="server" ErrorMessage="Billing State" Display="None" ControlToValidate="txtBillingState" ValidationGroup="Register"/>
                                         <label>Zip</label>
-                                        <asp:TextBox ID="txtBillingZip" runat="server" CssClass="input-block-level"></asp:TextBox>  
-                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator15" runat="server" ErrorMessage="Billing Zip" Display="None" ControlToValidate="txtBillingZip" ValidationGroup="Register"/>                                
+                                        <asp:TextBox ID="txtBillingZip" runat="server" CssClass="input-block-level"></asp:TextBox>                                
                                     </div>
                                 </div>
                             </div>
                             <asp:ValidationSummary
+                                id="vsRegisterSummary"
                                 ShowMessageBox="true"
                                 ShowSummary="false"
                                 HeaderText="The following fields are either blank or incorrectly formatted:"
@@ -155,6 +205,51 @@
             </div>
         </div>
     </div>
+        
+    <asp:HiddenField ID="hfSSN" runat="server" Value="" />
+    <asp:HiddenField ID="hfEmail" runat="server" Value="" />
+    <asp:HiddenField ID="hfFirstName" runat="server" Value="" />
+    <asp:HiddenField ID="hfLastName" runat="server" Value="" />
+    <asp:HiddenField ID="hfPhone" runat="server" Value="" />
+    <asp:HiddenField ID="hfAddress1" runat="server" Value="" />
+    <asp:HiddenField ID="hfZip" runat="server" Value="" />
     </form>
 </body>
+
+<script type="text/javascript">
+    // Format name
+    function jsFormatName(txt) {
+        ValidateField(txt, document.getElementById('hfFirstName').value);
+    }
+    
+    // Format SSN
+    function jsFormatSSN(txt) {
+        ValidateField(txt, document.getElementById('hfSSN').value);
+    }
+
+    // Format EMail
+    function jsFormatEMail(txt) {
+        ValidateField(txt, document.getElementById('hfEmail').value);
+    }
+
+    // Format EMail
+    function jsFormatPhone(txt) {
+        ValidateField(txt, document.getElementById('hfPhone').value);
+    }
+
+    function jsFormatAddress(txt) {
+        ValidateField(txt, document.getElementById('hfAddress1').value);
+    }
+
+    function jsFormatZip(txt) {
+        ValidateField(txt, document.getElementById('hfZip').value);
+    }
+
+    function ValidateField(txtBox, regex) {
+        if (txtBox.value.match(regex))
+            txtBox.style.borderColor = "#0000ff";
+        else
+            txtBox.style.borderColor = "#ff0000";
+    }
+</script>
 </html>
