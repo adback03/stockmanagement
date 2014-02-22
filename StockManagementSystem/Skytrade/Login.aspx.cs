@@ -85,7 +85,7 @@ public partial class Login : System.Web.UI.Page
         sBillingLine1 += txtBillingAddress1.Text;
         sBillingLine2 += txtBillingAddress2.Text;
         sBillingCity += txtBillingCity.Text;
-        sBillingState += txtBillingState.Text;
+        sBillingState += ddlBillingState.SelectedValue;
         sBillingZip += txtBillingZip.Text;
 
         SqlCommand cmd = new SqlCommand("InsertUser");
@@ -128,12 +128,9 @@ public partial class Login : System.Web.UI.Page
         hfEmail.Value = Regex.Email;
         revEmail.ValidationExpression = Regex.Email;
 
-        // First Name
-        hfFirstName.Value = Regex.Name;
+        //Name
+        hfName.Value = Regex.Name;
         revFirstName.ValidationExpression = Regex.Name;
-
-        // Last Name
-        hfLastName.Value = Regex.Name;
         revLastName.ValidationExpression = Regex.Name;
 
         // Phone
@@ -144,9 +141,34 @@ public partial class Login : System.Web.UI.Page
         hfAddress1.Value = Regex.Address;
         revAddress1.ValidationExpression = Regex.Address;
 
+        // City
+        hfCity.Value = Regex.City;
+        revCity.ValidationExpression = Regex.City;
+
         // Zip
         hfZip.Value = Regex.Zip;
         revZip.ValidationExpression = Regex.Zip;
+
+        // Bank name
+        revBankName.ValidationExpression = Regex.Name;
+
+        // Account Number
+        hfAccountNumber.Value = Regex.AccountNumber;
+        revAccountNumber.ValidationExpression = Regex.AccountNumber;
+
+        // Routing Number
+        hfRoutingNumber.Value = Regex.RoutingNumber;
+        revRoutingNumber.ValidationExpression = Regex.RoutingNumber;
+
+        // Bank Address
+        revBillingAddress.ValidationExpression = Regex.Address;
+
+        // Billing City
+        revBillingCity.ValidationExpression = Regex.City;
+
+        // Billing Zip
+        hfZip.Value = Regex.Zip;
+        revBillingZip.ValidationExpression = Regex.Zip;
     }
 
     /// <summary>
@@ -155,12 +177,22 @@ public partial class Login : System.Web.UI.Page
     /// </summary>
     private void InitJavascript()
     {
+        // Account information
         txtFirstName.Attributes.Add("onkeyup", "jsFormatName(this);");
         txtLastName.Attributes.Add("onkeyup", "jsFormatName(this);");
         txtSocialSecurity.Attributes.Add("onkeyup", "jsFormatSSN(this);");
         txtEmail.Attributes.Add("onkeyup", "jsFormatEmail(this);");
         txtPhone.Attributes.Add("onkeyup", "jsFormatPhone(this);");
         txtAddress1.Attributes.Add("onkeyup", "jsFormatAddress(this);");
+        txtCity.Attributes.Add("onkeyup", "jsFormatCity(this);");
         txtZip.Attributes.Add("onkeyup", "jsFormatZip(this);");
+
+        // Billing information
+        txtBankName.Attributes.Add("onkeyup", "jsFormatName(this);");
+        txtAcctNumber.Attributes.Add("onkeyup", "jsFormatAccount(this);");
+        txtRoutingNumber.Attributes.Add("onkeyup", "jsFormatRouting(this);");
+        txtBillingAddress1.Attributes.Add("onkeyup", "jsFormatAddress(this);");
+        txtBillingCity.Attributes.Add("onkeyup", "jsFormatCity(this);");
+        txtBillingZip.Attributes.Add("onkeyup", "jsFormatZip(this);");
     }
 }
