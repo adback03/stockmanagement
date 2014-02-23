@@ -25,18 +25,42 @@ public static class Account
         return ((User)HttpContext.Current.Session["User"]);
     }
 
-    public static bool Login(string sUsername, string sPassword)
+    public static bool Login(string sUsername, string sPassword, int iType)
     {
 
         // check if the user exists in the admin table, and if they do, validate password.
         SqlCommand cmd = new SqlCommand();
-        cmd.CommandText = "SELECT * FROM Users WHERE username = '"+ sUsername + "' and password = '" + sPassword + "'";
+        cmd.CommandText = "SELECT * FROM Users WHERE username = '" + sUsername + "' and password = '" + sPassword + "'";
         DataTable dtResults = SqlHelper.ReturnAsTable(cmd, Settings.StockMarketConn);
 
         if (dtResults.Rows.Count > 0)
         {
             User activeUser = new User();
             DataRow dr = dtResults.Rows[0];
+            activeUser.UserId = Convert.ToInt32(dr["user_id"]);
+            activeUser.CompanyName = dr["companyname"].ToString();
+            activeUser.FirstName = dr["firstname"].ToString();
+            activeUser.LastName = dr["lastname"].ToString();
+            activeUser.Email = dr["email"].ToString();
+            activeUser.Phone = dr["phone"].ToString();
+            activeUser.UserName = dr["username"].ToString();
+            activeUser.Password = dr["password"].ToString();
+            activeUser.Type = (Enums.enuType)Convert.ToInt32(dr["type_id"]);
+
+            // if the user chose a type other than what they are in the database
+            if (activeUser.Type != (Enums.enuType)iType)
+            {
+                // if the user returned is an admin, allow them to sign in as admin or company
+                if (activeUser.Type == Enums.enuType.Admin)
+                {
+                    activeUser.Type = (Enums.enuType)iType;
+                }
+                else
+                {
+                    // the user is a client who is trying to sign in as an admin
+                    return false;
+                }
+            }
             // TODO: set properties...
             HttpContext.Current.Session["User"] = activeUser;
             return true;
