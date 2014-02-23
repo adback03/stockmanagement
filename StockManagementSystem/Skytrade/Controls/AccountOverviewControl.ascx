@@ -15,11 +15,10 @@
             <h4><i class="icon-location-arrow"></i>&nbsp;&nbsp;Mailing Address</h4>
             <div class="box">
                 <address>
-                    <strong>User's name</strong><br>
-                    1500 La Crosse St<br>
-                    La Crosse, WI 54601<br>
-                    <abbr title="Phone">P:</abbr>
-                    (123) 456-7890
+                    <strong><asp:Label ID="lblMailingName" runat="server" Text="****"></asp:Label></strong><br>
+                    <asp:Label ID="lblMailingLine1" runat="server" Text="****"></asp:Label><br>
+                    <asp:Label ID="lblMailingLine2" runat="server" Text="****"></asp:Label><br>
+                    <asp:Label ID="lblMailingLineExtra" runat="server" Text="****"></asp:Label><br>
                 </address>
             </div>
         </div>
@@ -29,18 +28,16 @@
                 <b>Bank Name: </b><asp:Label ID="lblBank" runat="server" Text="****"></asp:Label><br />
                 <b>Routing Number: </b><asp:Label ID="lblRouting" runat="server" Text="****"></asp:Label><br />
                 <b>Account Number: </b><asp:Label ID="lblAccount" runat="server" Text="****"></asp:Label><br />
-                <b>Account Type: </b><asp:Label ID="lblType" runat="server" Text="****"></asp:Label><br />
                 <br />
                 <br />
             </div>
             <h4><i class="icon-location-arrow"></i>&nbsp;&nbsp;Billing Address</h4>
             <div class="box">
                 <address>
-                    <strong>User's name</strong><br>
-                    1500 La Crosse St<br>
-                    La Crosse, WI 54601<br>
-                    <abbr title="Phone">P:</abbr>
-                    (123) 456-7890
+                    <strong><asp:Label ID="lblBillingName" runat="server" Text="****"></asp:Label></strong><br>
+                    <asp:Label ID="lblBillingLine1" runat="server" Text="****"></asp:Label><br>
+                    <asp:Label ID="lblBillingLine2" runat="server" Text="****"></asp:Label><br>
+                    <asp:Label ID="lblBillingLineExtra" runat="server" Text="****"></asp:Label><br>
                 </address>
             </div>
         </div>

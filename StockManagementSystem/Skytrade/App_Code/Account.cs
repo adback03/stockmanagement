@@ -38,7 +38,7 @@ public static class Account
             User activeUser = new User();
             DataRow dr = dtResults.Rows[0];
             activeUser.Type = (Enums.enuType)Convert.ToInt32(dr["type_id"]);
-
+            activeUser.UserId = Convert.ToInt32(dr["user_id"]);
             // if the user chose a type other than what they are in the database
             if (activeUser.Type != (Enums.enuType)iType)
             {
