@@ -75,20 +75,20 @@ public partial class Staff_StaffControls_Register : System.Web.UI.UserControl
         if (first == null || first.Length == 0 || last == null || last.Length == 0)
             return null;
         String username = last + "." + first.Substring(0, 4);
+        String temp = username;
         int num = 0;
         while (true)
         {
             SqlCommand cmd = new SqlCommand();
             cmd.CommandText = "SELECT * FROM Users WHERE username = @username";
-            cmd.Parameters.Add("@username", SqlDbType.VarChar).Value = username;
+            cmd.Parameters.Add("@username", SqlDbType.VarChar).Value = temp;
             DataTable dt = SqlHelper.ReturnAsTable(cmd, Settings.SkyTradeConn);
             if (dt.Rows.Count == 0)
                 break;
             num++;
-            username += num;
-            break;
+            temp = username + num;
         }
-        return username.ToLower();
+        return temp.ToLower();
     }
 
     private String generatePassword()

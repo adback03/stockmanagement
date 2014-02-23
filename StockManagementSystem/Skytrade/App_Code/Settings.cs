@@ -23,6 +23,11 @@ public static class Settings
             StockMarketConn = System.Configuration.ConfigurationManager.ConnectionStrings["AndrewStockMarket"].ToString();
         }
         // If not Andrew's local machine, use our server connection strings by default
+        else if (machineName == "CISSY-PC")
+        {
+            SkyTradeConn = System.Configuration.ConfigurationManager.ConnectionStrings["CissySkyTrade"].ToString();
+            StockMarketConn = System.Configuration.ConfigurationManager.ConnectionStrings["CissyStockMarket"].ToString();
+        }
         else
         {
             // Note that these connections will only work while on campus (or remotted in)
