@@ -76,9 +76,9 @@
                                 <h4><i class="icon-user"></i>&nbsp;&nbsp; Account Information</h4>
 
                                 <label>Username</label>
-                                <asp:TextBox ID="txtUsername" runat="server" CssClass="input-block-level"></asp:TextBox>
-                                <label>Password</label>
-                                <asp:TextBox ID="txtPassword" runat="server" CssClass="input-block-level"></asp:TextBox>
+                                <asp:Label ID="txtUsername" runat="server" CssClass="input-block-level"></asp:Label></asp:TextBox>
+                                <%-- <label>Password</label>
+                                <asp:TextBox ID="txtPassword" runat="server" CssClass="input-block-level"></asp:TextBox> --%>
                                 <label>First Name</label>
                                 <asp:TextBox ID="txtFirstName" runat="server" CssClass="input-block-level"></asp:TextBox>
                                 <label>Last Name</label>
@@ -88,10 +88,11 @@
                                 <label>Phone Number</label>
                                 <asp:TextBox ID="txtPhone" runat="server" CssClass="input-block-level"></asp:TextBox>
                                 <label>Social Security</label>
-                                <asp:TextBox ID="txtSSN" runat="server" CssClass="input-block-level"></asp:TextBox>
+                                <asp:Label ID="txtSSN" runat="server" CssClass="input-block-level"></asp:Label>
                             </div>
                             <div class="span6">
                                 <h4><i class="icon-envelope"></i>&nbsp;&nbsp;Mailing Address</h4>
+                                <asp:Label Visible="false" ID="txtAddressId" runat="server"></asp:Label>
                                 <label>Address 1</label>
                                 <asp:TextBox ID="txtAddress1" runat="server" CssClass="input-block-level"></asp:TextBox>
                                 <label>Address 2</label>
@@ -99,7 +100,59 @@
                                 <label>City</label>
                                 <asp:TextBox ID="txtCity" runat="server" CssClass="input-block-level"></asp:TextBox>
                                 <label>State</label>
-                                <asp:TextBox ID="txtState" runat="server" CssClass="input-block-level"></asp:TextBox>
+                                <asp:DropDownList id="ddlState" runat="server" CssClass="input-block-level">
+                                            <asp:ListItem Value="AL">Alabama</asp:ListItem>
+                                            <asp:ListItem Value="AK">Alaska</asp:ListItem>
+                                            <asp:ListItem Value="AZ">Arizona</asp:ListItem>
+                                            <asp:ListItem Value="AR">Arkansas</asp:ListItem>
+                                            <asp:ListItem Value="CA">California</asp:ListItem>
+                                            <asp:ListItem Value="CO">Colorado</asp:ListItem>
+                                            <asp:ListItem Value="CT">Connecticut</asp:ListItem>
+                                            <asp:ListItem Value="DC">District of Columbia</asp:ListItem>
+                                            <asp:ListItem Value="DE">Delaware</asp:ListItem>
+                                            <asp:ListItem Value="FL">Florida</asp:ListItem>
+                                            <asp:ListItem Value="GA">Georgia</asp:ListItem>
+                                            <asp:ListItem Value="HI">Hawaii</asp:ListItem>
+                                            <asp:ListItem Value="ID">Idaho</asp:ListItem>
+                                            <asp:ListItem Value="IL">Illinois</asp:ListItem>
+                                            <asp:ListItem Value="IN">Indiana</asp:ListItem>
+                                            <asp:ListItem Value="IA">Iowa</asp:ListItem>
+                                            <asp:ListItem Value="KS">Kansas</asp:ListItem>
+                                            <asp:ListItem Value="KY">Kentucky</asp:ListItem>
+                                            <asp:ListItem Value="LA">Louisiana</asp:ListItem>
+                                            <asp:ListItem Value="ME">Maine</asp:ListItem>
+                                            <asp:ListItem Value="MD">Maryland</asp:ListItem>
+                                            <asp:ListItem Value="MA">Massachusetts</asp:ListItem>
+                                            <asp:ListItem Value="MI">Michigan</asp:ListItem>
+                                            <asp:ListItem Value="MN">Minnesota</asp:ListItem>
+                                            <asp:ListItem Value="MS">Mississippi</asp:ListItem>
+                                            <asp:ListItem Value="MO">Missouri</asp:ListItem>
+                                            <asp:ListItem Value="MT">Montana</asp:ListItem>
+                                            <asp:ListItem Value="NE">Nebraska</asp:ListItem>
+                                            <asp:ListItem Value="NV">Nevada</asp:ListItem>
+                                            <asp:ListItem Value="NH">New Hampshire</asp:ListItem>
+                                            <asp:ListItem Value="NJ">New Jersey</asp:ListItem>
+                                            <asp:ListItem Value="NM">New Mexico</asp:ListItem>
+                                            <asp:ListItem Value="NY">New York</asp:ListItem>
+                                            <asp:ListItem Value="NC">North Carolina</asp:ListItem>
+                                            <asp:ListItem Value="ND">North Dakota</asp:ListItem>
+                                            <asp:ListItem Value="OH">Ohio</asp:ListItem>
+                                            <asp:ListItem Value="OK">Oklahoma</asp:ListItem>
+                                            <asp:ListItem Value="OR">Oregon</asp:ListItem>
+                                            <asp:ListItem Value="PA">Pennsylvania</asp:ListItem>
+                                            <asp:ListItem Value="RI">Rhode Island</asp:ListItem>
+                                            <asp:ListItem Value="SC">South Carolina</asp:ListItem>
+                                            <asp:ListItem Value="SD">South Dakota</asp:ListItem>
+                                            <asp:ListItem Value="TN">Tennessee</asp:ListItem>
+                                            <asp:ListItem Value="TX">Texas</asp:ListItem>
+                                            <asp:ListItem Value="UT">Utah</asp:ListItem>
+                                            <asp:ListItem Value="VT">Vermont</asp:ListItem>
+                                            <asp:ListItem Value="VA">Virginia</asp:ListItem>
+                                            <asp:ListItem Value="WA">Washington</asp:ListItem>
+                                            <asp:ListItem Value="WV">West Virginia</asp:ListItem>
+                                            <asp:ListItem Value="WI">Wisconsin</asp:ListItem>
+                                            <asp:ListItem Value="WY">Wyoming</asp:ListItem>
+                                        </asp:DropDownList>
                                 <label>Zip Code</label>
                                 <asp:TextBox ID="txtZip" runat="server" CssClass="input-block-level"></asp:TextBox>
                                                                         <br />
@@ -120,11 +173,11 @@
                                 <asp:TextBox ID="txtRouting" runat="server" CssClass="input-block-level"></asp:TextBox>
                                 <label>Account Number</label>
                                 <asp:TextBox ID="txtAccountNumber" runat="server" CssClass="input-block-level"></asp:TextBox>
-                                <label>Account Type</label>
+                                <%-- <label>Account Type</label>
                                 <asp:DropDownList ID="ddlAccountType" runat="server">
                                     <asp:ListItem>Checking</asp:ListItem>
                                     <asp:ListItem>Savings</asp:ListItem>
-                                </asp:DropDownList>
+                                </asp:DropDownList>--%>
                             </div>
                             <div class="span6">
                                 <h4><i class="icon-envelope"></i>&nbsp;&nbsp;Billing Address</h4>
@@ -135,7 +188,59 @@
                                 <label>City</label>
                                 <asp:TextBox ID="txtBillingCity" runat="server" CssClass="input-block-level"></asp:TextBox>
                                 <label>State</label>
-                                <asp:TextBox ID="txtBillingState" runat="server" CssClass="input-block-level"></asp:TextBox>
+                                <asp:DropDownList id="ddlBillingState" runat="server" CssClass="input-block-level">
+                                            <asp:ListItem Value="AL">Alabama</asp:ListItem>
+                                            <asp:ListItem Value="AK">Alaska</asp:ListItem>
+                                            <asp:ListItem Value="AZ">Arizona</asp:ListItem>
+                                            <asp:ListItem Value="AR">Arkansas</asp:ListItem>
+                                            <asp:ListItem Value="CA">California</asp:ListItem>
+                                            <asp:ListItem Value="CO">Colorado</asp:ListItem>
+                                            <asp:ListItem Value="CT">Connecticut</asp:ListItem>
+                                            <asp:ListItem Value="DC">District of Columbia</asp:ListItem>
+                                            <asp:ListItem Value="DE">Delaware</asp:ListItem>
+                                            <asp:ListItem Value="FL">Florida</asp:ListItem>
+                                            <asp:ListItem Value="GA">Georgia</asp:ListItem>
+                                            <asp:ListItem Value="HI">Hawaii</asp:ListItem>
+                                            <asp:ListItem Value="ID">Idaho</asp:ListItem>
+                                            <asp:ListItem Value="IL">Illinois</asp:ListItem>
+                                            <asp:ListItem Value="IN">Indiana</asp:ListItem>
+                                            <asp:ListItem Value="IA">Iowa</asp:ListItem>
+                                            <asp:ListItem Value="KS">Kansas</asp:ListItem>
+                                            <asp:ListItem Value="KY">Kentucky</asp:ListItem>
+                                            <asp:ListItem Value="LA">Louisiana</asp:ListItem>
+                                            <asp:ListItem Value="ME">Maine</asp:ListItem>
+                                            <asp:ListItem Value="MD">Maryland</asp:ListItem>
+                                            <asp:ListItem Value="MA">Massachusetts</asp:ListItem>
+                                            <asp:ListItem Value="MI">Michigan</asp:ListItem>
+                                            <asp:ListItem Value="MN">Minnesota</asp:ListItem>
+                                            <asp:ListItem Value="MS">Mississippi</asp:ListItem>
+                                            <asp:ListItem Value="MO">Missouri</asp:ListItem>
+                                            <asp:ListItem Value="MT">Montana</asp:ListItem>
+                                            <asp:ListItem Value="NE">Nebraska</asp:ListItem>
+                                            <asp:ListItem Value="NV">Nevada</asp:ListItem>
+                                            <asp:ListItem Value="NH">New Hampshire</asp:ListItem>
+                                            <asp:ListItem Value="NJ">New Jersey</asp:ListItem>
+                                            <asp:ListItem Value="NM">New Mexico</asp:ListItem>
+                                            <asp:ListItem Value="NY">New York</asp:ListItem>
+                                            <asp:ListItem Value="NC">North Carolina</asp:ListItem>
+                                            <asp:ListItem Value="ND">North Dakota</asp:ListItem>
+                                            <asp:ListItem Value="OH">Ohio</asp:ListItem>
+                                            <asp:ListItem Value="OK">Oklahoma</asp:ListItem>
+                                            <asp:ListItem Value="OR">Oregon</asp:ListItem>
+                                            <asp:ListItem Value="PA">Pennsylvania</asp:ListItem>
+                                            <asp:ListItem Value="RI">Rhode Island</asp:ListItem>
+                                            <asp:ListItem Value="SC">South Carolina</asp:ListItem>
+                                            <asp:ListItem Value="SD">South Dakota</asp:ListItem>
+                                            <asp:ListItem Value="TN">Tennessee</asp:ListItem>
+                                            <asp:ListItem Value="TX">Texas</asp:ListItem>
+                                            <asp:ListItem Value="UT">Utah</asp:ListItem>
+                                            <asp:ListItem Value="VT">Vermont</asp:ListItem>
+                                            <asp:ListItem Value="VA">Virginia</asp:ListItem>
+                                            <asp:ListItem Value="WA">Washington</asp:ListItem>
+                                            <asp:ListItem Value="WV">West Virginia</asp:ListItem>
+                                            <asp:ListItem Value="WI">Wisconsin</asp:ListItem>
+                                            <asp:ListItem Value="WY">Wyoming</asp:ListItem>
+                                        </asp:DropDownList>
                                 <label>Zip Code</label>
                                 <asp:TextBox ID="txtBillingZip" runat="server" CssClass="input-block-level"></asp:TextBox>
                             </div> <!-- span6 -->
