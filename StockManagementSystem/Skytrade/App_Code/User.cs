@@ -13,6 +13,11 @@ public class User
     public string LastName { get; set; }
     public string UserName { get; set; }
     public string Password { get; set; }
+    public string SSN { get; set; }
+    public string Email { get; set; }
+    public string Phone { get; set; }
+    public int AddressId { get; set; }
+    public Enums.enuType Status { get; set; }
     public Enums.enuType Type { get; set; }
 
     public User()
