@@ -23,16 +23,4 @@ public partial class Company_CompanyControls_BuyStock : System.Web.UI.UserContro
             gvPending.DataBind();
         }
     }
-
-    protected void gvPending_RowCommand(object sender, GridViewCommandEventArgs e)
-    {
-        if (e.CommandName == "Approve")
-        {
-
-        }
-        else if (e.CommandName == "Deny")
-        {
-
-        }
-    }
 }

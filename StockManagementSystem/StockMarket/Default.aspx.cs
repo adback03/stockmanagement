@@ -9,10 +9,16 @@ public partial class _Default : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        // Check if user is logged in.
-        if (!Account.IsLoggedIn())
+        if (Account.IsLoggedIn())
         {
-            Response.Redirect("Login.aspx");
+            if (Account.CurrentUser().Type != Enums.enuType.Admin)
+            {
+                Response.Redirect(Request.ApplicationPath);
+            }
+        }
+        else
+        {
+            Response.Redirect(Request.ApplicationPath + "Login.aspx");
         }
 
         Settings.Initialize();

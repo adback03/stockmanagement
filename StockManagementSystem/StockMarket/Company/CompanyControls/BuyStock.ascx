@@ -2,8 +2,8 @@
 
 <div class="tab-pane" id="buy">
     <div class="row-fluid">
-        <div class="span12">
-            <h4><i class="icon-unlock"></i>&nbsp;&nbsp;Current Stock</h4>
+        <div class="span8">
+            <h4><i class="icon-money"></i>&nbsp;&nbsp;Current Stock</h4>
             <asp:GridView ID="gvStock"
                 runat="server" 
                 CssClass="row-fluid table table- table-bordered table-condensed" 
@@ -18,16 +18,27 @@
                     <asp:BoundField DataField="name" HeaderText="Name" SortExpression="Name"  ControlStyle-Width="100px"/>
                     <asp:BoundField DataField="quantity" HeaderText="Quantity" SortExpression="Quantity" ControlStyle-Width="40px"/>
                     <asp:BoundField DataField="price" HeaderText="Price" SortExpression="MarketPrice" ControlStyle-Width="100px"/>
-                    <asp:TemplateField HeaderText="Quantity To Purchase">
-                        <ItemTemplate>
-                            <asp:TextBox ID="txtQuantityPurchase" runat="server" TextMode="Number"></asp:TextBox>
-                        </ItemTemplate>
-                    </asp:TemplateField>
-                    <asp:ButtonField ButtonType="Button" Text="Submit Request" CommandName="Submit" Visible="True"/>
                 </Columns>
             </asp:GridView>
 
         </div>
+        <div class="span4">
+            <h4><i class="icon-exchange"></i>&nbsp;&nbsp;Make Transaction</h4>
+            <label>Stock Type</label>
+            <asp:DropDownList ID="ddlStock" runat="server" CssClass="input-block-level"></asp:DropDownList>
+            <label>Quantity To Purchase</label>
+            <asp:TextBox ID="txtQuantityPurchase" runat="server" CssClass="input-block-level"></asp:TextBox>
+            <asp:Button ID="btnSubmit" runat="server" Text="Submit Request" CssClass="btn-inverse" OnClick="btnSubmit_Click" />
+        </div>
     </div>
 </div>
+
+<script type="text/javascript">
+    function isNumber(evt) {
+        var charCode = (evt.which) ? evt.which : event.keyCode
+        if (charCode > 31 && (charCode < 48 || charCode > 57))
+            return false;
+        return true;
+    }
+</script>
 
