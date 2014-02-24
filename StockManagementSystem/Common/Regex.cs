@@ -11,7 +11,7 @@ namespace Common
         /// <summary>
         /// A name must be at least one character, and can have letters, apostrophes, or dashes.
         /// </summary>
-        public static string Name = @"^[a-zA-Z '-]{1,}$";
+        public static string Name = @"^[a-zA-Z '-]+$";
 
         /// <summary>
         /// Validates a 9 digit social security number in the format ###-##-####
@@ -21,7 +21,7 @@ namespace Common
         /// <summary>
         /// No standard format for an address. Have at least a letter or number
         /// </summary>
-        public static string Address = @"[a-zA-Z0-9]+";
+        public static string Address = @"[a-zA-Z0-9 ]+";
 
         /// <summary>
         /// Validates an email address.
@@ -34,9 +34,9 @@ namespace Common
         public static string Phone = @"^[01]?[- .]?(\([2-9]\d{2}\)|[2-9]\d{2})[- .]?\d{3}[- .]?\d{4}$";
 
         /// <summary>
-        /// There is no standard format for cities. It must have at least a letter or number.
+        /// There is no standard format for cities. It can have numbers, letters, or spaces.
         /// </summary>
-        public static string City = @"[a-zA-Z0-9]+";
+        public static string City = @"[a-zA-Z0-9 ]+";
 
         /// <summary>
         /// Standard US Zip code.

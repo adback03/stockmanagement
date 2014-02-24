@@ -12,8 +12,7 @@
                 AllowPaging="true"
                 AllowSorting="true"
                 AutoGenerateColumns="false"
-                AutoGenerateEditButton="false"
-                OnRowCommand="gvPending_RowCommand">
+                AutoGenerateEditButton="false">
                 <Columns>
                     <asp:BoundField DataField="username" HeaderText="Username" SortExpression="Username" ControlStyle-Width="100px"/>
                     <asp:BoundField DataField="ticker" HeaderText="Ticker" SortExpression="Ticker" ReadOnly="true" />
@@ -22,8 +21,6 @@
                     <asp:BoundField DataField="price" HeaderText="Price" SortExpression="MarketPrice" ControlStyle-Width="100px"/>
                     <asp:BoundField DataField="status" HeaderText="Status" SortExpression="Status" ControlStyle-Width="100px"/>
                     <asp:BoundField DataField="timestamp" HeaderText="Timestamp" SortExpression="Timestamp" ControlStyle-Width="100px"/>
-                    <asp:ButtonField ButtonType="Button" Text="Approve" CommandName="Approve" Visible="True"/>
-                    <asp:ButtonField ButtonType="Button" Text="Deny" CommandName="Deny" Visible="True"/>
                 </Columns>
             </asp:GridView>
 

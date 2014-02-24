@@ -5,13 +5,13 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-public partial class _Default : System.Web.UI.Page
+public partial class Company_Default : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
         if (Account.IsLoggedIn())
         {
-            if (Account.CurrentUser().Type != Enums.enuType.Admin)
+            if (Account.CurrentUser().Type != Enums.enuType.Company)
             {
                 Response.Redirect(Request.ApplicationPath);
             }
@@ -20,8 +20,5 @@ public partial class _Default : System.Web.UI.Page
         {
             Response.Redirect(Request.ApplicationPath + "Login.aspx");
         }
-
-        Settings.Initialize();
-
     }
 }
