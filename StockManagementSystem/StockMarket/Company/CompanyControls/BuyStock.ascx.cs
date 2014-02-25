@@ -51,6 +51,6 @@ public partial class Company_CompanyControls_BuyStock : System.Web.UI.UserContro
         cmd.Parameters.Add("@price", SqlDbType.Decimal).Value = double.Parse(price);
 
         SqlHelper.ExecuteNonQuery(cmd, Settings.StockMarketConn);
-        Response.Redirect("/Company");
+        Response.Redirect(Request.Url.ToString(), true);
     }
 }
