@@ -74,7 +74,18 @@ public partial class Staff_StaffControls_Register : System.Web.UI.UserControl
     {
         if (first == null || first.Length == 0 || last == null || last.Length == 0)
             return null;
-        String username = last + "." + first.Substring(0, 4);
+
+        String username = "";
+
+        if (first.Length > 3)
+        {
+            username = last + "." + first.Substring(0, 4);
+        }
+        else
+        {
+            username = last + "." + first;
+        }
+        
         String temp = username;
         int num = 0;
         while (true)
