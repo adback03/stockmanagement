@@ -29,13 +29,31 @@
             <h4><i class="icon-money"></i>&nbsp;&nbsp;Add New Stock</h4>
             <label>Ticker Symbol (Unique)</label>
             <asp:TextBox ID="txtTicker" runat="server" CssClass="input-block-level"></asp:TextBox>
+            <asp:RegularExpressionValidator runat="server" ID="revTicker" ControlToValidate="txtTicker" ErrorMessage="Ticker can not be empty and can be from 1-4 characters capatilized. ie: AAPL" Display="None" ValidationGroup="Stock" ValidationExpression="^[A-Z]{4}&" />                              
+                                    
             <label>Stock Name</label>
             <asp:TextBox ID="txtName" runat="server" CssClass="input-block-level"></asp:TextBox>
+            <asp:RegularExpressionValidator runat="server" ID="revName" ControlToValidate="txtName" ErrorMessage="Name can not be empty. ie: Aaple" Display="None" ValidationGroup="Stock" ValidationExpression="^[a-zA-Z '-]+$" />                              
+                                    
             <label>Quantity</label>
             <asp:TextBox ID="txtQuantity" runat="server" CssClass="input-block-level" TextMode="Number"></asp:TextBox>
+            <asp:RegularExpressionValidator runat="server" ID="revQuantity" ControlToValidate="txtQuantity" ErrorMessage="Quantity must be an integer." Display="None" ValidationGroup="Stock" ValidationExpression="^\d+$" />
+            
             <label>Market Price</label>
             <asp:TextBox ID="txtMarketPrice" runat="server" CssClass="input-block-level"></asp:TextBox>
-            <asp:Button ID="btnAddStock" runat="server" Text="Add Stock" CssClass="btn-large btn-inverse" OnClick="btnAddStock_Click" />
+            <asp:RegularExpressionValidator runat="server" ID="revPrice" ControlToValidate="txtMarketPrice" ErrorMessage="Price must be in a valid money format. ie:100.00" Display="None" ValidationGroup="Stock" ValidationExpression="^\d{1,18}(\.\d{1,2})?$" />
+            
+            <asp:Button ID="btnAddStock" runat="server" Text="Add Stock" CssClass="btn-large btn-inverse" OnClick="btnAddStock_Click" ValidationGroup="Stock" />
         </div>
+        <asp:ValidationSummary
+                                id="vsStockSummary"
+                                ShowMessageBox="true"
+                                ShowSummary="false"
+                                HeaderText="The following fields are either blank or incorrectly formatted:"
+                                EnableClientScript="true"
+                                ValidationGroup="Stock"
+                                runat="server"/>
+
+        
     </div>
 </div>
