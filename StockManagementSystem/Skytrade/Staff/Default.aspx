@@ -15,7 +15,7 @@
                     <h2 class="heading-2">Sky Trade Administration</h2>
                     <div class="tabbable custom-tabs tabs-left tabs-animated  flat flat-all hide-label-980 shadow track-url auto-scroll dark">
                         <ul class="nav nav-tabs">
-                            <li><a href="#register" data-toggle="tab" class="active "><i class="icon-user"></i>&nbsp;<span>Registers</span></a></li>
+                            <li><a href="#register" data-toggle="tab" class="active "><i class="icon-user"></i>&nbsp;<span>Registrations</span></a></li>
                         </ul>
                         <div class="tab-content ">
                             <uc2:Register runat="server" ID="Register" />
