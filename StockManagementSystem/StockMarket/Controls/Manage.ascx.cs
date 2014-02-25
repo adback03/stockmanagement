@@ -102,7 +102,7 @@ public partial class Controls_Manage : System.Web.UI.UserControl
         cmd.Parameters.Add("@price", SqlDbType.Decimal).Value = dMarketPrice;
 
         SqlHelper.ExecuteNonQuery(cmd, Settings.StockMarketConn);
-        Response.Redirect("/Admin");
+        Response.Redirect("/");
 
     }
 }
