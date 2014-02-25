@@ -19,7 +19,7 @@ public partial class Company_Default : System.Web.UI.Page
         }
         else
         {
-            Response.Redirect(Path.Combine(Request.ApplicationPath + "Login.aspx"));
+            Response.Redirect(Path.Combine(Request.ApplicationPath, "Login.aspx"));
         }
     }
 }
