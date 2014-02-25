@@ -17,7 +17,7 @@ public partial class Company_CompanyControls_BuyStock : System.Web.UI.UserContro
         if (!Page.IsPostBack)
         {
             SqlCommand cmd = new SqlCommand();
-            cmd.CommandText = "SELECT * FROM TransactionDetails";
+            cmd.CommandText = "SELECT * FROM TransactionDetails ORDER BY timestamp desc";
             DataTable dt = SqlHelper.ReturnAsTable(cmd, Settings.StockMarketConn);
             gvPending.DataSource = dt;
             gvPending.DataBind();
