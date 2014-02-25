@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.IO;
 
 public partial class Company_Default : System.Web.UI.Page
 {
@@ -18,7 +19,7 @@ public partial class Company_Default : System.Web.UI.Page
         }
         else
         {
-            Response.Redirect(Request.ApplicationPath + "Login.aspx");
+            Response.Redirect(Path.Combine(Request.ApplicationPath + "Login.aspx"));
         }
     }
 }
