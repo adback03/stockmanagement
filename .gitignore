@@ -6,4 +6,4 @@ StockManagementSystem/DatabaseAccess/bin
 StockManagementSystem/DatabaseAccess/obj
 StockManagementSystem/Common/bin
 StockManagementSystem/Common/obj
-StockManagementSystem.v12.suo
+*.suo
