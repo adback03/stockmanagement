@@ -15,15 +15,18 @@ public static class Settings
 
     public static void Initialize()
     {
-        if (System.Environment.MachineName == "WNGCSP04")
-        {
-            SkyTradeConn = System.Configuration.ConfigurationManager.ConnectionStrings["SkyTrade"].ToString();
-            StockMarketConn = System.Configuration.ConfigurationManager.ConnectionStrings["StockMarket"].ToString();
-        }
-        else if (System.Environment.MachineName == "DIDIERDROGBA")
+        string machineName = System.Environment.MachineName;
+
+        if (machineName == "DIDIERDROGBA")
         {
             SkyTradeConn = System.Configuration.ConfigurationManager.ConnectionStrings["AndrewSkyTrade"].ToString();
             StockMarketConn = System.Configuration.ConfigurationManager.ConnectionStrings["AndrewStockMarket"].ToString();
+        }
+        else
+        {
+            // Note that these connections will only work while on campus (or remotted in)
+            SkyTradeConn = System.Configuration.ConfigurationManager.ConnectionStrings["SkyTrade"].ToString();
+            StockMarketConn = System.Configuration.ConfigurationManager.ConnectionStrings["StockMarket"].ToString();
         }
     }
 }
