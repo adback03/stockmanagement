@@ -25,6 +25,35 @@ public static class Account
         return ((User)HttpContext.Current.Session["User"]);
     }
 
+    public static Address GetAddressById(int aid)
+    {
+        SqlCommand cmd = new SqlCommand();
+        cmd.CommandText = "SELECT * FROM Address WHERE address_id=@address_id";
+        cmd.Parameters.Add("@address_id", SqlDbType.Int).Value = aid;
+        DataTable dt = SqlHelper.ReturnAsTable(cmd, Settings.SkyTradeConn);
+        DataRow dr = dt.Rows[0];
+        Address address = new Address();
+        address.Address1 = (String)dr["line1"];
+        address.Address2 = (String)dr["line2"];
+        address.City = (String)dr["city"];
+        address.State = (String)dr["state"];
+        address.Zip = (String)dr["zip"];
+        return address;
+    }
+
+    // Address store in separated table?
+    public static Bank GetBankByUserId(int uid)
+    {
+        SqlCommand cmd = new SqlCommand();
+        cmd.CommandText = "SELECT * FROM BankAccount WHERE user_id=@user_id";
+        cmd.Parameters.Add("@user_id", SqlDbType.Int).Value = uid;
+        DataTable dt = SqlHelper.ReturnAsTable(cmd, Settings.SkyTradeConn);
+        DataRow dr = dt.Rows[0];
+        Bank bank = new Bank();
+        bank.AccountNo = (String)dr["account_number"];
+        return bank;
+    }
+
     public static bool Login(string sUsername, string sPassword, int iType)
     {
         
@@ -37,6 +66,15 @@ public static class Account
         {
             User activeUser = new User();
             DataRow dr = dtResults.Rows[0];
+            activeUser.AddressId = Convert.ToInt32(dr["address_id"]);
+            activeUser.Email = (String)dr["email"];
+            activeUser.FirstName = (String)dr["firstname"];
+            activeUser.LastName = (String)dr["lastname"];
+            activeUser.Password = (String)dr["password"];
+            activeUser.Phone = (String)dr["phone"];
+            activeUser.SSN = (String)dr["ssn"];
+            activeUser.Status = (Enums.enuType)Convert.ToInt32(dr["status_id"]);
+            activeUser.UserName = (String)dr["username"];
             activeUser.Type = (Enums.enuType)Convert.ToInt32(dr["type_id"]);
             activeUser.UserId = Convert.ToInt32(dr["user_id"]);
             // if the user chose a type other than what they are in the database
