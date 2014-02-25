@@ -20,7 +20,7 @@ public partial class Controls_AccountOverviewControl : System.Web.UI.UserControl
 
     protected void Bind_Data()
     {
-        User u = ((User)Session["User"]);
+        User u = Account.CurrentUser();
         DataRow user = GetUser();
         DataRow account = GetAccount();
         DataRow address = GetAddress(Convert.ToInt32(user["address_id"]));
