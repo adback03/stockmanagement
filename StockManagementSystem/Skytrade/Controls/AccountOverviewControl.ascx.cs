@@ -32,7 +32,7 @@ public partial class Controls_AccountOverviewControl : System.Web.UI.UserControl
         txtLastName.Text = lblLastName.Text = (String)user["lastname"];
         txtEmail.Text = lblEmail.Text = (String)user["email"];
         txtPhone.Text = lblPhone.Text = (String)user["phone"];
-        txtSSN.Text = lblSSN.Text = ((String)user["ssn"]).Substring(0, 7) + "****";
+        txtSSN.Text = lblSSN.Text = "***-**-" + ((String)user["ssn"]).Substring(7);
         txtBank.Text = lblBank.Text = (String)account["bank_name"];
         txtRouting.Text = lblRouting.Text = (String)account["routing_number"];
         txtAccountNumber.Text = lblAccount.Text = (String)account["account_number"];
