@@ -29,13 +29,38 @@
             <h4><i class="icon-money"></i>&nbsp;&nbsp;Add New Stock</h4>
             <label>Ticker Symbol (Unique)</label>
             <asp:TextBox ID="txtTicker" runat="server" CssClass="input-block-level"></asp:TextBox>
+            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtTicker" ErrorMessage="Ticker can not be empty." ValidationGroup="Stock" Display="None" />                            
+            <asp:RegularExpressionValidator runat="server" ID="revTicker" ControlToValidate="txtTicker" ErrorMessage="Ticker can not be empty and can be from 1-4 characters capatilized. ie: AAPL" Display="None" ValidationGroup="Stock" ValidationExpression="^[A-Z]{1,4}" />                              
+                                    
             <label>Stock Name</label>
             <asp:TextBox ID="txtName" runat="server" CssClass="input-block-level"></asp:TextBox>
+            <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtName" ErrorMessage="Name can not be empty." ValidationGroup="Stock" Display="None" />                            
+            
+            <asp:RegularExpressionValidator runat="server" ID="revName" ControlToValidate="txtName" ErrorMessage="Name can be any letter or number. ie: Aaple" Display="None" ValidationGroup="Stock" ValidationExpression="^[a-zA-Z '-]{1,25}$" />                              
+                                    
             <label>Quantity</label>
             <asp:TextBox ID="txtQuantity" runat="server" CssClass="input-block-level" TextMode="Number"></asp:TextBox>
+            <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtQuantity" ErrorMessage="Quantity can not be empty." ValidationGroup="Stock" Display="None" />                            
+            
+            <asp:RegularExpressionValidator runat="server" ID="revQuantity" ControlToValidate="txtQuantity" ErrorMessage="Quantity must be an integer." Display="None" ValidationGroup="Stock" ValidationExpression="^\d{1,18}$" />
+            
             <label>Market Price</label>
             <asp:TextBox ID="txtMarketPrice" runat="server" CssClass="input-block-level"></asp:TextBox>
-            <asp:Button ID="btnAddStock" runat="server" Text="Add Stock" CssClass="btn-large btn-inverse" OnClick="btnAddStock_Click" />
+            <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="txtMarketPrice" ErrorMessage="Price can not be empty." ValidationGroup="Stock" Display="None" />                            
+            
+            <asp:RegularExpressionValidator runat="server" ID="revPrice" ControlToValidate="txtMarketPrice" ErrorMessage="Price must be in a valid money format. ie:100.00" Display="None" ValidationGroup="Stock" ValidationExpression="^\d{1,18}(\.\d{1,2})?" />
+            
+            <asp:Button ID="btnAddStock" runat="server" Text="Add Stock" CssClass="btn-large btn-inverse" OnClick="btnAddStock_Click" ValidationGroup="Stock" />
         </div>
+        <asp:ValidationSummary
+                                id="vsStockSummary"
+                                ShowMessageBox="true"
+                                ShowSummary="false"
+                                HeaderText="The following fields are either blank or incorrectly formatted:"
+                                EnableClientScript="true"
+                                ValidationGroup="Stock"
+                                runat="server"/>
+
+        
     </div>
 </div>

@@ -3,7 +3,7 @@
 <div class="tab-pane" id="transactions">
     <div class="row-fluid">
         <div class="span12">
-            <h4><i class="icon-money"></i>&nbsp;&nbsp;Pending Transactions</h4>
+            <h4><i class="icon-money"></i>&nbsp;&nbsp;Transactions</h4>
             <asp:GridView ID="gvPending"
                 runat="server" 
                 CssClass="row-fluid table table- table-bordered table-condensed" 

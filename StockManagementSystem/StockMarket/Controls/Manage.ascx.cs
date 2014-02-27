@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
 using System.Data.SqlClient;
+using System.Text.RegularExpressions;
 
 using DatabaseAccess;
 
@@ -46,22 +47,38 @@ public partial class Controls_Manage : System.Web.UI.UserControl
         string sName = ((TextBox)(row.Cells[2].Controls[0])).Text;
         string sQuantity = ((TextBox)(row.Cells[3].Controls[0])).Text;
         string sMarketPrice = ((TextBox)(row.Cells[4].Controls[0])).Text;
+        Regex sN = new Regex(@"^[a-zA-Z '-]+$");
+        Regex sQ = new Regex(@"^\d+$");
+        Regex sM = new Regex( @"^\d{1,18}(\.\d{2})?$");
 
         SqlCommand cmd = new SqlCommand("UpdateStock");
         cmd.CommandType = CommandType.StoredProcedure;
-        cmd.Parameters.Add("@ticker", SqlDbType.VarChar).Value = sTicker;
-        cmd.Parameters.Add("@name", SqlDbType.VarChar).Value = sName;
-        cmd.Parameters.Add("@quantity", SqlDbType.Int).Value = int.Parse(sQuantity);
-        cmd.Parameters.Add("@price", SqlDbType.Decimal).Value = double.Parse(sMarketPrice);
 
-        SqlHelper.ExecuteNonQuery(cmd, Settings.StockMarketConn);
+        if (sN.IsMatch(sName)) {
+            if (sQ.IsMatch(sQuantity)) {
+                if (sM.IsMatch(sMarketPrice)) {
+                    cmd.Parameters.Add("@ticker", SqlDbType.VarChar).Value = sTicker;
+                    cmd.Parameters.Add("@name", SqlDbType.VarChar).Value = sName;
+                    cmd.Parameters.Add("@quantity", SqlDbType.Int).Value = int.Parse(sQuantity);
+                    cmd.Parameters.Add("@price", SqlDbType.Decimal).Value = double.Parse(sMarketPrice);
 
-        dt.Rows[row.DataItemIndex]["name"] = sName;
-        dt.Rows[row.DataItemIndex]["quantity"] = sQuantity;
-        dt.Rows[row.DataItemIndex]["price"] = sMarketPrice;
-        gvStock.EditIndex = -1;
+                    SqlHelper.ExecuteNonQuery(cmd, Settings.StockMarketConn);
 
-        BindData();
+                    dt.Rows[row.DataItemIndex]["name"] = sName;
+                    dt.Rows[row.DataItemIndex]["quantity"] = sQuantity;
+                    dt.Rows[row.DataItemIndex]["price"] = sMarketPrice;
+                    gvStock.EditIndex = -1;
+
+                    BindData();
+                } else {
+                        System.Web.HttpContext.Current.Response.Write("Market Price invalid. Example: 100.00");
+                }
+            } else {
+                    System.Web.HttpContext.Current.Response.Write("Quantity invalid. Example: 100");
+            }
+        } else {
+                System.Web.HttpContext.Current.Response.Write("Name invalid. Example: Twitter Inc");
+        }
     }
 
     private void BindData()
@@ -85,7 +102,7 @@ public partial class Controls_Manage : System.Web.UI.UserControl
         cmd.Parameters.Add("@price", SqlDbType.Decimal).Value = dMarketPrice;
 
         SqlHelper.ExecuteNonQuery(cmd, Settings.StockMarketConn);
-        Response.Redirect("/Admin");
+        Response.Redirect(Request.ApplicationPath);
 
     }
 }

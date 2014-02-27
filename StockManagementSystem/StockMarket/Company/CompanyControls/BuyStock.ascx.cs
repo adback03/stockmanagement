@@ -37,25 +37,11 @@ public partial class Company_CompanyControls_BuyStock : System.Web.UI.UserContro
         txtQuantityPurchase.Attributes.Add("onkeypress", "return isNumber(event);");
     }
 
-    //protected void gvStock_RowCommand(object sender, GridViewCommandEventArgs e)
-    //{
-    //    int index = Convert.ToInt32(e.CommandArgument);
-    //    GridViewRow row = gvStock.Rows[index];
-    //    if (e.CommandName == "Submit")
-    //    {
-    //        string ticker = row.Cells[0].Text;
-    //        string name = row.Cells[1].Text;
-    //        int quantity = int.Parse(row.Cells[2].Text);
-    //        double price = double.Parse(row.Cells[3].Text);
-    //    }
-    //    Response.Redirect("#buy");
-    //}
-
     protected void btnSubmit_Click(object sender, EventArgs e)
     {
         SqlCommand cmd = new SqlCommand("InsertTransaction");
         cmd.CommandType = CommandType.StoredProcedure;
-        cmd.Parameters.Add("@user_id", SqlDbType.Int).Value = 2;
+        cmd.Parameters.Add("@user_id", SqlDbType.Int).Value = Account.CurrentUser().UserId;
         cmd.Parameters.Add("@ticker", SqlDbType.VarChar).Value = ddlStock.SelectedItem.Text;
         cmd.Parameters.Add("@quantity", SqlDbType.Int).Value = int.Parse(txtQuantityPurchase.Text);
 
@@ -65,6 +51,6 @@ public partial class Company_CompanyControls_BuyStock : System.Web.UI.UserContro
         cmd.Parameters.Add("@price", SqlDbType.Decimal).Value = double.Parse(price);
 
         SqlHelper.ExecuteNonQuery(cmd, Settings.StockMarketConn);
-        Response.Redirect(Request.ApplicationPath + "Company/#buy");
+        Response.Redirect(Request.Url.ToString(), true);
     }
 }

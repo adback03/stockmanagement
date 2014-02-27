@@ -54,5 +54,20 @@ namespace Common
         /// There is no standard for US account numbers. Therefore, simply restrict to digits.
         /// </summary>
         public static string AccountNumber = @"^\d+$";
+
+        /// <summary>
+        /// A Ticker Symbol is 4 Capitalized letters
+        /// </summary>
+        public static string Ticker = @"^[A-Z]{4}&";
+
+        /// <summary>
+        /// Money is stored in the database as a decimal (18,2)
+        /// </summary>
+        public static string Money = @"^\d{1,18}(\.\d{1,2})?$";
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public static string Number = @"^\d+$";
     }
 }
