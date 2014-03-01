@@ -61,7 +61,6 @@ public static class Account
                     return false;
                 }
             }
-            // TODO: set properties...
             HttpContext.Current.Session["User"] = activeUser;
             return true;
         }

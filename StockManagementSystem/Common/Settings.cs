@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-using DatabaseAccess;
-
 /// <summary>
 /// Summary description for Connection
 /// </summary>
