@@ -4,26 +4,29 @@
     <div class="row-fluid">
         <div class="span8">
             <h4><i class="icon-unlock"></i>&nbsp;&nbsp;Current Stock</h4>
-            <asp:GridView ID="gvStock"
-                runat="server" 
-                CssClass="row-fluid table table- table-bordered table-condensed" 
-                HeaderStyle-ForeColor="Black"
-                HeaderStyle-BackColor="White"
-                AllowPaging="true"
-                AllowSorting="true"
-                AutoGenerateColumns="false"
-                AutoGenerateEditButton="true"
-                OnRowEditing="gvStock_RowEditing"
-                OnRowCancelingEdit="gvStock_RowCancelingEdit"
-                OnRowUpdating="gvStock_RowUpdating">
-                <Columns>
-                    <asp:BoundField DataField="ticker" HeaderText="Ticker" SortExpression="Ticker" ReadOnly="true" />
-                    <asp:BoundField DataField="name" HeaderText="Name" SortExpression="Name"  ControlStyle-Width="100px"/>
-                    <asp:BoundField DataField="quantity" HeaderText="Quantity" SortExpression="Quantity" ControlStyle-Width="40px"/>
-                    <asp:BoundField DataField="price" HeaderText="Price" SortExpression="MarketPrice" ControlStyle-Width="100px"/>
-                </Columns>
-            </asp:GridView>
-
+                <asp:UpdatePanel ID="upManageStock" runat="server">
+                <ContentTemplate>
+                    <asp:GridView ID="gvStock"
+                        runat="server" 
+                        CssClass="row-fluid table table- table-bordered table-condensed" 
+                        HeaderStyle-ForeColor="Black"
+                        HeaderStyle-BackColor="White"
+                        AllowPaging="true"
+                        AllowSorting="true"
+                        AutoGenerateColumns="false"
+                        AutoGenerateEditButton="true"
+                        OnRowEditing="gvStock_RowEditing"
+                        OnRowCancelingEdit="gvStock_RowCancelingEdit"
+                        OnRowUpdating="gvStock_RowUpdating">
+                        <Columns>
+                            <asp:BoundField DataField="ticker" HeaderText="Ticker" SortExpression="Ticker" ReadOnly="true" />
+                            <asp:BoundField DataField="name" HeaderText="Name" SortExpression="Name"  ControlStyle-Width="100px"/>
+                            <asp:BoundField DataField="quantity" HeaderText="Quantity" SortExpression="Quantity" ControlStyle-Width="40px"/>
+                            <asp:BoundField DataField="price" HeaderText="Price" SortExpression="MarketPrice" ControlStyle-Width="100px"/>
+                        </Columns>
+                    </asp:GridView>
+            </ContentTemplate>
+            </asp:UpdatePanel>
         </div>
         <div class="span4">
             <h4><i class="icon-money"></i>&nbsp;&nbsp;Add New Stock</h4>
@@ -64,3 +67,4 @@
         
     </div>
 </div>
+

@@ -16,12 +16,17 @@ public partial class Company_CompanyControls_BuyStock : System.Web.UI.UserContro
     {
         if (!Page.IsPostBack)
         {
-            SqlCommand cmd = new SqlCommand();
-            cmd.CommandText = "SELECT * FROM TransactionDetails ORDER BY timestamp desc";
-            DataTable dt = SqlHelper.ReturnAsTable(cmd, Settings.StockMarketConn);
-            gvPending.DataSource = dt;
-            gvPending.DataBind();
+            BindData();
         }
+    }
+
+    private void BindData()
+    {
+        SqlCommand cmd = new SqlCommand();
+        cmd.CommandText = "SELECT * FROM TransactionDetails ORDER BY timestamp desc";
+        DataTable dt = SqlHelper.ReturnAsTable(cmd, Settings.StockMarketConn);
+        gvPending.DataSource = dt;
+        gvPending.DataBind();
     }
 
     protected void gvPending_RowCommand(object sender, GridViewCommandEventArgs e)
@@ -34,5 +39,10 @@ public partial class Company_CompanyControls_BuyStock : System.Web.UI.UserContro
         {
 
         }
+    }
+    protected void gvPending_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    {
+        gvPending.PageIndex = e.NewPageIndex;
+        BindData();
     }
 }

@@ -27,9 +27,10 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </a>
-                <a class="brand" href="#"><i class="icon-money5"></i> Stock Market Administration</a>
+                <a class="brand" href="#"><i class="icon-money5"></i>System Dashboard</a>
                 <div class="nav-collapse collapse navbar-responsive-collapse">
                     <ul class="nav">
+                        <li><asp:LinkButton ID="lbtnAccount" runat="server" OnClick="lbtnAccount_Click"><i class="icon-user"></i> Account</asp:LinkButton></li>
                         <li><asp:LinkButton ID="lbtnManageStock" runat="server" OnClick="lbtnManageStock_Click"><i class="icon-briefcase"></i> Manage Stock</asp:LinkButton></li>
                         <li><asp:LinkButton ID="lbtnLogOut" runat="server" OnClick="lbtnLogOut_Click"><i class="icon-circle-arrow-left"></i> Log Out</asp:LinkButton></li>
                     </ul>

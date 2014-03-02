@@ -16,11 +16,6 @@ public partial class Controls_Manage : System.Web.UI.UserControl
     {
         if (!Page.IsPostBack)
         {
-            SqlCommand cmd = new SqlCommand();
-            cmd.CommandText = "SELECT * FROM Stock";
-            DataTable dt = SqlHelper.ReturnAsTable(cmd, Settings.StockMarketConn);
-
-            Session["AdminStock"] = dt;
             BindData();
         }
     }
@@ -83,7 +78,11 @@ public partial class Controls_Manage : System.Web.UI.UserControl
 
     private void BindData()
     {
-        gvStock.DataSource = Session["AdminStock"];
+        SqlCommand cmd = new SqlCommand();
+        cmd.CommandText = "SELECT * FROM Stock";
+        DataTable dt = SqlHelper.ReturnAsTable(cmd, Settings.StockMarketConn);
+        Session["AdminStock"] = dt;
+        gvStock.DataSource = dt;
         gvStock.DataBind();
     }
 
@@ -102,7 +101,6 @@ public partial class Controls_Manage : System.Web.UI.UserControl
         cmd.Parameters.Add("@price", SqlDbType.Decimal).Value = dMarketPrice;
 
         SqlHelper.ExecuteNonQuery(cmd, Settings.StockMarketConn);
-        Response.Redirect(Request.ApplicationPath);
-
+        BindData();
     }
 }
