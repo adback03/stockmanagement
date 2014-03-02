@@ -3,8 +3,29 @@
 <div class="tab-pane" id="transactions">
     <div class="row-fluid">
         <div class="span12">
-            <h4><i class="icon-money"></i>&nbsp;&nbsp;Transactions</h4>
-            <asp:GridView ID="gvPending"
+            <h4><i class="icon-money"></i>&nbsp;&nbsp;Transactions (Buy)</h4>
+            <asp:GridView ID="gvBuy"
+                runat="server" 
+                CssClass="row-fluid table table- table-bordered table-condensed" 
+                HeaderStyle-ForeColor="Black"
+                HeaderStyle-BackColor="White"
+                AllowPaging="true"
+                AllowSorting="true"
+                AutoGenerateColumns="false"
+                AutoGenerateEditButton="false">
+                <Columns>
+                    <asp:BoundField DataField="username" HeaderText="Username" SortExpression="Username" ControlStyle-Width="100px"/>
+                    <asp:BoundField DataField="ticker" HeaderText="Ticker" SortExpression="Ticker" ReadOnly="true" />
+                    <asp:BoundField DataField="name" HeaderText="Name" SortExpression="Name"  ControlStyle-Width="100px"/>
+                    <asp:BoundField DataField="quantity" HeaderText="Quantity" SortExpression="Quantity" ControlStyle-Width="40px"/>
+                    <asp:BoundField DataField="price" HeaderText="Price" SortExpression="MarketPrice" ControlStyle-Width="100px"/>
+                    <asp:BoundField DataField="status" HeaderText="Status" SortExpression="Status" ControlStyle-Width="100px"/>
+                    <asp:BoundField DataField="timestamp" HeaderText="Timestamp" SortExpression="Timestamp" ControlStyle-Width="100px"/>
+                </Columns>
+            </asp:GridView>
+
+            <h4><i class="icon-money"></i>&nbsp;&nbsp;Transactions (Sell)</h4>
+            <asp:GridView ID="gvSell"
                 runat="server" 
                 CssClass="row-fluid table table- table-bordered table-condensed" 
                 HeaderStyle-ForeColor="Black"

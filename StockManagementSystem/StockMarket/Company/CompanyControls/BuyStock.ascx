@@ -1,6 +1,6 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="BuyStock.ascx.cs" Inherits="Company_CompanyControls_BuyStock" %>
 
-<div class="tab-pane" id="buy">
+<div class="tab-pane active" id="buy">
     <div class="row-fluid">
         <div class="span8">
             <h4><i class="icon-money"></i>&nbsp;&nbsp;Current Stock</h4>
@@ -12,12 +12,13 @@
                 AllowPaging="true"
                 AllowSorting="true"
                 AutoGenerateColumns="false"
-                AutoGenerateEditButton="false">
+                AutoGenerateEditButton="false"
+                OnSorting="gvStock_Sorting">
                 <Columns>
                     <asp:BoundField DataField="ticker" HeaderText="Ticker" SortExpression="Ticker" ReadOnly="true" />
                     <asp:BoundField DataField="name" HeaderText="Name" SortExpression="Name"  ControlStyle-Width="100px"/>
                     <asp:BoundField DataField="quantity" HeaderText="Quantity" SortExpression="Quantity" ControlStyle-Width="40px"/>
-                    <asp:BoundField DataField="price" HeaderText="Price" SortExpression="MarketPrice" ControlStyle-Width="100px"/>
+                    <asp:BoundField DataField="price" HeaderText="Price" SortExpression="Price" ControlStyle-Width="100px"/>
                 </Columns>
             </asp:GridView>
 

@@ -17,10 +17,15 @@ public partial class Company_CompanyControls_BuyStock : System.Web.UI.UserContro
         if (!Page.IsPostBack)
         {
             SqlCommand cmd = new SqlCommand();
-            cmd.CommandText = "SELECT * FROM TransactionDetails WHERE username = '" + Account.CurrentUser().UserName + "' ORDER BY timestamp desc";
+            cmd.CommandText = "SELECT * FROM TransactionDetails WHERE username = '" + Account.CurrentUser().UserName + "' AND transaction_type = 'Buy' ORDER BY timestamp desc";
             DataTable dt = SqlHelper.ReturnAsTable(cmd, Settings.StockMarketConn);
-            gvPending.DataSource = dt;
-            gvPending.DataBind();
+            gvBuy.DataSource = dt;
+            gvBuy.DataBind();
+
+            cmd.CommandText = "SELECT * FROM TransactionDetails WHERE username = '" + Account.CurrentUser().UserName + "' AND transaction_type = 'Sell' ORDER BY timestamp desc";
+            dt = SqlHelper.ReturnAsTable(cmd, Settings.StockMarketConn);
+            gvSell.DataSource = dt;
+            gvSell.DataBind();
         }
     }
 }

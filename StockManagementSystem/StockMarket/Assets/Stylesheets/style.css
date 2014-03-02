@@ -85,6 +85,13 @@ body .tabbable.grey .tab-pane a:hover {
   box-sizing: border-box;
 }
 
+.center { 	
+    float: none; 	
+    margin-left: auto; 	
+    margin-right: auto;
+    text-align: center; 
+}
+
 .save {
     color:green;
 }
