@@ -31,7 +31,7 @@
                         <div class="tab-pane active" id="account">
                             <div class="row-fluid">
                                 <div class="span12" style="text-align:center">
-                                    <h4><i class="icon-user"></i>&nbsp;&nbsp; Login</h4>
+                                    <h4><img src="Assets/Images/stock-market-logo.png" style=""/></h4>
                                     <label>Username</label>
                                     <asp:TextBox ID="txtUserName" runat="server" CssClass="input-block-level"></asp:TextBox><br />
                                     <label>Password</label>

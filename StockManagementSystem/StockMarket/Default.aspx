@@ -16,7 +16,7 @@
         <ContentTemplate>
             <div class="row-fluid" id="demo-2">
                 <div class="span10 offset1">
-                    <h2 class="heading-2">Stock Market Administration</h2>
+                    <h2 class="heading-2"><img src="Assets/Images/stock-market-logo.png" style="max-height:100px" /></h2>
                     <div class="tabbable custom-tabs tabs-top tabs-animated  flat flat-all hide-label-980 shadow track-url auto-scroll light">
                         <ul class="nav nav-tabs">
                             <li class="active"><a href="#manage" data-toggle="tab"><i class="icon-money"></i>&nbsp;<span>Manage Stock</span></a></li>
