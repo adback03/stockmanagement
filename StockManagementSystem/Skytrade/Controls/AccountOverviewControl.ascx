@@ -81,12 +81,21 @@
                                 <asp:TextBox ID="txtPassword" runat="server" CssClass="input-block-level"></asp:TextBox> --%>
                                 <label>First Name</label>
                                 <asp:TextBox ID="txtFirstName" runat="server" CssClass="input-block-level"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtFirstName" ErrorMessage="First Name" ValidationGroup="Register" Display="None" />
+                                <asp:RegularExpressionValidator runat="server" ID="revFirstName" ControlToValidate="txtFirstName" ErrorMessage="First Name" Display="None" ValidationGroup="Register" />
                                 <label>Last Name</label>
                                 <asp:TextBox ID="txtLastName" runat="server" CssClass="input-block-level"></asp:TextBox>
+                                <asp:TextBox ID="TextBox1" runat="server" CssClass="input-block-level"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtLastName" ErrorMessage="Last Name" ValidationGroup="Register" Display="None" />
+                                <asp:RegularExpressionValidator runat="server" ID="revLastName" ControlToValidate="txtLastName" ErrorMessage="Last Name" Display="None" ValidationGroup="Register" />
                                 <label>Email Address</label>
                                 <asp:TextBox ID="txtEmail" runat="server" CssClass="input-block-level"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="txtEmail" ErrorMessage="Email" ValidationGroup="Register" Display="None" />
+                                <asp:RegularExpressionValidator runat="server" ID="revEmail" ControlToValidate="txtEmail" ErrorMessage="Email" Display="None" ValidationGroup="Register" />
                                 <label>Phone Number</label>
                                 <asp:TextBox ID="txtPhone" runat="server" CssClass="input-block-level"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="txtPhone" ErrorMessage="Phone" ValidationGroup="Register" Display="None" />
+                                <asp:RegularExpressionValidator runat="server" ID="revPhone" ControlToValidate="txtPhone" ErrorMessage="Phone" Display="None" ValidationGroup="Register" />
                                 <label>Social Security</label>
                                 <asp:Label ID="txtSSN" runat="server" CssClass="input-block-level"></asp:Label>
                             </div>
@@ -95,10 +104,14 @@
                                 <asp:Label Visible="false" ID="txtAddressId" runat="server"></asp:Label>
                                 <label>Address 1</label>
                                 <asp:TextBox ID="txtAddress1" runat="server" CssClass="input-block-level"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ControlToValidate="txtAddress1" ErrorMessage="Address1" ValidationGroup="Register" Display="None" />
+                                <asp:RegularExpressionValidator runat="server" ID="revAddress1" ControlToValidate="txtAddress1" ErrorMessage="Address1" Display="None" ValidationGroup="Register" />
                                 <label>Address 2</label>
                                 <asp:TextBox ID="txtAddress2" runat="server" CssClass="input-block-level"></asp:TextBox>
                                 <label>City</label>
                                 <asp:TextBox ID="txtCity" runat="server" CssClass="input-block-level"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ControlToValidate="txtCity" ErrorMessage="City" ValidationGroup="Register" Display="None" />
+                                <asp:RegularExpressionValidator runat="server" ID="revCity" ControlToValidate="txtCity" ErrorMessage="City" Display="None" ValidationGroup="Register" />
                                 <label>State</label>
                                 <asp:DropDownList id="ddlState" runat="server" CssClass="input-block-level">
                                             <asp:ListItem Value="AL">Alabama</asp:ListItem>
@@ -155,7 +168,8 @@
                                         </asp:DropDownList>
                                 <label>Zip Code</label>
                                 <asp:TextBox ID="txtZip" runat="server" CssClass="input-block-level"></asp:TextBox>
-                                                                        <br />
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator8" runat="server" ControlToValidate="txtZip" ErrorMessage="Zip" ValidationGroup="Register" Display="None" />
+                                <asp:RegularExpressionValidator runat="server" ID="revZip" ControlToValidate="txtZip" ErrorMessage="Zip" Display="None" ValidationGroup="Register" />                                        <br />
                                 <br />
                                 <br />
                             </div>
@@ -169,10 +183,16 @@
 
                                 <label>Bank Name</label>
                                 <asp:TextBox ID="txtBank" runat="server" CssClass="input-block-level"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator9" runat="server" ControlToValidate="txtBank" ErrorMessage="Bank Name" ValidationGroup="Register" Display="None" />
+                                <asp:RegularExpressionValidator runat="server" ID="revBankName" ControlToValidate="txtBank" ErrorMessage="Bank Name" Display="None" ValidationGroup="Register" />
                                 <label>Routing Number</label>
                                 <asp:TextBox ID="txtRouting" runat="server" CssClass="input-block-level"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator11" runat="server" ControlToValidate="txtRouting" ErrorMessage="Routing Number" ValidationGroup="Register" Display="None" />
+                                <asp:RegularExpressionValidator runat="server" ID="revRoutingNumber" ControlToValidate="txtRouting" ErrorMessage="Routing Number" Display="None" ValidationGroup="Register" />
                                 <label>Account Number</label>
                                 <asp:TextBox ID="txtAccountNumber" runat="server" CssClass="input-block-level"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator10" runat="server" ControlToValidate="txtAccountNumber" ErrorMessage="Account Number" ValidationGroup="Register" Display="None" />
+                                <asp:RegularExpressionValidator runat="server" ID="revAccountNumber" ControlToValidate="txtAccountNumber" ErrorMessage="Account Number" Display="None" ValidationGroup="Register" />
                                 <%-- <label>Account Type</label>
                                 <asp:DropDownList ID="ddlAccountType" runat="server">
                                     <asp:ListItem>Checking</asp:ListItem>
@@ -183,10 +203,14 @@
                                 <h4><i class="icon-envelope"></i>&nbsp;&nbsp;Billing Address</h4>
                                 <label>Address 1</label>
                                 <asp:TextBox ID="txtBillingAddress1" runat="server" CssClass="input-block-level"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator12" runat="server" ControlToValidate="txtBillingAddress1" ErrorMessage="Billing Address 1" ValidationGroup="Register" Display="None" />
+                                <asp:RegularExpressionValidator runat="server" ID="revBillingAddress" ControlToValidate="txtBillingAddress1" ErrorMessage="Billing Address 1" Display="None" ValidationGroup="Register" />
                                 <label>Address 2</label>
                                 <asp:TextBox ID="txtBillingAddress2" runat="server" CssClass="input-block-level"></asp:TextBox>
                                 <label>City</label>
                                 <asp:TextBox ID="txtBillingCity" runat="server" CssClass="input-block-level"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator14" runat="server" ControlToValidate="txtBillingCity" ErrorMessage="Billing City" ValidationGroup="Register" Display="None" />
+                                <asp:RegularExpressionValidator runat="server" ID="revBillingCity" ControlToValidate="txtBillingCity" ErrorMessage="Billing City" Display="None" ValidationGroup="Register" />
                                 <label>State</label>
                                 <asp:DropDownList id="ddlBillingState" runat="server" CssClass="input-block-level">
                                             <asp:ListItem Value="AL">Alabama</asp:ListItem>
@@ -243,6 +267,16 @@
                                         </asp:DropDownList>
                                 <label>Zip Code</label>
                                 <asp:TextBox ID="txtBillingZip" runat="server" CssClass="input-block-level"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator15" runat="server" ControlToValidate="txtBillingZip" ErrorMessage="Billing Zip" ValidationGroup="Register" Display="None" />
+                                <asp:RegularExpressionValidator runat="server" ID="revBillingZip" ControlToValidate="txtBillingZip" ErrorMessage="Billing Zip" Display="None" ValidationGroup="Register" />
+<asp:HiddenField ClientIDMode="Static" ID="hfEmail" runat="server" Value="" />
+<asp:HiddenField ClientIDMode="Static" ID="hfName" runat="server" Value="" />
+<asp:HiddenField ClientIDMode="Static" ID="hfPhone" runat="server" Value="" />
+<asp:HiddenField ClientIDMode="Static" ID="hfAddress1" runat="server" Value="" />
+<asp:HiddenField ClientIDMode="Static" ID="hfCity" runat="server" Value="" />
+<asp:HiddenField ClientIDMode="Static" ID="hfZip" runat="server" Value="" />
+<asp:HiddenField ClientIDMode="Static" ID="hfAccountNumber" runat="server" Value="" />
+<asp:HiddenField ClientIDMode="Static" ID="hfRoutingNumber" runat="server" Value="" />
                             </div> <!-- span6 -->
                         </div> <!-- row-fluid -->
                     </div> <!-- panel6-2 -->
@@ -252,3 +286,59 @@
         </div>
     </div>
 </div>
+<script type="text/javascript">
+    // Format name
+    function jsFormatName(txt) {
+        ValidateField(txt, document.getElementById('hfName').value);
+    }
+
+    // Format SSN
+    function jsFormatSSN(txt) {
+        ValidateField(txt, document.getElementById('hfSSN').value);
+    }
+
+    // Format EMail
+    function jsFormatEmail(txt) {
+        ValidateField(txt, document.getElementById('hfEmail').value);
+    }
+
+    // Format Phone
+    function jsFormatPhone(txt) {
+        ValidateField(txt, document.getElementById('hfPhone').value);
+    }
+
+    // Format Address
+    function jsFormatAddress(txt) {
+        ValidateField(txt, document.getElementById('hfAddress1').value);
+    }
+
+    // Format City
+    function jsFormatCity(txt) {
+        ValidateField(txt, document.getElementById('hfCity').value);
+    }
+
+    // Format Zip
+    function jsFormatZip(txt) {
+        ValidateField(txt, document.getElementById('hfZip').value);
+    }
+
+    // Format Account number
+    function jsFormatAccount(txt) {
+        ValidateField(txt, document.getElementById('hfAccountNumber').value);
+    }
+
+    // Format Account number
+    function jsFormatRouting(txt) {
+        ValidateField(txt, document.getElementById('hfRoutingNumber').value);
+    }
+
+    // Change color of textbox depending on validation
+    function ValidateField(txtBox, regex) {
+        // If the textbox value matches the associated regex, change the border to blue
+        if (txtBox.value.match(regex))
+            txtBox.style.borderColor = "#0000ff";
+            // Regex does not match, change border to red
+        else
+            txtBox.style.borderColor = "#ff0000";
+    }
+</script>

@@ -9,16 +9,19 @@ using Google;
 using System.Data.SqlClient;
 using System.Data;
 using DatabaseAccess;
+using Common;
 
 public partial class Controls_AccountOverviewControl : System.Web.UI.UserControl
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        InitHiddenFields();
+        InitJavascript();
         if (!IsPostBack)
         {
             GenerateQuickStats();
             Bind_Data();
+            
         }
     }
 
@@ -164,5 +167,85 @@ public partial class Controls_AccountOverviewControl : System.Web.UI.UserControl
         chart.addColumn("number", "Profit");
         chart.addRow("'2014', 2000, 1000");
         ltChart.Text = chart.generateChart(GoogleChart.ChartType.ColumnChart);
+    }
+
+    /// <summary>
+    /// Initialize all hidden fields.
+    /// These fields all used so that the values of our regexes can be determined
+    /// at runtime and used within our javascript, so we don't have to repeat the 
+    /// same regex multiple times in different areas of the program.
+    /// </summary>
+    private void InitHiddenFields()
+    {
+        // Email
+        hfEmail.Value = Regex.Email;
+        revEmail.ValidationExpression = Regex.Email;
+
+        //Name
+        hfName.Value = Regex.Name;
+        revFirstName.ValidationExpression = Regex.Name;
+        revLastName.ValidationExpression = Regex.Name;
+
+        // Phone
+        hfPhone.Value = Regex.Phone;
+        revPhone.ValidationExpression = Regex.Phone;
+
+        // Address1
+        hfAddress1.Value = Regex.Address;
+        revAddress1.ValidationExpression = Regex.Address;
+
+        // City
+        hfCity.Value = Regex.City;
+        revCity.ValidationExpression = Regex.City;
+
+        // Zip
+        hfZip.Value = Regex.Zip;
+        revZip.ValidationExpression = Regex.Zip;
+
+        // Bank name
+        revBankName.ValidationExpression = Regex.Name;
+
+        // Account Number
+        hfAccountNumber.Value = Regex.AccountNumber;
+        revAccountNumber.ValidationExpression = Regex.AccountNumber;
+
+        // Routing Number
+        hfRoutingNumber.Value = Regex.RoutingNumber;
+        revRoutingNumber.ValidationExpression = Regex.RoutingNumber;
+
+        // Bank Address
+        revBillingAddress.ValidationExpression = Regex.Address;
+
+        // Billing City
+        revBillingCity.ValidationExpression = Regex.City;
+
+        // Billing Zip
+        hfZip.Value = Regex.Zip;
+        revBillingZip.ValidationExpression = Regex.Zip;
+    }
+
+    /// <summary>
+    /// Add key up events to all our fields that require validation,
+    /// so client side validation can also take place.
+    /// </summary>
+    private void InitJavascript()
+    {
+        // Account information
+        txtFirstName.Attributes.Add("onkeyup", "jsFormatName(this);");
+        txtLastName.Attributes.Add("onkeyup", "jsFormatName(this);");
+        txtSSN.Attributes.Add("onkeyup", "jsFormatSSN(this);");
+        txtEmail.Attributes.Add("onkeyup", "jsFormatEmail(this);");
+        txtPhone.Attributes.Add("onkeyup", "jsFormatPhone(this);");
+        txtAddress1.Attributes.Add("onkeyup", "jsFormatAddress(this);");
+        txtCity.Attributes.Add("onkeyup", "jsFormatCity(this);");
+        txtZip.Attributes.Add("onkeyup", "jsFormatZip(this);");
+
+        // Billing information
+        txtBank.Attributes.Add("onkeyup", "jsFormatName(this);");
+        txtAccountNumber.Attributes.Add("onkeyup", "jsFormatAccount(this);");
+        txtRouting.Attributes.Add("onkeyup", "jsFormatRouting(this);");
+        txtBillingAddress1.Attributes.Add("onkeyup", "jsFormatAddress(this);");
+        txtBillingCity.Attributes.Add("onkeyup", "jsFormatCity(this);");
+        txtBillingZip.Attributes.Add("onkeyup", "jsFormatZip(this);");
     }
 }
