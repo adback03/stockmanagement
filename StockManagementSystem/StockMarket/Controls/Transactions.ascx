@@ -7,6 +7,10 @@
                 <div class="row-fluid">
                     <div class="span12">
                         <h4><i class="icon-money"></i>&nbsp;&nbsp;Transactions</h4>
+                        <asp:LinkButton ID="lbtnPending" runat="server" ForeColor="blue" OnClick="lbtnPending_Click">Pending</asp:LinkButton>&nbsp;&nbsp; |
+                        <asp:LinkButton ID="lbtnApproved" runat="server" ForeColor="SlateGray" OnClick="lbtnApproved_Click">Approved</asp:LinkButton>&nbsp;&nbsp; |
+                        <asp:LinkButton ID="lbtnDenied" runat="server" ForeColor="SlateGray" OnClick="lbtnDenied_Click">Denied</asp:LinkButton>
+                        <br /><br />
                         <asp:GridView ID="gvPending"
                             runat="server" 
                             CssClass="row-fluid table table- table-bordered table-condensed" 
@@ -42,22 +46,22 @@
                                     <tr>
                                         <th>Transaction ID</th>
                                         <th>Ticker</th>
-                                        <th>Quantity Requested</th>
+                                        <th>Quantity</th>
                                         <th>Quantity Available</th>
                                         <th>Price</th>
                                     </tr>
                                     <tr>
                                         <td><asp:Label ID="lblID" runat="server" Text="****"></asp:Label></td>
                                         <td><asp:Label ID="lblTicker" runat="server" Text="****"></asp:Label></td>
-                                        <td><asp:Label ID="lblQuantityRequested" runat="server" Text="****"></asp:Label></td>
+                                        <td><asp:Label ID="lblQuantity" runat="server" Text="****"></asp:Label></td>
                                         <td><asp:Label ID="lblQuantityAvailable" runat="server" Text="****"></asp:Label></td>
                                         <td><asp:Label ID="lblPrice" runat="server" Text="****"></asp:Label></td>
                                     </tr>
                                 </table>
                                 <asp:Label ID="lblWarning" runat="server" Text="The amount requested is greater than the amount available!" CssClass="alert-error" Visible="false"></asp:Label>
                                 <br /><br />
-                                <asp:Button ID="btnApprove" runat="server" Text="Approve" CssClass="btn-inverse" />
-                                <asp:Button ID="btnDisapprove" runat="server" Text="Disapprove" CssClass="btn-inverse" />
+                                <asp:Button ID="btnApprove" runat="server" Text="Approve" CssClass="btn-inverse" OnClick="btnApprove_Click" />
+                                <asp:Button ID="btnDisapprove" runat="server" Text="Disapprove" CssClass="btn-inverse" OnClick="btnDisapprove_Click" />
                             </div>
                         </div>
                         <div class="span4">
