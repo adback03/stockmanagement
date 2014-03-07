@@ -15,8 +15,6 @@
                     <div class="tabbable custom-tabs tabs-left tabs-animated  flat flat-all hide-label-980 shadow track-url auto-scroll dark">
                         <ul class="nav nav-tabs">
                             <li class="active"><a href="#account" data-toggle="tab" class="active "><i class="icon-user"></i>&nbsp;<span>Account Overview</span></a></li>
-                            <li><a href="#buy" data-toggle="tab"><i class="icon-money"></i>&nbsp;<span>Buy Stock</span></a></li>
-                            <li><a href="#manage" data-toggle="tab"><i class="icon-briefcase"></i>&nbsp;<span>Manage Stock</span></a></li>
                             <li><a href="#contact" data-toggle="tab"><i class="icon-envelope-alt"></i>&nbsp;<span>Contact Us</span></a></li>
                         </ul>
                         <div class="tab-content ">
