@@ -13,4 +13,11 @@ public static class Enums
         Client = 1,
         Staff = 2
     }
+
+    public enum enuStatus
+    {
+        Pending = 1,
+        Approved = 2,
+        Denied = 3
+    }
 }
