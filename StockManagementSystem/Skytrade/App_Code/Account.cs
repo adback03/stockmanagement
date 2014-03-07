@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Data;
 using System.Data.SqlClient;
+using System.IO;
 using DatabaseAccess;
 using Common;
 
@@ -24,6 +25,38 @@ public static class Account
     public static User CurrentUser()
     {
         return ((User)HttpContext.Current.Session["User"]);
+    }
+
+    /// <summary>
+    /// Verify that the user is logged in, and that they have access to the page which they are requesting.
+    /// </summary>
+    /// <param name="userType">The user type to verify</param>
+    public static void VerifyCredentials(Enums.enuType userType)
+    {
+        // Make sure the user trying to access the page is logged in
+        if (Account.IsLoggedIn())
+        {
+            // If the current user isn't the type of user needed to access a particular page, redirect based on their type.
+            if (Account.CurrentUser().Type != userType)
+            {
+                switch (Account.CurrentUser().Type)
+                {
+                    // Redirect to the company home page if the user type is a Company
+                    case Enums.enuType.Client:
+                        HttpContext.Current.Response.Redirect(Path.Combine(HttpContext.Current.Request.ApplicationPath, "Client"));
+                        break;
+                    // Redirect to the Admin home page if the user type is an Admin
+                    case Enums.enuType.Staff:
+                        HttpContext.Current.Response.Redirect(HttpContext.Current.Request.ApplicationPath);
+                        break;
+                }
+            }
+        }
+        // Else, we know that the user is not validated, so redirect to the login page.
+        else
+        {
+            HttpContext.Current.Response.Redirect(Path.Combine(HttpContext.Current.Request.ApplicationPath, "Login.aspx"));
+        }
     }
 
     public static Address GetAddressById(int aid)

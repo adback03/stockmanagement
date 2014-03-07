@@ -9,6 +9,6 @@ public partial class Manage : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        Account.VerifyCredentials(Enums.enuType.Client);
     }
 }

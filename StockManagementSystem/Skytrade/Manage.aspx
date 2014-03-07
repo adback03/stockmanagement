@@ -2,6 +2,8 @@
 
 <%@ Register Src="~/Controls/BuyStockControl.ascx" TagPrefix="uc1" TagName="BuyStockControl" %>
 <%@ Register Src="~/Controls/SellStockControl.ascx" TagPrefix="uc1" TagName="SellStockControl" %>
+<%@ Register Src="~/Controls/Transactions.ascx" TagPrefix="uc1" TagName="Transactions" %>
+
 
 <asp:Content ID="Content1" ContentPlaceHolderID="Body" Runat="Server">
         <asp:UpdatePanel runat="server">
@@ -14,10 +16,12 @@
                         <ul class="nav nav-tabs">
                             <li class="active"><a href="#buy" data-toggle="tab"><i class="icon-money"></i>&nbsp;<span>Buy Stock</span></a></li>
                             <li><a href="#manage" data-toggle="tab"><i class="icon-briefcase"></i>&nbsp;<span>Sell Stock</span></a></li>
+                            <li><a href="#transactions" data-toggle="tab"><i class="icon-briefcase"></i>&nbsp;<span>Transactions</span></a></li>
                         </ul>
                         <div class="tab-content ">
                             <uc1:BuyStockControl runat="server" id="BuyStockControl" />
                             <uc1:SellStockControl runat="server" id="SellStockControl" />
+                            <uc1:Transactions runat="server" ID="Transactions" />
                         </div>
                     </div>
                 </div>
