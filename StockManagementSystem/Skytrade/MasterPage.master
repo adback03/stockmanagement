@@ -27,13 +27,11 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </a>
-                <a class="brand" href="#"><i class="icon-cloud"></i> Sky Trade</a>
+                <a class="brand" href="~/" runat="server"><i class="icon-cloud"></i> Sky Trade</a>
                 <div class="nav-collapse collapse navbar-responsive-collapse">
                     <ul class="nav">
-                        <li><asp:LinkButton ID="lbtnAccount" runat="server" OnClick="lbtnAccount_Click"><i class="icon-user"></i> Account Information</asp:LinkButton></li>
-                        <li><asp:LinkButton ID="lbtnBuyStock" runat="server" OnClick="lbtnBuyStock_Click"><i class="icon-money"></i> Buy Stock</asp:LinkButton></li>
+                        <li><asp:LinkButton ID="lbtnAccount" runat="server" OnClick="lbtnAccount_Click"><i class="icon-user"></i> Home</asp:LinkButton></li>
                         <li><asp:LinkButton ID="lbtnManageStock" runat="server" OnClick="lbtnManageStock_Click"><i class="icon-briefcase"></i> Manage Stock</asp:LinkButton></li>
-                        <li><asp:LinkButton ID="lbtnContact" runat="server" OnClick="lbtnContact_Click"><i class="icon-envelope"></i> Contact Us</asp:LinkButton></li>
                         <li><asp:LinkButton ID="lbtnLogOut" runat="server" OnClick="lbtnLogOut_Click"><i class="icon-circle-arrow-left"></i> Log Out</asp:LinkButton></li>
                     </ul>
                 </div>

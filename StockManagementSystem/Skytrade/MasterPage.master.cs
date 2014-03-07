@@ -16,22 +16,12 @@ public partial class MasterPage : System.Web.UI.MasterPage
 
     protected void lbtnAccount_Click(object sender, EventArgs e)
     {
-        Response.Redirect("#account");
-    }
-
-    protected void lbtnBuyStock_Click(object sender, EventArgs e)
-    {
-        Response.Redirect("#buy");
+        Response.Redirect(Request.ApplicationPath);
     }
 
     protected void lbtnManageStock_Click(object sender, EventArgs e)
     {
-        Response.Redirect("#manage");
-    }
-
-    protected void lbtnContact_Click(object sender, EventArgs e)
-    {
-        Response.Redirect("#contact");
+        Response.Redirect(System.IO.Path.Combine(Request.ApplicationPath, "Manage.aspx"));
     }
 
     protected void lbtnLogOut_Click(object sender, EventArgs e)
