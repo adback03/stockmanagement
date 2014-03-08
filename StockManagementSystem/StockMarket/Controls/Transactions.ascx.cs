@@ -8,6 +8,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 
+using Common;
 using DatabaseAccess;
 
 
@@ -17,6 +18,7 @@ public partial class Company_CompanyControls_BuyStock : System.Web.UI.UserContro
     {
         if (!Page.IsPostBack)
         {
+            SetActiveTab(lbtnPending);
             BindData("Pending");
         }
     }
@@ -27,43 +29,38 @@ public partial class Company_CompanyControls_BuyStock : System.Web.UI.UserContro
     /// <param name="status">The status of the transaction to pull data from</param>
     private void BindData(string status)
     {
-        SqlCommand cmd = new SqlCommand();
-        cmd.CommandText = "SELECT * FROM TransactionDetails WHERE Status = '" + status + "' ORDER BY timestamp desc";
-        DataTable dt = SqlHelper.ReturnAsTable(cmd, Settings.StockMarketConn);
-        gvPending.DataSource = dt;
-        gvPending.DataBind();
+        gvTransactions.DataSource = StockMarket.GetTransactionDetailsByStatus(status);
+        gvTransactions.DataBind();
     }
 
     // TODO: PAGINATION
-    protected void gvPending_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    protected void gvTransactions_PageIndexChanging(object sender, GridViewPageEventArgs e)
     {
-        gvPending.PageIndex = e.NewPageIndex;
+        gvTransactions.PageIndex = e.NewPageIndex;
         //BindData();
     }
 
     /// <summary>
     /// The event to fire when selecting a row in the GridView
     /// </summary>
-    protected void gvPending_SelectedIndexChanged(object sender, EventArgs e)
+    protected void gvTransactions_SelectedIndexChanged(object sender, EventArgs e)
     {
         // Reset each color back to the default value
-        foreach (GridViewRow r in gvPending.Rows)
+        foreach (GridViewRow r in gvTransactions.Rows)
         {
             r.BackColor = Color.WhiteSmoke;
         }
 
-        GridViewRow row = gvPending.SelectedRow;
+        GridViewRow row = gvTransactions.SelectedRow;
         row.BackColor = Color.Turquoise;
-        int id = int.Parse(gvPending.DataKeys[row.RowIndex].Value.ToString());
+        int id = int.Parse(gvTransactions.DataKeys[row.RowIndex].Value.ToString());
         string ticker = row.Cells[3].Text;
         int quantityRequested = int.Parse(row.Cells[4].Text);
         double price = double.Parse(row.Cells[5].Text);
         string type = row.Cells[6].Text;
 
         // Get the current quantity available for the stock chosen in the table
-        SqlCommand cmd = new SqlCommand();
-        cmd.CommandText = "SELECT quantity FROM Stock WHERE ticker = '" + ticker + "'";
-        int quantityAvailable = int.Parse(SqlHelper.ExecuteScalar(cmd, Settings.StockMarketConn));
+        int quantityAvailable = StockMarket.GetQuantityAvailable(ticker);
 
         // Set the labels in the Approve/Disapprove table to reflect the details of the selected transaction
         lblID.Text = id.ToString();
@@ -95,7 +92,7 @@ public partial class Company_CompanyControls_BuyStock : System.Web.UI.UserContro
     /// </summary>
     protected void btnApprove_Click(object sender, EventArgs e)
     {
-        UpdateTransaction(int.Parse(lblID.Text), Enums.enuStatus.Approved);
+        UpdateTransaction(int.Parse(lblID.Text), Enums.Status.Approved);
     }
 
     /// <summary>
@@ -103,7 +100,22 @@ public partial class Company_CompanyControls_BuyStock : System.Web.UI.UserContro
     /// </summary>
     protected void btnDisapprove_Click(object sender, EventArgs e)
     {
-        UpdateTransaction(int.Parse(lblID.Text), Enums.enuStatus.Denied);
+        UpdateTransaction(int.Parse(lblID.Text), Enums.Status.Denied);
+    }
+
+    /// <summary>
+    /// Put a transaction on hold
+    /// </summary>
+    protected void btnOnHold_Click(object sender, EventArgs e)
+    {
+        SqlCommand cmd = new SqlCommand();
+        cmd.CommandText = "SELECT user_id FROM Transactions WHERE transaction_id = '" + lblID.Text + "'";
+        int user_to = int.Parse(SqlHelper.ExecuteScalar(cmd, Settings.StockMarketConn));
+
+        cmd.CommandText = "INSERT INTO Messages (from_user, to_user, message, archived) VALUES (" + Account.CurrentUser().UserId + ", " + user_to + ", 'A transaction you made has been put on hold. Please go to your transactions to see more details.', 0)";
+        SqlHelper.ExecuteNonQuery(cmd, Settings.StockMarketConn);
+
+        UpdateTransaction(int.Parse(lblID.Text), Enums.Status.OnHold);
     }
 
     /// <summary>
@@ -139,22 +151,26 @@ public partial class Company_CompanyControls_BuyStock : System.Web.UI.UserContro
         pnlApproveDisapprove.Visible = true;
     }
 
+
+    protected void lbtnOnHold_Click(object sender, EventArgs e)
+    {
+        SetActiveTab(lbtnOnHold);
+        BindData("On Hold");
+        pnlApproveDisapprove.Visible = true;
+    }
+
     /// <summary>
     /// Update a transaction by either approving or denying it.
     /// </summary>
     /// <param name="id">The ID of the transaction</param>
     /// <param name="status">The new status of the transaction</param>
-    private void UpdateTransaction(int id, Enums.enuStatus status)
+    private void UpdateTransaction(int id, Enums.Status status)
     {
         // Make sure a transaction message is supplied
         if (txtMessage.Text.Length > 10)
         {
             // Update transaction to be approved
-            SqlCommand cmd = new SqlCommand("UpdateTransaction");
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.Add("@transaction_id", SqlDbType.Int).Value = id;
-            cmd.Parameters.Add("@status_id", SqlDbType.Int).Value = status;
-            SqlHelper.ExecuteNonQuery(cmd, Settings.StockMarketConn);
+            StockMarket.UpdateTransaction(id, status, txtMessage.Text);
             ClearFields();
             BindData("Pending");
         }
@@ -174,6 +190,7 @@ public partial class Company_CompanyControls_BuyStock : System.Web.UI.UserContro
         lblQuantity.Text = "****";
         lblQuantityAvailable.Text = "****";
         lblPrice.Text = "****";
+        txtMessage.Text = String.Empty;
     }
 
     /// <summary>
@@ -185,6 +202,9 @@ public partial class Company_CompanyControls_BuyStock : System.Web.UI.UserContro
         lbtnPending.ForeColor = Color.SlateGray;
         lbtnApproved.ForeColor = Color.SlateGray;
         lbtnDenied.ForeColor = Color.SlateGray;
+        lbtnOnHold.ForeColor = Color.SlateGray;
         lbtnStatus.ForeColor = Color.Blue;
     }
+
+
 }

@@ -4,12 +4,13 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Common;
 
 public partial class _Default : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        Account.VerifyCredentials(Enums.enuType.Admin);
+        Account.VerifyCredentials(Enums.StockMarketType.Admin);
 
         Settings.Initialize();
 

@@ -8,10 +8,11 @@
                     <div class="span12">
                         <h4><i class="icon-money"></i>&nbsp;&nbsp;Transactions</h4>
                         <asp:LinkButton ID="lbtnPending" runat="server" ForeColor="blue" OnClick="lbtnPending_Click">Pending</asp:LinkButton>&nbsp;&nbsp; |
+                        <asp:LinkButton ID="lbtnOnHold" runat="server" ForeColor="blue" OnClick="lbtnOnHold_Click">On Hold</asp:LinkButton>&nbsp;&nbsp; |
                         <asp:LinkButton ID="lbtnApproved" runat="server" ForeColor="SlateGray" OnClick="lbtnApproved_Click">Approved</asp:LinkButton>&nbsp;&nbsp; |
                         <asp:LinkButton ID="lbtnDenied" runat="server" ForeColor="SlateGray" OnClick="lbtnDenied_Click">Denied</asp:LinkButton>
                         <br /><br />
-                        <asp:GridView ID="gvPending"
+                        <asp:GridView ID="gvTransactions"
                             runat="server" 
                             CssClass="row-fluid table table- table-bordered table-condensed" 
                             HeaderStyle-ForeColor="Black"
@@ -21,8 +22,8 @@
                             AutoGenerateColumns="false"
                             AutoGenerateEditButton="false"
                             AutoGenerateSelectButton="true"
-                            OnPageIndexChanging="gvPending_PageIndexChanging"
-                            OnSelectedIndexChanged="gvPending_SelectedIndexChanged"
+                            OnPageIndexChanging="gvTransactions_PageIndexChanging"
+                            OnSelectedIndexChanged="gvTransactions_SelectedIndexChanged"
                             DataKeyNames="transaction_id">
                             <Columns>
                                 <asp:BoundField DataField="transaction_id" HeaderText="ID" SortExpression="ID" Visible="false" ControlStyle-Width="100px"/>
@@ -63,6 +64,7 @@
                                 <br /><br />
                                 <asp:Button ID="btnApprove" runat="server" Text="Approve" CssClass="btn-inverse" OnClick="btnApprove_Click" />
                                 <asp:Button ID="btnDisapprove" runat="server" Text="Disapprove" CssClass="btn-inverse" OnClick="btnDisapprove_Click" />
+                                <asp:Button ID="btnOnHold" runat="server" Text="On Hold" CssClass="btn-inverse" OnClick="btnOnHold_Click"/>
                             </div>
                         </div>
                         <div class="span4">

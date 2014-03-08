@@ -5,10 +5,14 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
+using Common;
+
 public partial class Company_Manage : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        Account.VerifyCredentials(Enums.enuType.Company);
+        Account.VerifyCredentials(Enums.StockMarketType.Company);
+
+        lblMessages.Text = "(" + StockMarket.GetTotalUnreadMessages().ToString() + ")";
     }
 }

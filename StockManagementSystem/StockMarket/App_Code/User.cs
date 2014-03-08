@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
+using Common;
+
 /// <summary>
 /// Summary description for User
 /// </summary>
@@ -16,7 +18,7 @@ public class User
     public string Password { get; set; }
     public string Email { get; set; }
     public string Phone { get; set; }
-    public Enums.enuType Type { get; set; }
+    public Enums.StockMarketType Type { get; set; }
 
     public User()
     {

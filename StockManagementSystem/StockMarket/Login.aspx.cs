@@ -33,10 +33,10 @@ public partial class Login : System.Web.UI.Page
         {
             switch (Account.CurrentUser().Type)
             {
-                case Enums.enuType.Company:
+                case Enums.StockMarketType.Company:
                     Response.Redirect("Company");
                     break;
-                case Enums.enuType.Admin:
+                case Enums.StockMarketType.Admin:
                     Response.Redirect(Request.ApplicationPath);
                     break;
                 default:

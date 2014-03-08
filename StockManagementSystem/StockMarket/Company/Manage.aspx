@@ -3,6 +3,8 @@
 <%@ Register Src="~/Company/CompanyControls/AccountOverviewControl.ascx" TagPrefix="uc1" TagName="AccountOverviewControl" %>
 <%@ Register Src="~/Company/CompanyControls/BuyStock.ascx" TagPrefix="uc1" TagName="BuyStock" %>
 <%@ Register Src="~/Company/CompanyControls/Transactions.ascx" TagPrefix="uc1" TagName="Transactions" %>
+<%@ Register Src="~/Company/CompanyControls/MessagesControl.ascx" TagPrefix="uc1" TagName="MessagesControl" %>
+
 
 
 
@@ -16,11 +18,13 @@
                             <li class="active"><a href="#buy" data-toggle="tab"><i class="icon-money"></i>&nbsp;<span>Buy Stock</span></a></li>
                             <li><a href="#sell" data-toggle="tab"><i class="icon-briefcase"></i>&nbsp;<span>Sell Stock</span></a></li>
                             <li><a href="#transactions" data-toggle="tab"><i class="icon-briefcase"></i>&nbsp;<span>Transactions</span></a></li>
+                            <li><a href="#messages" data-toggle="tab"><i class="icon-inbox"></i>&nbsp;<span>Messages <asp:Label ID="lblMessages" runat="server" ForeColor="#0000CC" /></span></a></li>
                             <li><a href="#contact" data-toggle="tab"><i class="icon-envelope-alt"></i>&nbsp;<span>Contact Us</span></a></li>
                         </ul>
                         <div class="tab-content ">
                             <uc1:BuyStock runat="server" ID="BuyStock" />
                             <uc1:Transactions runat="server" ID="Transactions" />
+                            <uc1:MessagesControl runat="server" ID="MessagesControl" />
                         </div>
                     </div>
                 </div>

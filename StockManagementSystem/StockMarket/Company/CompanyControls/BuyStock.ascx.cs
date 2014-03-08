@@ -39,19 +39,7 @@ public partial class Company_CompanyControls_BuyStock : System.Web.UI.UserContro
 
     protected void btnSubmit_Click(object sender, EventArgs e)
     {
-        SqlCommand cmd = new SqlCommand("InsertTransaction");
-        cmd.CommandType = CommandType.StoredProcedure;
-        cmd.Parameters.Add("@user_id", SqlDbType.Int).Value = Account.CurrentUser().UserId;
-        cmd.Parameters.Add("@ticker", SqlDbType.VarChar).Value = ddlStock.SelectedItem.Text;
-        cmd.Parameters.Add("@quantity", SqlDbType.Int).Value = int.Parse(txtQuantityPurchase.Text);
-        cmd.Parameters.Add("@transaction_type_id", SqlDbType.Int).Value = 1;
-
-        SqlCommand cmd2 = new SqlCommand();
-        cmd2.CommandText = "SELECT price FROM Stock WHERE ticker = '" + ddlStock.SelectedItem.Text + "'";
-        string price = SqlHelper.ExecuteScalar(cmd2, Settings.StockMarketConn);
-        cmd.Parameters.Add("@price", SqlDbType.Decimal).Value = double.Parse(price);
-
-        SqlHelper.ExecuteNonQuery(cmd, Settings.StockMarketConn);
+        StockMarket.InsertTransaction(Account.CurrentUser().UserId, ddlStock.SelectedItem.Text, int.Parse(txtQuantityPurchase.Text));
         Response.Redirect(Request.Url.ToString(), true);
     }
 
