@@ -74,5 +74,12 @@ public static class StockMarket
         cmd.CommandText = "UPDATE messages SET archived = '" + archive + "' WHERE message_id = " + messageId + "";
         SqlHelper.ExecuteNonQuery(cmd, Settings.StockMarketConn);
     }
+
+    public static void InsertMessage(int recipient, string message)
+    {
+        SqlCommand cmd = new SqlCommand();
+        cmd.CommandText = "INSERT INTO Messages (from_user, to_user, message, archived) VALUES (" + Account.CurrentUser().UserId + ", " + recipient + ", '" + message + "', 0)";
+        SqlHelper.ExecuteNonQuery(cmd, Settings.StockMarketConn);
+    }
 }
 

@@ -92,6 +92,8 @@ public partial class Company_CompanyControls_BuyStock : System.Web.UI.UserContro
     /// </summary>
     protected void btnApprove_Click(object sender, EventArgs e)
     {
+        int user_to = GetUserIdFromTransaction();
+        StockMarket.InsertMessage(user_to, "A transaction you made has been approved. Please go to your transactions to see more details.");
         UpdateTransaction(int.Parse(lblID.Text), Enums.Status.Approved);
     }
 
@@ -100,6 +102,8 @@ public partial class Company_CompanyControls_BuyStock : System.Web.UI.UserContro
     /// </summary>
     protected void btnDisapprove_Click(object sender, EventArgs e)
     {
+        int user_to = GetUserIdFromTransaction();
+        StockMarket.InsertMessage(user_to, "A transaction you made has been denied. Please go to your transactions to see more details.");
         UpdateTransaction(int.Parse(lblID.Text), Enums.Status.Denied);
     }
 
@@ -108,14 +112,17 @@ public partial class Company_CompanyControls_BuyStock : System.Web.UI.UserContro
     /// </summary>
     protected void btnOnHold_Click(object sender, EventArgs e)
     {
+        int user_to = GetUserIdFromTransaction();
+        StockMarket.InsertMessage(user_to, "A transaction you made has been put on hold. Please go to your transactions to see more details.");
+        UpdateTransaction(int.Parse(lblID.Text), Enums.Status.OnHold);
+    }
+
+    private int GetUserIdFromTransaction()
+    {
         SqlCommand cmd = new SqlCommand();
         cmd.CommandText = "SELECT user_id FROM Transactions WHERE transaction_id = '" + lblID.Text + "'";
-        int user_to = int.Parse(SqlHelper.ExecuteScalar(cmd, Settings.StockMarketConn));
+        return int.Parse(SqlHelper.ExecuteScalar(cmd, Settings.StockMarketConn));
 
-        cmd.CommandText = "INSERT INTO Messages (from_user, to_user, message, archived) VALUES (" + Account.CurrentUser().UserId + ", " + user_to + ", 'A transaction you made has been put on hold. Please go to your transactions to see more details.', 0)";
-        SqlHelper.ExecuteNonQuery(cmd, Settings.StockMarketConn);
-
-        UpdateTransaction(int.Parse(lblID.Text), Enums.Status.OnHold);
     }
 
     /// <summary>
