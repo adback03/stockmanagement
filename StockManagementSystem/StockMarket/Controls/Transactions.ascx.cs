@@ -21,6 +21,10 @@ public partial class Company_CompanyControls_BuyStock : System.Web.UI.UserContro
         }
     }
 
+    /// <summary>
+    /// Bind the data of the gridview
+    /// </summary>
+    /// <param name="status">The status of the transaction to pull data from</param>
     private void BindData(string status)
     {
         SqlCommand cmd = new SqlCommand();
@@ -30,12 +34,16 @@ public partial class Company_CompanyControls_BuyStock : System.Web.UI.UserContro
         gvPending.DataBind();
     }
 
+    // TODO: PAGINATION
     protected void gvPending_PageIndexChanging(object sender, GridViewPageEventArgs e)
     {
         gvPending.PageIndex = e.NewPageIndex;
         //BindData();
     }
 
+    /// <summary>
+    /// The event to fire when selecting a row in the GridView
+    /// </summary>
     protected void gvPending_SelectedIndexChanged(object sender, EventArgs e)
     {
         // Reset each color back to the default value
@@ -52,16 +60,19 @@ public partial class Company_CompanyControls_BuyStock : System.Web.UI.UserContro
         double price = double.Parse(row.Cells[5].Text);
         string type = row.Cells[6].Text;
 
+        // Get the current quantity available for the stock chosen in the table
         SqlCommand cmd = new SqlCommand();
         cmd.CommandText = "SELECT quantity FROM Stock WHERE ticker = '" + ticker + "'";
         int quantityAvailable = int.Parse(SqlHelper.ExecuteScalar(cmd, Settings.StockMarketConn));
 
+        // Set the labels in the Approve/Disapprove table to reflect the details of the selected transaction
         lblID.Text = id.ToString();
         lblTicker.Text = ticker;
         lblQuantity.Text = quantityRequested.ToString();
         lblQuantityAvailable.Text = quantityAvailable.ToString();
         lblPrice.Text = price.ToString();
 
+        // Don't worry about warning the user about quantity if the transaction type is 'Sell'
         if (type != "Sell")
         {
             // Check if the quantity being requested is greater than the amount available
@@ -79,35 +90,60 @@ public partial class Company_CompanyControls_BuyStock : System.Web.UI.UserContro
 
     }
 
+    /// <summary>
+    /// Approve a transaction on button click
+    /// </summary>
     protected void btnApprove_Click(object sender, EventArgs e)
     {
         UpdateTransaction(int.Parse(lblID.Text), Enums.enuStatus.Approved);
     }
 
+    /// <summary>
+    /// Disapprove a transaction on button click
+    /// </summary>
     protected void btnDisapprove_Click(object sender, EventArgs e)
     {
         UpdateTransaction(int.Parse(lblID.Text), Enums.enuStatus.Denied);
     }
 
+    /// <summary>
+    /// When the Approved linked button is fired, 
+    /// update the table to show approved transactions.
+    /// </summary>
     protected void lbtnApproved_Click(object sender, EventArgs e)
     {
         SetActiveTab(lbtnApproved);
         BindData("Approved");
+        pnlApproveDisapprove.Visible = false;
     }
 
+    /// <summary>
+    /// When the Denied linked button is fired, 
+    /// update the table to show denied transactions.
+    /// </summary>
     protected void lbtnDenied_Click(object sender, EventArgs e)
     {
         SetActiveTab(lbtnDenied);
         BindData("Denied");
+        pnlApproveDisapprove.Visible = false;
     }
 
+    /// <summary>
+    /// When the Pending linked button is fired, 
+    /// update the table to show pending transactions.
+    /// </summary>
     protected void lbtnPending_Click(object sender, EventArgs e)
     {
         SetActiveTab(lbtnPending);
         BindData("Pending");
+        pnlApproveDisapprove.Visible = true;
     }
 
-
+    /// <summary>
+    /// Update a transaction by either approving or denying it.
+    /// </summary>
+    /// <param name="id">The ID of the transaction</param>
+    /// <param name="status">The new status of the transaction</param>
     private void UpdateTransaction(int id, Enums.enuStatus status)
     {
         // Make sure a transaction message is supplied
@@ -128,6 +164,9 @@ public partial class Company_CompanyControls_BuyStock : System.Web.UI.UserContro
         }
     }
 
+    /// <summary>
+    /// Reset all the labels to their default values.
+    /// </summary>
     private void ClearFields()
     {
         lblID.Text = "****";
@@ -137,6 +176,10 @@ public partial class Company_CompanyControls_BuyStock : System.Web.UI.UserContro
         lblPrice.Text = "****";
     }
 
+    /// <summary>
+    /// Set the active link button
+    /// </summary>
+    /// <param name="lbtnStatus">The link button to set</param>
     private void SetActiveTab(LinkButton lbtnStatus)
     {
         lbtnPending.ForeColor = Color.SlateGray;

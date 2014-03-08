@@ -8,8 +8,6 @@
 
 
 <asp:Content ID="Content1" ContentPlaceHolderID="Body" Runat="Server">
-        <asp:UpdatePanel runat="server">
-        <ContentTemplate>
             <div class="row-fluid" id="demo-2">
                 <div class="span10 offset1">
                     <h2 class="heading-2">Manage Your Stock</h2>
@@ -26,8 +24,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
-        </ContentTemplate>
-    </asp:UpdatePanel>  
+            </div> 
 </asp:Content>
 

@@ -37,6 +37,7 @@
                         </asp:GridView>
                     </div>
                 </div>
+                <asp:Panel ID="pnlApproveDisapprove" runat="server" Visible="true">
                 <div class="row-fluid">
                     <div class="span12">
                         <div class="span8">
@@ -73,7 +74,8 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> 
+                </asp:Panel>
     </ContentTemplate>
 </asp:UpdatePanel>
 </div>
