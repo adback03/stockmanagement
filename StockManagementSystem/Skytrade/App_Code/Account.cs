@@ -31,7 +31,7 @@ public static class Account
     /// Verify that the user is logged in, and that they have access to the page which they are requesting.
     /// </summary>
     /// <param name="userType">The user type to verify</param>
-    public static void VerifyCredentials(Enums.enuType userType)
+    public static void VerifyCredentials(Enums.SkyTradeType userType)
     {
         // Make sure the user trying to access the page is logged in
         if (Account.IsLoggedIn())
@@ -42,11 +42,11 @@ public static class Account
                 switch (Account.CurrentUser().Type)
                 {
                     // Redirect to the company home page if the user type is a Company
-                    case Enums.enuType.Client:
+                    case Enums.SkyTradeType.Client:
                         HttpContext.Current.Response.Redirect(Path.Combine(HttpContext.Current.Request.ApplicationPath, "Client"));
                         break;
                     // Redirect to the Admin home page if the user type is an Admin
-                    case Enums.enuType.Staff:
+                    case Enums.SkyTradeType.Staff:
                         HttpContext.Current.Response.Redirect(HttpContext.Current.Request.ApplicationPath);
                         break;
                 }
@@ -107,17 +107,16 @@ public static class Account
             activeUser.Password = (String)dr["password"];
             activeUser.Phone = (String)dr["phone"];
             activeUser.SSN = (String)dr["ssn"];
-            activeUser.Status = (Enums.enuType)Convert.ToInt32(dr["status_id"]);
             activeUser.UserName = (String)dr["username"];
-            activeUser.Type = (Enums.enuType)Convert.ToInt32(dr["type_id"]);
+            activeUser.Type = (Enums.SkyTradeType)Convert.ToInt32(dr["type_id"]);
             activeUser.UserId = Convert.ToInt32(dr["user_id"]);
             // if the user chose a type other than what they are in the database
-            if (activeUser.Type != (Enums.enuType)iType)
+            if (activeUser.Type != (Enums.SkyTradeType)iType)
             {
                 // if the user returned is an admin, allow them to sign in as admin or client
-                if (activeUser.Type == Enums.enuType.Staff)
+                if (activeUser.Type == Enums.SkyTradeType.Staff)
                 {
-                    activeUser.Type = (Enums.enuType)iType;
+                    activeUser.Type = (Enums.SkyTradeType)iType;
                 }
                 else
                 {

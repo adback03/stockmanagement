@@ -33,10 +33,10 @@ public partial class Login : System.Web.UI.Page
         {
             switch (Account.CurrentUser().Type)
             {
-                case Enums.enuType.Client:
+                case Enums.SkyTradeType.Client:
                     Response.Redirect(Request.ApplicationPath);
                     break;
-                case Enums.enuType.Staff:
+                case Enums.SkyTradeType.Staff:
                     Response.Redirect("Staff");
                     break;
                 default:

@@ -14,6 +14,12 @@ namespace Common
             Admin = 2
         }
 
+        public enum SkyTradeType
+        {
+            Client = 1,
+            Staff = 2
+        }
+
         public enum Status
         {
             Pending = 1,
