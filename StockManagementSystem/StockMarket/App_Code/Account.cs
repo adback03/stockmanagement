@@ -5,6 +5,8 @@ using System.Web;
 using System.Data;
 using System.Data.SqlClient;
 using System.IO;
+
+using Common;
 using DatabaseAccess;
 
 /// <summary>
@@ -34,7 +36,7 @@ public static class Account
     /// Verify that the user is logged in, and that they have access to the page which they are requesting.
     /// </summary>
     /// <param name="userType">The user type to verify</param>
-    public static void VerifyCredentials(Enums.enuType userType)
+    public static void VerifyCredentials(Enums.StockMarketType userType)
     {
         // Make sure the user trying to access the page is logged in
         if (Account.IsLoggedIn())
@@ -45,11 +47,11 @@ public static class Account
                 switch (Account.CurrentUser().Type)
                 {
                     // Redirect to the company home page if the user type is a Company
-                    case Enums.enuType.Company:
+                    case Enums.StockMarketType.Company:
                         HttpContext.Current.Response.Redirect(Path.Combine(HttpContext.Current.Request.ApplicationPath, "Company"));
                         break;
                     // Redirect to the Admin home page if the user type is an Admin
-                    case Enums.enuType.Admin:
+                    case Enums.StockMarketType.Admin:
                         HttpContext.Current.Response.Redirect(HttpContext.Current.Request.ApplicationPath);
                         break;
                 }
@@ -82,15 +84,15 @@ public static class Account
             activeUser.Phone = dr["phone"].ToString();
             activeUser.UserName = dr["username"].ToString();
             activeUser.Password = dr["password"].ToString();
-            activeUser.Type = (Enums.enuType)Convert.ToInt32(dr["type_id"]);
+            activeUser.Type = (Enums.StockMarketType)Convert.ToInt32(dr["type_id"]);
 
             // if the user chose a type other than what they are in the database
-            if (activeUser.Type != (Enums.enuType)iType)
+            if (activeUser.Type != (Enums.StockMarketType)iType)
             {
                 // if the user returned is an admin, allow them to sign in as admin or company
-                if (activeUser.Type == Enums.enuType.Admin)
+                if (activeUser.Type == Enums.StockMarketType.Admin)
                 {
-                    activeUser.Type = (Enums.enuType)iType;
+                    activeUser.Type = (Enums.StockMarketType)iType;
                 }
                 else
                 {

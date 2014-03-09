@@ -1,4 +1,4 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="SellStockControl.ascx.cs" Inherits="Controls_SellStockControl" %>
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="SellStock.ascx.cs" Inherits="Company_CompanyControls_SellStock" %>
 
 <div class="tab-pane active" id="sell">
     <div class="row-fluid">

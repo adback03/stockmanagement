@@ -17,6 +17,7 @@ public partial class Company_CompanyControls_BuyStock : System.Web.UI.UserContro
     {
         if (!Page.IsPostBack)
         {
+            SetActiveTab(lbtnPending);
             BindData("Pending");
         }
     }
@@ -27,29 +28,37 @@ public partial class Company_CompanyControls_BuyStock : System.Web.UI.UserContro
     /// <param name="status">The status of the transaction to pull data from</param>
     private void BindData(string status)
     {
-        SqlCommand cmd = new SqlCommand();
-        cmd.CommandText = "SELECT * FROM TransactionDetails WHERE username = '" + Account.CurrentUser().UserName + "' AND Status = '" + status + "' ORDER BY timestamp desc";
-        DataTable dt = SqlHelper.ReturnAsTable(cmd, Settings.StockMarketConn);
-        gvTransactions.DataSource = dt;
+        gvTransactions.DataSource = StockMarket.GetTransactionDetailsByStatus(status);
         gvTransactions.DataBind();
+        lblMessage.Text = String.Empty;
     }
 
     protected void lbtnPending_Click(object sender, EventArgs e)
     {
         SetActiveTab(lbtnPending);
         BindData("Pending");
+        pnlMessage.Visible = false;
     }
 
     protected void lbtnApproved_Click(object sender, EventArgs e)
     {
         SetActiveTab(lbtnApproved);
         BindData("Approved");
+        pnlMessage.Visible = true;
     }
 
     protected void lbtnDenied_Click(object sender, EventArgs e)
     {
         SetActiveTab(lbtnDenied);
         BindData("Denied");
+        pnlMessage.Visible = true;
+    }
+
+    protected void lbtnOnHold_Click(object sender, EventArgs e)
+    {
+        SetActiveTab(lbtnOnHold);
+        BindData("On Hold");
+        pnlMessage.Visible = true;
     }
 
     /// <summary>
@@ -61,6 +70,22 @@ public partial class Company_CompanyControls_BuyStock : System.Web.UI.UserContro
         lbtnPending.ForeColor = Color.SlateGray;
         lbtnApproved.ForeColor = Color.SlateGray;
         lbtnDenied.ForeColor = Color.SlateGray;
+        lbtnOnHold.ForeColor = Color.SlateGray;
         lbtnStatus.ForeColor = Color.Blue;
     }
+
+    protected void gvTransactions_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        // Reset each color back to the default value
+        foreach (GridViewRow r in gvTransactions.Rows)
+        {
+            r.BackColor = Color.WhiteSmoke;
+        }
+
+        GridViewRow row = gvTransactions.SelectedRow;
+        row.BackColor = Color.Turquoise;
+        int id = int.Parse(gvTransactions.DataKeys[row.RowIndex].Value.ToString());
+        lblMessage.Text = StockMarket.GetTransactionMessage(id);
+    }
+
 }

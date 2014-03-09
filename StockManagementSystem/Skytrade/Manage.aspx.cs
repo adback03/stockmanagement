@@ -5,10 +5,13 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
+using Common;
+
 public partial class Manage : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        Account.VerifyCredentials(Enums.enuType.Client);
+        Account.VerifyCredentials(Enums.SkyTradeType.Client);
+        lblMessages.Text = "(" + SkyTrade.GetTotalUnreadMessages().ToString() + ")";
     }
 }

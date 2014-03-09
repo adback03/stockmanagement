@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
+using Common;
 /// <summary>
 /// Summary description for User
 /// </summary>
@@ -17,8 +18,7 @@ public class User
     public string Email { get; set; }
     public string Phone { get; set; }
     public int AddressId { get; set; }
-    public Enums.enuType Status { get; set; }
-    public Enums.enuType Type { get; set; }
+    public Enums.SkyTradeType Type { get; set; }
 
     public User()
     {
