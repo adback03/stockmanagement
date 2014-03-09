@@ -92,8 +92,6 @@ public partial class Company_CompanyControls_BuyStock : System.Web.UI.UserContro
     /// </summary>
     protected void btnApprove_Click(object sender, EventArgs e)
     {
-        int user_to = GetUserIdFromTransaction();
-        StockMarket.InsertMessage(user_to, "A transaction you made has been approved. Please go to your transactions to see more details.");
         UpdateTransaction(int.Parse(lblID.Text), Enums.Status.Approved);
     }
 
@@ -102,8 +100,6 @@ public partial class Company_CompanyControls_BuyStock : System.Web.UI.UserContro
     /// </summary>
     protected void btnDisapprove_Click(object sender, EventArgs e)
     {
-        int user_to = GetUserIdFromTransaction();
-        StockMarket.InsertMessage(user_to, "A transaction you made has been denied. Please go to your transactions to see more details.");
         UpdateTransaction(int.Parse(lblID.Text), Enums.Status.Denied);
     }
 
@@ -112,8 +108,6 @@ public partial class Company_CompanyControls_BuyStock : System.Web.UI.UserContro
     /// </summary>
     protected void btnOnHold_Click(object sender, EventArgs e)
     {
-        int user_to = GetUserIdFromTransaction();
-        StockMarket.InsertMessage(user_to, "A transaction you made has been put on hold. Please go to your transactions to see more details.");
         UpdateTransaction(int.Parse(lblID.Text), Enums.Status.OnHold);
     }
 
@@ -173,11 +167,29 @@ public partial class Company_CompanyControls_BuyStock : System.Web.UI.UserContro
     /// <param name="status">The new status of the transaction</param>
     private void UpdateTransaction(int id, Enums.Status status)
     {
+        int user_to = GetUserIdFromTransaction();
         // Make sure a transaction message is supplied
         if (txtMessage.Text.Length > 10)
         {
             // Update transaction to be approved
             StockMarket.UpdateTransaction(id, status, txtMessage.Text);
+            switch (status)
+            {
+                case Enums.Status.Approved:
+                    StockMarket.InsertMessage(user_to, "A transaction you made has been approved. Please go to your transactions to see more details.");
+                    break;
+                case Enums.Status.Denied:
+                    StockMarket.InsertMessage(user_to, "A transaction you made has been denied. Please go to your transactions to see more details.");
+                    break;
+                case Enums.Status.OnHold:
+                    StockMarket.InsertMessage(user_to, "A transaction you made has been put on hold. Please go to your transactions to see more details.");
+                    break;
+                case Enums.Status.Pending:
+                    break;
+                default:
+                    break;
+            }
+
             ClearFields();
             BindData("Pending");
         }
