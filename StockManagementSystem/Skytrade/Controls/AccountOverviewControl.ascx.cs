@@ -86,6 +86,16 @@ public partial class Controls_AccountOverviewControl : System.Web.UI.UserControl
         return dt.Rows[0];
     }
 
+    protected void lbtnChange_Click(object sender, EventArgs e)
+    {
+        string password = txtNewPassword.Text;
+        SqlCommand cmd = new SqlCommand();
+        cmd.CommandText = "UPDATE Users SET password=@password WHERE user_id=@user_id";
+        cmd.Parameters.Add("@user_id", SqlDbType.Int).Value = Account.CurrentUser().UserId;
+        cmd.Parameters.Add("@password", SqlDbType.VarChar).Value = password;
+        SqlHelper.ExecuteNonQuery(cmd, Settings.SkyTradeConn);
+    }
+
     protected void lbtnUpdate_Click(object sender, EventArgs e)
     {
         string sFirstName = "";
@@ -222,6 +232,8 @@ public partial class Controls_AccountOverviewControl : System.Web.UI.UserControl
         // Billing Zip
         hfZip.Value = Regex.Zip;
         revBillingZip.ValidationExpression = Regex.Zip;
+
+        CompareValidator2.ValueToCompare = Account.CurrentUser().Password;
     }
 
     /// <summary>

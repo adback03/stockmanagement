@@ -51,6 +51,7 @@
                 <p>To view your complete Sky Trade stats, <a href="#">click here.</a></p>
             </div>
             <a href="#TabsModal" role="button" class="btn btn-large btn-inverse " data-toggle="modal">Edit Account</a>
+            <a href="#PasswordModal" role="button" class="btn btn-large btn-inverse " data-toggle="modal">Change Password</a>
         </div>
     </div>
 </div>
@@ -66,7 +67,7 @@
                     <li><a href="#panel6-2" data-toggle="tab"><i class="icon-money"></i>&nbsp;<span>Billing Information</span></a></li>
                     <li class="pull-right"><a href="#close" data-dismiss="modal" aria-hidden="true"><i class="icon-remove"></i>&nbsp;<span></span></a></li>
                     <li class="pull-right">
-                        <asp:LinkButton ID="lbtnUpdate" runat="server" OnClick="lbtnUpdate_Click" PostBackUrl="/"><i class="icon-save">&nbsp;<span>Save</span></i></asp:LinkButton>
+                        <asp:LinkButton ID="lbtnUpdate" runat="server" OnClick="lbtnUpdate_Click" PostBackUrl="/" ValidationGroup="Register"><i class="icon-save">&nbsp;<span>Save</span></i></asp:LinkButton>
                     </li>
                 </ul>
                 <div class="tab-content ">
@@ -76,16 +77,13 @@
                                 <h4><i class="icon-user"></i>&nbsp;&nbsp; Account Information</h4>
 
                                 <label>Username</label>
-                                <asp:Label ID="txtUsername" runat="server" CssClass="input-block-level"></asp:Label></asp:TextBox>
-                                <%-- <label>Password</label>
-                                <asp:TextBox ID="txtPassword" runat="server" CssClass="input-block-level"></asp:TextBox> --%>
+                                <asp:Label ID="txtUsername" runat="server" CssClass="input-block-level"></asp:Label>
                                 <label>First Name</label>
                                 <asp:TextBox ID="txtFirstName" runat="server" CssClass="input-block-level"></asp:TextBox>
                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtFirstName" ErrorMessage="First Name" ValidationGroup="Register" Display="None" />
                                 <asp:RegularExpressionValidator runat="server" ID="revFirstName" ControlToValidate="txtFirstName" ErrorMessage="First Name" Display="None" ValidationGroup="Register" />
                                 <label>Last Name</label>
                                 <asp:TextBox ID="txtLastName" runat="server" CssClass="input-block-level"></asp:TextBox>
-                                <asp:TextBox ID="TextBox1" runat="server" CssClass="input-block-level"></asp:TextBox>
                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtLastName" ErrorMessage="Last Name" ValidationGroup="Register" Display="None" />
                                 <asp:RegularExpressionValidator runat="server" ID="revLastName" ControlToValidate="txtLastName" ErrorMessage="Last Name" Display="None" ValidationGroup="Register" />
                                 <label>Email Address</label>
@@ -193,11 +191,6 @@
                                 <asp:TextBox ID="txtAccountNumber" runat="server" CssClass="input-block-level"></asp:TextBox>
                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator10" runat="server" ControlToValidate="txtAccountNumber" ErrorMessage="Account Number" ValidationGroup="Register" Display="None" />
                                 <asp:RegularExpressionValidator runat="server" ID="revAccountNumber" ControlToValidate="txtAccountNumber" ErrorMessage="Account Number" Display="None" ValidationGroup="Register" />
-                                <%-- <label>Account Type</label>
-                                <asp:DropDownList ID="ddlAccountType" runat="server">
-                                    <asp:ListItem>Checking</asp:ListItem>
-                                    <asp:ListItem>Savings</asp:ListItem>
-                                </asp:DropDownList>--%>
                             </div>
                             <div class="span6">
                                 <h4><i class="icon-envelope"></i>&nbsp;&nbsp;Billing Address</h4>
@@ -277,9 +270,60 @@
 <asp:HiddenField ClientIDMode="Static" ID="hfZip" runat="server" Value="" />
 <asp:HiddenField ClientIDMode="Static" ID="hfAccountNumber" runat="server" Value="" />
 <asp:HiddenField ClientIDMode="Static" ID="hfRoutingNumber" runat="server" Value="" />
+<asp:ValidationSummary
+                                id="vsRegisterSummary"
+                                ShowMessageBox="true"
+                                ShowSummary="false"
+                                HeaderText="The following fields are either blank or incorrectly formatted:"
+                                EnableClientScript="true"
+                                ValidationGroup="Register"
+                                runat="server"/>
                             </div> <!-- span6 -->
                         </div> <!-- row-fluid -->
                     </div> <!-- panel6-2 -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%--This is the entire popup form that handles editing a user's account information --%>
+<div id="PasswordModal" class="modal hide modal-form" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="row-fluid">
+        <div class="span7 offset3">
+
+            <div class="tabbable custom-tabs tabs-animated  flat flat-all hide-label-980 shadow tabs-top">
+                <ul class="nav nav-tabs">
+                    <li class="active"><a href="#panel6-1" data-toggle="tab" class="active "><i class="icon-user"></i>&nbsp;<span>Change Password</span></a></li>
+                    <li class="pull-right"><a href="#close" data-dismiss="modal" aria-hidden="true"><i class="icon-remove"></i>&nbsp;<span></span></a></li>
+                    <li class="pull-right">
+                        <asp:LinkButton ID="LinkButton1" runat="server" OnClick="lbtnChange_Click" ValidationGroup="ChangePassword" PostBackUrl="/"><i class="icon-save">&nbsp;<span>Change</span></i></asp:LinkButton>
+                    </li>
+                </ul>
+                <div class="tab-content ">
+                    <div class="tab-pane active" id="panel7-1">
+                        <div class="row-fluid">
+                            <div class="span6">
+                                <h4><i class="icon-user"></i>&nbsp;&nbsp; Change Password</h4>
+
+                                <label>Old Password</label>
+
+                                <asp:TextBox ID="txtOldPassword" runat="server" CssClass="input-block-level"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtOldPassword" ForeColor="Red" ErrorMessage="Old password can not be none." ValidationGroup="ChangePassword" Display="Dynamic"/>
+                                <asp:CompareValidator id="CompareValidator2" runat="server" ControlToValidate="txtOldPassword" ForeColor="Red" Operator="Equal" ValidationGroup="ChangePassword" ErrorMessage="Old password is not correct" Display="Dynamic" />
+                                <label>New Password</label>
+                                <asp:TextBox TextMode="Password" ID="txtNewPassword" runat="server" CssClass="input-block-level"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator13" runat="server" ControlToValidate="txtNewPassword" ForeColor="Red" ErrorMessage="New password can not be none." ValidationGroup="ChangePassword" Display="Dynamic" />
+                                <label>Confirm Password</label>
+                                <asp:TextBox TextMode="Password" ID="txtConfirmPassword" runat="server" CssClass="input-block-level"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator16" runat="server" ControlToValidate="txtConfirmPassword" ForeColor="Red" ErrorMessage="Confirm password can not be none" ValidationGroup="ChangePassword" Display="Dynamic" />
+                                <asp:CompareValidator id="CompareValidator1" runat="server" ControlToValidate="txtConfirmPassword" ForeColor="Red" ControlToCompare="txtNewPassword" Operator="Equal" ValidationGroup="ChangePassword" ErrorMessage="Confirm password must be the same with new password" Display="Dynamic" />
+                                <br />
+                                <br />
+                            </div>
+                        </div>
+                    </div>
 
                 </div>
             </div>

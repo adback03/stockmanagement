@@ -20,6 +20,11 @@ public static class Settings
             SkyTradeConn = System.Configuration.ConfigurationManager.ConnectionStrings["AndrewSkyTrade"].ToString();
             StockMarketConn = System.Configuration.ConfigurationManager.ConnectionStrings["AndrewStockMarket"].ToString();
         }
+        else if (machineName == "MAYBE-PC")
+        {
+            SkyTradeConn = System.Configuration.ConfigurationManager.ConnectionStrings["XiSkyTrade"].ToString();
+            StockMarketConn = System.Configuration.ConfigurationManager.ConnectionStrings["XiStockMarket"].ToString();
+        }
         else
         {
             // Note that these connections will only work while on campus (or remotted in)

@@ -20,9 +20,13 @@
                     <asp:BoundField DataField="email" HeaderText="Email" SortExpression="Email" ControlStyle-Width="100px"/>
                     <asp:ButtonField ButtonType="Button" Text="Approve" CommandName="Approve" Visible="True"/>
                     <asp:ButtonField ButtonType="Button" Text="Deny" CommandName="Deny" Visible="True"/>
+                    <asp:TemplateField ControlStyle-CssClass="modal hide modal-form" />
                 </Columns>
             </asp:GridView>
 
         </div>
     </div>
 </div>
+<script type="text/javascript">
+    function deny()
+</script>
