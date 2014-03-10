@@ -9,8 +9,9 @@ using Google;
 using System.Data.SqlClient;
 using System.Data;
 using DatabaseAccess;
+using Common;
 
-public partial class Controls_AccountOverviewControl : System.Web.UI.UserControl
+public partial class CompanyControls_AccountOverviewControl : System.Web.UI.UserControl
 {
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -41,6 +42,10 @@ public partial class Controls_AccountOverviewControl : System.Web.UI.UserControl
         lblMailingLine1.Text = (String)address["line1"];
         lblMailingLine2.Text = (String)address["line2"];
         lblMailingLineExtra.Text = (String)address["city"] + ", " + (String)address["state"] + ", " + (String)address["zip"];
+
+        hfPassword.Value = Regex.Password;
+        revNewPassword.ValidationExpression = Regex.Password;
+        CompareValidator2.ValueToCompare = Account.CurrentUser().Password;
     }
 
     private DataRow GetUser()
@@ -72,9 +77,19 @@ public partial class Controls_AccountOverviewControl : System.Web.UI.UserControl
         return dt.Rows[0];
     }
 
+    protected void lbtnChange_Click(object sender, EventArgs e)
+    {
+        string password = txtNewPassword.Text;
+        SqlCommand cmd = new SqlCommand();
+        cmd.CommandText = "UPDATE Users SET password=@password WHERE user_id=@user_id";
+        cmd.Parameters.Add("@user_id", SqlDbType.Int).Value = Account.CurrentUser().UserId;
+        cmd.Parameters.Add("@password", SqlDbType.VarChar).Value = password;
+        SqlHelper.ExecuteNonQuery(cmd, Settings.SkyTradeConn);
+    }
+
     protected void lbtnUpdate_Click(object sender, EventArgs e)
     {
-
+        string s = "test";
     }
 
     private void GenerateQuickStats()

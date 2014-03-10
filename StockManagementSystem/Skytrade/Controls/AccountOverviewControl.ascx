@@ -270,6 +270,7 @@
 <asp:HiddenField ClientIDMode="Static" ID="hfZip" runat="server" Value="" />
 <asp:HiddenField ClientIDMode="Static" ID="hfAccountNumber" runat="server" Value="" />
 <asp:HiddenField ClientIDMode="Static" ID="hfRoutingNumber" runat="server" Value="" />
+<asp:HiddenField ClientIDMode="Static" ID="hfPassword" runat="server" Value="" />
 <asp:ValidationSummary
                                 id="vsRegisterSummary"
                                 ShowMessageBox="true"
@@ -309,12 +310,13 @@
 
                                 <label>Old Password</label>
 
-                                <asp:TextBox ID="txtOldPassword" runat="server" CssClass="input-block-level"></asp:TextBox>
+                                <asp:TextBox TextMode="Password" ID="txtOldPassword" runat="server" CssClass="input-block-level"></asp:TextBox>
                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtOldPassword" ForeColor="Red" ErrorMessage="Old password can not be none." ValidationGroup="ChangePassword" Display="Dynamic"/>
                                 <asp:CompareValidator id="CompareValidator2" runat="server" ControlToValidate="txtOldPassword" ForeColor="Red" Operator="Equal" ValidationGroup="ChangePassword" ErrorMessage="Old password is not correct" Display="Dynamic" />
                                 <label>New Password</label>
                                 <asp:TextBox TextMode="Password" ID="txtNewPassword" runat="server" CssClass="input-block-level"></asp:TextBox>
                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator13" runat="server" ControlToValidate="txtNewPassword" ForeColor="Red" ErrorMessage="New password can not be none." ValidationGroup="ChangePassword" Display="Dynamic" />
+                                <asp:RegularExpressionValidator runat="server" ID="revNewPassword" ControlToValidate="txtNewPassword" ForeColor="Red" ErrorMessage="New password must be at least 8 characters" Display="Dynamic" ValidationGroup="ChangePassword" />
                                 <label>Confirm Password</label>
                                 <asp:TextBox TextMode="Password" ID="txtConfirmPassword" runat="server" CssClass="input-block-level"></asp:TextBox>
                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator16" runat="server" ControlToValidate="txtConfirmPassword" ForeColor="Red" ErrorMessage="Confirm password can not be none" ValidationGroup="ChangePassword" Display="Dynamic" />
@@ -374,6 +376,11 @@
     // Format Account number
     function jsFormatRouting(txt) {
         ValidateField(txt, document.getElementById('hfRoutingNumber').value);
+    }
+
+    // Format Account number
+    function jsFormatPassword(txt) {
+        ValidateField(txt, document.getElementById('hfPassword').value);
     }
 
     // Change color of textbox depending on validation

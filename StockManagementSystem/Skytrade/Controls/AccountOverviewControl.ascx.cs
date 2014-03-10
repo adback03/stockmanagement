@@ -233,6 +233,9 @@ public partial class Controls_AccountOverviewControl : System.Web.UI.UserControl
         hfZip.Value = Regex.Zip;
         revBillingZip.ValidationExpression = Regex.Zip;
 
+        hfPassword.Value = Regex.Password;
+        revNewPassword.ValidationExpression = Regex.Password;
+
         CompareValidator2.ValueToCompare = Account.CurrentUser().Password;
     }
 
