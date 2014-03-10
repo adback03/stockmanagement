@@ -3,7 +3,7 @@
 <%@ Register Src="~/Controls/Manage.ascx" TagPrefix="uc1" TagName="Manage" %>
 <%@ Register Src="~/Controls/Transactions.ascx" TagPrefix="uc1" TagName="Transactions" %>
 <%@ Register Src="~/Controls/Register.ascx" TagPrefix="uc1" TagName="Register" %>
-
+<%@ Register Src="~/Controls/ChangePassword.ascx" TagPrefix="uc1" TagName="ChangePassword" %>
 
 
 
@@ -20,11 +20,13 @@
                     <li class="active"><a href="#manage" data-toggle="tab"><i class="icon-money"></i>&nbsp;<span>Manage Stock</span></a></li>
                     <li><a href="#transactions" data-toggle="tab" class="active "><i class="icon-user"></i>&nbsp;<span>Transactions</span></a></li>
                     <li><a href="#register" data-toggle="tab" class="active "><i class="icon-user"></i>&nbsp;<span>Registrations</span></a></li>
+                    <li><a href="#changePassword" data-toggle="tab" class="active "><i class="icon-user"></i>&nbsp;<span>Change Password</span></a></li>
                 </ul>
                 <div class="tab-content ">
                     <uc1:Manage runat="server" ID="Manage" />
                     <uc1:Transactions runat="server" ID="Transactions" />
                     <uc1:Register runat="server" ID="Register" />
+                    <uc1:ChangePassword runat="server" ID="changePassword" />
                 </div>
             </div>
         </div>

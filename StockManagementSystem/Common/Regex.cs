@@ -69,5 +69,7 @@ namespace Common
         /// 
         /// </summary>
         public static string Number = @"^\d+$";
+
+        public static string Password = @"^.{8}.*$";
     }
 }

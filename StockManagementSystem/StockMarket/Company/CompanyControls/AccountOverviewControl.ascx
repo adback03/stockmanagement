@@ -1,4 +1,4 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="AccountOverviewControl.ascx.cs" Inherits="Controls_AccountOverviewControl" %>
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="AccountOverviewControl.ascx.cs" Inherits="CompanyControls_AccountOverviewControl" %>
 
 <div class="tab-pane active" id="account">
     <div class="row-fluid">
@@ -50,6 +50,7 @@
                 <p>To view your complete Sky Trade stats, <a href="#">click here.</a></p>
             </div>
             <a href="#TabsModal" role="button" class="btn btn-large btn-inverse " data-toggle="modal">Edit Account</a>
+            <a href="#PasswordModal" role="button" class="btn btn-large btn-inverse " data-toggle="modal">Change Password</a>
         </div>
     </div>
 </div>
@@ -65,7 +66,7 @@
                     <li><a href="#panel6-2" data-toggle="tab"><i class="icon-money"></i>&nbsp;<span>Billing Information</span></a></li>
                     <li class="pull-right"><a href="#close" data-dismiss="modal" aria-hidden="true"><i class="icon-remove"></i>&nbsp;<span></span></a></li>
                     <li class="pull-right">
-                        <asp:LinkButton ID="lbtnUpdate" runat="server" OnClick="lbtnUpdate_Click" PostBackUrl="/"><i class="icon-save">&nbsp;<span>Save</span></i></asp:LinkButton>
+                        <asp:LinkButton ID="lbtnUpdate" runat="server"  OnClick="lbtnUpdate_Click"  PostBackUrl="/"><i class="icon-save">&nbsp;<span>Save</span></i></asp:LinkButton>
                     </li>
                 </ul>
                 <div class="tab-content ">
@@ -146,3 +147,65 @@
         </div>
     </div>
 </div>
+
+<div id="PasswordModal" class="modal hide modal-form" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="row-fluid">
+        <div class="span7 offset3">
+
+            <div class="tabbable custom-tabs tabs-animated  flat flat-all hide-label-980 shadow tabs-top">
+                <ul class="nav nav-tabs">
+                    <li class="active"><a href="#panel6-1" data-toggle="tab" class="active "><i class="icon-user"></i>&nbsp;<span>Change Password</span></a></li>
+                    <li class="pull-right"><a href="#close" data-dismiss="modal" aria-hidden="true"><i class="icon-remove"></i>&nbsp;<span></span></a></li>
+                    <li class="pull-right">
+                        <asp:LinkButton ID="LinkButton1" runat="server" OnClick="lbtnChange_Click" ValidationGroup="ChangePassword" PostBackUrl="/"><i class="icon-save">&nbsp;<span>Change</span></i></asp:LinkButton>
+                    </li>
+                </ul>
+                <div class="tab-content ">
+                    <div class="tab-pane active" id="panel7-1">
+                        <div class="row-fluid">
+                            <div class="span6">
+                                <h4><i class="icon-user"></i>&nbsp;&nbsp; Change Password</h4>
+
+                                <label>Old Password</label>
+
+                                <asp:TextBox TextMode="Password" ID="txtOldPassword" runat="server" CssClass="input-block-level"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtOldPassword" ForeColor="Red" ErrorMessage="Old password can not be none." ValidationGroup="ChangePassword" Display="Dynamic"/>
+                                <asp:CompareValidator id="CompareValidator2" runat="server" ControlToValidate="txtOldPassword" ForeColor="Red" Operator="Equal" ValidationGroup="ChangePassword" ErrorMessage="Old password is not correct" Display="Dynamic" />
+                                <label>New Password</label>
+                                <asp:TextBox TextMode="Password" ID="txtNewPassword" runat="server" CssClass="input-block-level"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator13" runat="server" ControlToValidate="txtNewPassword" ForeColor="Red" ErrorMessage="New password can not be none." ValidationGroup="ChangePassword" Display="Dynamic" />
+                                <asp:RegularExpressionValidator runat="server" ID="revNewPassword" ControlToValidate="txtNewPassword" ForeColor="Red" ErrorMessage="New password must be at least 8 characters" Display="Dynamic" ValidationGroup="ChangePassword" />
+                                <label>Confirm Password</label>
+                                <asp:TextBox TextMode="Password" ID="txtConfirmPassword" runat="server" CssClass="input-block-level"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator16" runat="server" ControlToValidate="txtConfirmPassword" ForeColor="Red" ErrorMessage="Confirm password can not be none" ValidationGroup="ChangePassword" Display="Dynamic" />
+                                <asp:CompareValidator id="CompareValidator1" runat="server" ControlToValidate="txtConfirmPassword" ForeColor="Red" ControlToCompare="txtNewPassword" Operator="Equal" ValidationGroup="ChangePassword" ErrorMessage="Confirm password must be the same with new password" Display="Dynamic" />
+                                
+                                <asp:HiddenField ClientIDMode="Static" ID="hfPassword" runat="server" Value="" />
+                                <br />
+                                <br />
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+
+    // Format Account number
+    function jsFormatPassword(txt) {
+        ValidateField(txt, document.getElementById('hfPassword').value);
+    }
+
+    // Change color of textbox depending on validation
+    function ValidateField(txtBox, regex) {
+        // If the textbox value matches the associated regex, change the border to blue
+        if (txtBox.value.match(regex))
+            txtBox.style.borderColor = "#0000ff";
+            // Regex does not match, change border to red
+        else
+            txtBox.style.borderColor = "#ff0000";
+    }
+</script>
