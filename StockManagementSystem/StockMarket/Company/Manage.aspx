@@ -4,6 +4,8 @@
 <%@ Register Src="~/Company/CompanyControls/BuyStock.ascx" TagPrefix="uc1" TagName="BuyStock" %>
 <%@ Register Src="~/Company/CompanyControls/Transactions.ascx" TagPrefix="uc1" TagName="Transactions" %>
 <%@ Register Src="~/Company/CompanyControls/MessagesControl.ascx" TagPrefix="uc1" TagName="MessagesControl" %>
+<%@ Register Src="~/Company/CompanyControls/SellStock.ascx" TagPrefix="uc1" TagName="SellStock" %>
+
 
 
 
@@ -23,6 +25,7 @@
                         </ul>
                         <div class="tab-content ">
                             <uc1:BuyStock runat="server" ID="BuyStock" />
+                            <uc1:SellStock runat="server" id="SellStock" />
                             <uc1:Transactions runat="server" ID="Transactions" />
                             <uc1:MessagesControl runat="server" ID="MessagesControl" />
                         </div>

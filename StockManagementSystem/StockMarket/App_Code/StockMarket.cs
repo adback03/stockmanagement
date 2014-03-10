@@ -37,20 +37,14 @@ public static class StockMarket
         SqlHelper.ExecuteNonQuery(cmd, Settings.StockMarketConn);
     }
 
-    public static void InsertTransaction(int userId, string ticker, int quantity)
+    public static void InsertTransaction(string ticker, int quantity, Enums.TransactionType type)
     {
         SqlCommand cmd = new SqlCommand("InsertTransaction");
         cmd.CommandType = CommandType.StoredProcedure;
-        cmd.Parameters.Add("@user_id", SqlDbType.Int).Value = userId;
+        cmd.Parameters.Add("@user_id", SqlDbType.Int).Value = Account.CurrentUser().UserId;
         cmd.Parameters.Add("@ticker", SqlDbType.VarChar).Value = ticker;
         cmd.Parameters.Add("@quantity", SqlDbType.Int).Value = quantity;
-        cmd.Parameters.Add("@transaction_type_id", SqlDbType.Int).Value = 1;
-
-        SqlCommand cmd2 = new SqlCommand();
-        cmd2.CommandText = "SELECT price FROM Stock WHERE ticker = '" + ticker + "'";
-        string price = SqlHelper.ExecuteScalar(cmd2, Settings.StockMarketConn);
-        cmd.Parameters.Add("@price", SqlDbType.Decimal).Value = double.Parse(price);
-
+        cmd.Parameters.Add("@transaction_type_id", SqlDbType.Int).Value = type;
         SqlHelper.ExecuteNonQuery(cmd, Settings.StockMarketConn);
     }
 
@@ -78,8 +72,16 @@ public static class StockMarket
     public static void InsertMessage(int recipient, string message)
     {
         SqlCommand cmd = new SqlCommand();
-        cmd.CommandText = "INSERT INTO Messages (from_user, to_user, message, archived) VALUES (" + Account.CurrentUser().UserId + ", " + recipient + ", '" + message + "', 0)";
+        cmd.CommandText = "INSERT INTO Messages (from_user, to_user, message, archived, timestamp) VALUES (" + Account.CurrentUser().UserId + ", " + recipient + ", '" + message + "', 0, " + DateTime.Now + ")";
         SqlHelper.ExecuteNonQuery(cmd, Settings.StockMarketConn);
+    }
+
+    public static DataTable GetStockQuantityByUser()
+    {
+        SqlCommand cmd = new SqlCommand("GetStockQuantityByUser");
+        cmd.CommandType = CommandType.StoredProcedure;
+        cmd.Parameters.Add("@user_id", SqlDbType.Int).Value = Account.CurrentUser().UserId;
+        return SqlHelper.ReturnAsTable(cmd, Settings.StockMarketConn);
     }
 }
 
