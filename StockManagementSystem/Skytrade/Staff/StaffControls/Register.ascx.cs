@@ -36,6 +36,11 @@ public partial class Staff_StaffControls_Register : System.Web.UI.UserControl
         return dt;
     }
 
+    protected void gvRequest_IndexChanging(object sender, GridViewSelectEventArgs  e)
+    {
+        int s = e.NewSelectedIndex;
+    }
+
     protected void gvRequest_RowCommand(object sender, GridViewCommandEventArgs e)
     {
         int index = Convert.ToInt32(e.CommandArgument);
@@ -57,17 +62,24 @@ public partial class Staff_StaffControls_Register : System.Web.UI.UserControl
         }
         else if (e.CommandName == "Deny")
         {
-            SqlCommand cmd = new SqlCommand("UPDATE Users SET status_id=@status_id WHERE user_id = @user_id");
+            Response.Redirect("#PasswordModal");
+            /* SqlCommand cmd = new SqlCommand("UPDATE Users SET status_id=@status_id WHERE user_id = @user_id");
             cmd.Parameters.Add("@user_id", SqlDbType.Int).Value = (int)dr["user_id"];
             cmd.Parameters.Add("@status_id", SqlDbType.Int).Value = 3;
             SqlHelper.ExecuteNonQuery(cmd, Settings.SkyTradeConn);
             String head = "Sorry, we can not approve your request now!";
             String body = "Please check later";
-            sendMail((string)dr["email"], head, body);
+            sendMail((string)dr["email"], head, body); */
         }
 
 
         BindData();
+    }
+
+    protected void lbtnChange_Click1(object sender, EventArgs e)
+    {
+        int index = gvRequest.SelectedIndex;
+        index = gvRequest.PageIndex;
     }
 
     private String generateUsername(String first, String last)

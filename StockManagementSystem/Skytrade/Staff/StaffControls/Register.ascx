@@ -19,14 +19,46 @@
                     <asp:BoundField DataField="ssn" HeaderText="Ssn" SortExpression="Ssn" ControlStyle-Width="40px"/>
                     <asp:BoundField DataField="email" HeaderText="Email" SortExpression="Email" ControlStyle-Width="100px"/>
                     <asp:ButtonField ButtonType="Button" Text="Approve" CommandName="Approve" Visible="True"/>
-                    <asp:ButtonField ButtonType="Button" Text="Deny" CommandName="Deny" Visible="True"/>
-                    <asp:TemplateField ControlStyle-CssClass="modal hide modal-form" />
+                    <asp:ButtonField ButtonType="Button" Text="Deny" CommandName="Deny"  Visible="True" />
+                    <asp:TemplateField HeaderText="">
+                    <ItemTemplate>
+                        <a href="#PasswordModal" role="button" data-toggle="modal">Change Password</a>
+                    </ItemTemplate>
+                </asp:TemplateField>
                 </Columns>
             </asp:GridView>
 
         </div>
     </div>
 </div>
-<script type="text/javascript">
-    function deny()
-</script>
+<div id="PasswordModal" class="modal hide modal-form" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="row-fluid">
+        <div class="span7 offset3">
+
+            <div class="tabbable custom-tabs tabs-animated  flat flat-all hide-label-980 shadow tabs-top">
+                <ul class="nav nav-tabs">
+                    <li class="active"><a href="#panel6-1" data-toggle="tab" class="active "><i class="icon-user"></i>&nbsp;<span>Change Password</span></a></li>
+                    <li class="pull-right"><a href="#close" data-dismiss="modal" aria-hidden="true"><i class="icon-remove"></i>&nbsp;<span></span></a></li>
+                    <li class="pull-right">
+                        <asp:LinkButton ID="LinkButton1" runat="server" PostBackUrl="/"><i class="icon-save">&nbsp;<span>Change</span></i></asp:LinkButton>
+                    </li>
+                </ul>
+                <div class="tab-content ">
+                    <div class="tab-pane active" id="panel7-1">
+                        <div class="row-fluid">
+                            <div class="span6">
+                                <h4><i class="icon-user"></i>&nbsp;&nbsp; Change Password</h4>
+
+                                <label>Old Password</label>
+
+                             
+                                <br />
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
