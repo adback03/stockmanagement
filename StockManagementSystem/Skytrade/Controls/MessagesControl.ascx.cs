@@ -9,7 +9,7 @@ using System.Data.SqlClient;
 
 using DatabaseAccess;
 
-public partial class Company_CompanyControls_MessagesControl : System.Web.UI.UserControl
+public partial class Controls_MessagesControl : System.Web.UI.UserControl
 {
     protected void Page_Load(object sender, EventArgs e)
     {

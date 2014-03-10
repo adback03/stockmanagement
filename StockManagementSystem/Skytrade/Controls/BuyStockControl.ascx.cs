@@ -7,14 +7,15 @@ using System.Web.UI.WebControls;
 using System.Data;
 using System.Data.SqlClient;
 
+using Common;
 using DatabaseAccess;
-
+//class to load buying stock control
 public partial class Controls_BuyStockControl : System.Web.UI.UserControl
 {
     protected void Page_Load(object sender, EventArgs e)
     {
         InitJavascript();
-
+        //loads available stocks to buy
         if (!Page.IsPostBack)
         {
             SqlCommand cmd = new SqlCommand();
@@ -30,27 +31,15 @@ public partial class Controls_BuyStockControl : System.Web.UI.UserControl
             ddlStock.DataBind();
         }
     }
-
+    //checks that input is valid number
     private void InitJavascript()
     {
         txtQuantityPurchase.Attributes.Add("onkeypress", "return isNumber(event);");
     }
-
+    //on button click inserts transactions to db
     protected void btnSubmit_Click(object sender, EventArgs e)
     {
-        SqlCommand cmd = new SqlCommand("InsertTransaction");
-        cmd.CommandType = CommandType.StoredProcedure;
-        cmd.Parameters.Add("@user_id", SqlDbType.Int).Value = Account.CurrentUser().UserId;
-        cmd.Parameters.Add("@ticker", SqlDbType.VarChar).Value = ddlStock.SelectedItem.Text;
-        cmd.Parameters.Add("@quantity", SqlDbType.Int).Value = int.Parse(txtQuantityPurchase.Text);
-        cmd.Parameters.Add("@transaction_type_id", SqlDbType.Int).Value = 1;
-
-        SqlCommand cmd2 = new SqlCommand();
-        cmd2.CommandText = "SELECT price FROM Stock WHERE ticker = '" + ddlStock.SelectedItem.Text + "'";
-        string price = SqlHelper.ExecuteScalar(cmd2, Settings.SkyTradeConn);
-        cmd.Parameters.Add("@price", SqlDbType.Decimal).Value = double.Parse(price);
-
-        SqlHelper.ExecuteNonQuery(cmd, Settings.SkyTradeConn);
+        SkyTrade.InsertTransaction(ddlStock.SelectedItem.Text, int.Parse(txtQuantityPurchase.Text), Enums.TransactionType.Buy);
         Response.Redirect(Request.Url.ToString(), true);
     }
 
@@ -66,6 +55,7 @@ public partial class Controls_BuyStockControl : System.Web.UI.UserControl
         // Determine what field to sort by
         switch (e.SortExpression)
         {
+            //gets price boxes drop down
             case "Price":
                 // Sort ascending
                 if ((SortDirection)Session["PriceSort"] == SortDirection.Ascending)
@@ -80,7 +70,7 @@ public partial class Controls_BuyStockControl : System.Web.UI.UserControl
                     Session["PriceSort"] = SortDirection.Ascending;
                 }
                 break;
-
+            //gets quantity box
             case "Quantity":
                 // Sort ascending
                 if ((SortDirection)Session["QuantitySort"] == SortDirection.Ascending)
