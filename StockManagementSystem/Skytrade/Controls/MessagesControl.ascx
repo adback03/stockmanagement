@@ -1,4 +1,4 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="MessagesControl.ascx.cs" Inherits="Company_CompanyControls_MessagesControl" %>
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="MessagesControl.ascx.cs" Inherits="Controls_MessagesControl" %>
 
 <div class="tab-pane" id="messages">
     <asp:UpdatePanel runat="server">
