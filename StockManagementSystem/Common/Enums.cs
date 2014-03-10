@@ -27,5 +27,11 @@ namespace Common
             Denied = 3,
             OnHold = 4
         }
+
+        public enum TransactionType
+        {
+            Buy = 1,
+            Sell = 2
+        }
     }
 }

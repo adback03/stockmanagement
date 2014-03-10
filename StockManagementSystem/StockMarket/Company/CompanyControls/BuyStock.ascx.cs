@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using System.Data;
 using System.Data.SqlClient;
 
+using Common;
 using DatabaseAccess;
 
 
@@ -39,7 +40,7 @@ public partial class Company_CompanyControls_BuyStock : System.Web.UI.UserContro
 
     protected void btnSubmit_Click(object sender, EventArgs e)
     {
-        StockMarket.InsertTransaction(Account.CurrentUser().UserId, ddlStock.SelectedItem.Text, int.Parse(txtQuantityPurchase.Text));
+        StockMarket.InsertTransaction(ddlStock.SelectedItem.Text, int.Parse(txtQuantityPurchase.Text), Enums.TransactionType.Buy);
         Response.Redirect(Request.Url.ToString(), true);
     }
 
