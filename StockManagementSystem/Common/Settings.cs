@@ -20,7 +20,7 @@ public static class Settings
             SkyTradeConn = System.Configuration.ConfigurationManager.ConnectionStrings["AndrewSkyTrade"].ToString();
             StockMarketConn = System.Configuration.ConfigurationManager.ConnectionStrings["AndrewStockMarket"].ToString();
         }
-        else if (machineName == "MAYBE-PC")
+        else if (machineName == "MAYBE-PC" || machineName == "CISSY-PC")
         {
             SkyTradeConn = System.Configuration.ConfigurationManager.ConnectionStrings["XiSkyTrade"].ToString();
             StockMarketConn = System.Configuration.ConfigurationManager.ConnectionStrings["XiStockMarket"].ToString();

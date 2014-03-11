@@ -66,15 +66,12 @@ public partial class Staff_StaffControls_Register : System.Web.UI.UserControl
                 String body = "";
                 sendMail((string)dr["email"], head, body);
             }
-
-
-            BindData();
         }
         else
         {
             ScriptManager.RegisterClientScriptBlock(this.Page, this.GetType(), "MyScript", "alert('You must provide a registration message.');", true);
         }
-
+        BindData();
     }
 
     private String generateUsername(String first, String last)

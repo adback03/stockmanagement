@@ -43,34 +43,39 @@ public partial class Staff_StaffControls_Register : System.Web.UI.UserControl
 
     protected void gvRequest_RowCommand(object sender, GridViewCommandEventArgs e)
     {
-        int index = Convert.ToInt32(e.CommandArgument);
-        DataTable dt = GetDataTable();
-        DataRow dr = dt.Rows[index];
-        if (e.CommandName == "Approve")
+        if (txtMessage.Text.Length > 10)
         {
-            String username = generateUsername((String)dr["firstname"], (String)dr["lastname"]);
-            String password = generatePassword();
-            SqlCommand cmd = new SqlCommand("UPDATE Users SET status_id=@status_id, username=@username, password=@password WHERE user_id = @user_id");
-            cmd.Parameters.Add("@user_id", SqlDbType.Int).Value = (int)dr["user_id"];
-            cmd.Parameters.Add("@status_id", SqlDbType.Int).Value = 2;
-            cmd.Parameters.Add("@username", SqlDbType.VarChar).Value = username;
-            cmd.Parameters.Add("@password", SqlDbType.VarChar).Value = password;
-            SqlHelper.ExecuteNonQuery(cmd, Settings.SkyTradeConn);
-            String head = "Congratulations, your request has been approved!";
-            String body = "Username: \n" + username + "\nPassword: \n" + password;
-            sendMail((string)dr["email"], head, body);
+            int index = Convert.ToInt32(e.CommandArgument);
+            DataTable dt = GetDataTable();
+            DataRow dr = dt.Rows[index];
+            if (e.CommandName == "Approve")
+            {
+                String username = generateUsername((String)dr["firstname"], (String)dr["lastname"]);
+                String password = generatePassword();
+                SqlCommand cmd = new SqlCommand("UPDATE Users SET status_id=@status_id, username=@username, password=@password WHERE user_id = @user_id");
+                cmd.Parameters.Add("@user_id", SqlDbType.Int).Value = (int)dr["user_id"];
+                cmd.Parameters.Add("@status_id", SqlDbType.Int).Value = 2;
+                cmd.Parameters.Add("@username", SqlDbType.VarChar).Value = username;
+                cmd.Parameters.Add("@password", SqlDbType.VarChar).Value = password;
+                SqlHelper.ExecuteNonQuery(cmd, Settings.SkyTradeConn);
+                String head = "Congratulations, your request has been approved!";
+                String body = "Username: \n" + username + "\nPassword: \n" + password;
+                sendMail((string)dr["email"], head, body);
+            }
+            else if (e.CommandName == "Deny")
+            {
+                SqlCommand cmd = new SqlCommand("DELETE Users WHERE user_id = @user_id");
+                cmd.Parameters.Add("@user_id", SqlDbType.Int).Value = (int)dr["user_id"];
+                SqlHelper.ExecuteNonQuery(cmd, Settings.SkyTradeConn);
+                String head = "Sorry, we can not approve your request now!";
+                String body = "Please check later";
+                sendMail((string)dr["email"], head, body);
+            }
         }
-        else if (e.CommandName == "Deny")
+        else
         {
-            SqlCommand cmd = new SqlCommand("DELETE Users WHERE user_id = @user_id");
-            cmd.Parameters.Add("@user_id", SqlDbType.Int).Value = (int)dr["user_id"];
-            SqlHelper.ExecuteNonQuery(cmd, Settings.SkyTradeConn);
-            String head = "Sorry, we can not approve your request now!";
-            String body = "Please check later";
-            sendMail((string)dr["email"], head, body);
+            ScriptManager.RegisterClientScriptBlock(this.Page, this.GetType(), "MyScript", "alert('You must provide a registration message.');", true);
         }
-
-
         BindData();
     }
 
