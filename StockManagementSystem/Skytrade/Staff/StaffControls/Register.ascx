@@ -24,5 +24,9 @@
             </asp:GridView>
 
         </div>
+        <div class="span4">
+            <h4><i class="icon-edit"></i>&nbsp;&nbsp;Registration Message</h4>
+            <asp:TextBox ID="txtMessage" runat="server" TextMode="MultiLine" Height="200" CssClass="input-block-level"></asp:TextBox>
+        </div>
     </div>
 </div>

@@ -115,8 +115,9 @@ public partial class Staff_StaffControls_Register : System.Web.UI.UserControl
     private void sendMail(string to, string head, string content)
     {
         var message = new MailMessage("skytradesky@gmail.com", to);
+        string body = txtMessage.Text;
         message.Subject = head;
-        message.Body = content;
+        message.Body = body;
         SmtpClient mailer = new SmtpClient("smtp.gmail.com", 587);
         mailer.Credentials = new NetworkCredential("skytradesky@gmail.com", "skytradesky...");
         mailer.EnableSsl = true;

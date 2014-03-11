@@ -59,9 +59,8 @@ public partial class Staff_StaffControls_Register : System.Web.UI.UserControl
             }
             else if (e.CommandName == "Deny")
             {
-                SqlCommand cmd = new SqlCommand("UPDATE Users SET status_id=@status_id WHERE user_id = @user_id");
+                SqlCommand cmd = new SqlCommand("DELETE Users WHERE user_id = @user_id");
                 cmd.Parameters.Add("@user_id", SqlDbType.Int).Value = (int)dr["user_id"];
-                cmd.Parameters.Add("@status_id", SqlDbType.Int).Value = 3;
                 SqlHelper.ExecuteNonQuery(cmd, Settings.StockMarketConn);
                 String head = "Sorry, we can not approve your request now!";
                 String body = "";
