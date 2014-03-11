@@ -28,7 +28,7 @@ public partial class Controls_BuyStock : System.Web.UI.UserControl
     /// <param name="status">The status of the transaction to pull data from</param>
     private void BindData(string status)
     {
-        gvTransactions.DataSource = SkyTrade.GetTransactionDetailsByStatus(status);
+        gvTransactions.DataSource = SkyTrade.GetTransactionDetailsByStatusAndUser(status);
         gvTransactions.DataBind();
         lblMessage.Text = String.Empty;
     }

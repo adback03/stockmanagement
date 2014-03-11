@@ -26,6 +26,13 @@ public static class SkyTrade
         return SqlHelper.ReturnAsTable(cmd, Settings.SkyTradeConn);
     }
 
+    public static DataTable GetTransactionDetailsByStatusAndUser(string status)
+    {
+        SqlCommand cmd = new SqlCommand();
+        cmd.CommandText = "SELECT * FROM TransactionDetails WHERE Status = '" + status + "' AND username = '" + Account.CurrentUser().UserName + "' ORDER BY timestamp desc";
+        return SqlHelper.ReturnAsTable(cmd, Settings.StockMarketConn);
+    }
+
     public static void UpdateTransaction(int id, Enums.Status status, string message)
     {
         // Update transaction to be approved
