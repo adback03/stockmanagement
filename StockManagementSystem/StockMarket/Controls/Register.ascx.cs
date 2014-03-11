@@ -38,36 +38,44 @@ public partial class Staff_StaffControls_Register : System.Web.UI.UserControl
 
     protected void gvRequest_RowCommand(object sender, GridViewCommandEventArgs e)
     {
-        int index = Convert.ToInt32(e.CommandArgument);
-        DataTable dt = GetDataTable();
-        DataRow dr = dt.Rows[index];
-        if (e.CommandName == "Approve")
+        if (txtMessage.Text.Length > 10)
         {
-            String username = generateUsername((String)dr["firstname"], (String)dr["lastname"]);
-            String password = generatePassword();
-            SqlCommand cmd = new SqlCommand("UPDATE Users SET status_id=@status_id, username=@username, password=@password WHERE user_id = @user_id");
-            cmd.Parameters.Add("@user_id", SqlDbType.Int).Value = (int)dr["user_id"];
-            cmd.Parameters.Add("@status_id", SqlDbType.Int).Value = 2;
-            cmd.Parameters.Add("@username", SqlDbType.VarChar).Value = username;
-            cmd.Parameters.Add("@password", SqlDbType.VarChar).Value = password;
-            SqlHelper.ExecuteNonQuery(cmd, Settings.StockMarketConn);
-            String head = "Congratulations, your request has been approved!";
-            String body = "Username: \n" + username + "\nPassword: \n" + password;
-            sendMail((string)dr["email"], head, body);
-        }
-        else if (e.CommandName == "Deny")
-        {
-            SqlCommand cmd = new SqlCommand("UPDATE Users SET status_id=@status_id WHERE user_id = @user_id");
-            cmd.Parameters.Add("@user_id", SqlDbType.Int).Value = (int)dr["user_id"];
-            cmd.Parameters.Add("@status_id", SqlDbType.Int).Value = 3;
-            SqlHelper.ExecuteNonQuery(cmd, Settings.StockMarketConn);
-            String head = "Sorry, we can not approve your request now!";
-            String body = "Please check later";
-            sendMail((string)dr["email"], head, body);
-        }
+            int index = Convert.ToInt32(e.CommandArgument);
+            DataTable dt = GetDataTable();
+            DataRow dr = dt.Rows[index];
+            if (e.CommandName == "Approve")
+            {
+                String username = generateUsername((String)dr["firstname"], (String)dr["lastname"]);
+                String password = generatePassword();
+                SqlCommand cmd = new SqlCommand("UPDATE Users SET status_id=@status_id, username=@username, password=@password WHERE user_id = @user_id");
+                cmd.Parameters.Add("@user_id", SqlDbType.Int).Value = (int)dr["user_id"];
+                cmd.Parameters.Add("@status_id", SqlDbType.Int).Value = 2;
+                cmd.Parameters.Add("@username", SqlDbType.VarChar).Value = username;
+                cmd.Parameters.Add("@password", SqlDbType.VarChar).Value = password;
+                SqlHelper.ExecuteNonQuery(cmd, Settings.StockMarketConn);
+                String head = "Congratulations, your request has been approved!";
+                String body = "Username: \n" + username + "\nPassword: \n" + password;
+                sendMail((string)dr["email"], head, body);
+            }
+            else if (e.CommandName == "Deny")
+            {
+                SqlCommand cmd = new SqlCommand("UPDATE Users SET status_id=@status_id WHERE user_id = @user_id");
+                cmd.Parameters.Add("@user_id", SqlDbType.Int).Value = (int)dr["user_id"];
+                cmd.Parameters.Add("@status_id", SqlDbType.Int).Value = 3;
+                SqlHelper.ExecuteNonQuery(cmd, Settings.StockMarketConn);
+                String head = "Sorry, we can not approve your request now!";
+                String body = "";
+                sendMail((string)dr["email"], head, body);
+            }
 
 
-        BindData();
+            BindData();
+        }
+        else
+        {
+            ScriptManager.RegisterClientScriptBlock(this.Page, this.GetType(), "MyScript", "alert('You must provide a registration message.');", true);
+        }
+
     }
 
     private String generateUsername(String first, String last)
@@ -116,8 +124,11 @@ public partial class Staff_StaffControls_Register : System.Web.UI.UserControl
     private void sendMail(string to, string head, string content)
     {
         var message = new MailMessage("skytradesky@gmail.com", to);
+        string body = txtMessage.Text;
+        body += Environment.NewLine + Environment.NewLine;
+        body += content;
         message.Subject = head;
-        message.Body = content;
+        message.Body = body;
         SmtpClient mailer = new SmtpClient("smtp.gmail.com", 587);
         mailer.Credentials = new NetworkCredential("skytradesky@gmail.com", "skytradesky...");
         mailer.EnableSsl = true;

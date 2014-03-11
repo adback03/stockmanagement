@@ -2,7 +2,7 @@
 
 <div class="tab-pane" id="register">
     <div class="row-fluid">
-        <div class="span12">
+        <div class="span8">
             <h4><i class="icon-user"></i>&nbsp;&nbsp;Requests to Register</h4>
             <asp:GridView ID="gvRequest"
                 runat="server" 
@@ -23,6 +23,10 @@
                 </Columns>
             </asp:GridView>
 
+        </div>
+        <div class="span4">
+            <h4><i class="icon-edit"></i>&nbsp;&nbsp;Registration Message</h4>
+            <asp:TextBox ID="txtMessage" runat="server" TextMode="MultiLine" Height="200" CssClass="input-block-level"></asp:TextBox>
         </div>
     </div>
 </div>

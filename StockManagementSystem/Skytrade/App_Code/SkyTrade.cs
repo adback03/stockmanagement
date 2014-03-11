@@ -30,7 +30,7 @@ public static class SkyTrade
     {
         SqlCommand cmd = new SqlCommand();
         cmd.CommandText = "SELECT * FROM TransactionDetails WHERE Status = '" + status + "' AND username = '" + Account.CurrentUser().UserName + "' ORDER BY timestamp desc";
-        return SqlHelper.ReturnAsTable(cmd, Settings.StockMarketConn);
+        return SqlHelper.ReturnAsTable(cmd, Settings.SkyTradeConn);
     }
 
     public static void UpdateTransaction(int id, Enums.Status status, string message)
