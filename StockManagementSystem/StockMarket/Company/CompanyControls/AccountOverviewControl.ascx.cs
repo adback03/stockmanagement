@@ -45,7 +45,7 @@ public partial class CompanyControls_AccountOverviewControl : System.Web.UI.User
 
         hfPassword.Value = Regex.Password;
         revNewPassword.ValidationExpression = Regex.Password;
-        CompareValidator2.ValueToCompare = Account.CurrentUser().Password;
+        CompareValidator2.ValueToCompare = (string) GetUser()["password"];
     }
 
     private DataRow GetUser()
@@ -85,6 +85,7 @@ public partial class CompanyControls_AccountOverviewControl : System.Web.UI.User
         cmd.Parameters.Add("@user_id", SqlDbType.Int).Value = Account.CurrentUser().UserId;
         cmd.Parameters.Add("@password", SqlDbType.VarChar).Value = password;
         SqlHelper.ExecuteNonQuery(cmd, Settings.StockMarketConn);
+        Bind_Data();
     }
 
     protected void lbtnUpdate_Click(object sender, EventArgs e)

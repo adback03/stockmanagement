@@ -157,7 +157,7 @@
                     <li class="active"><a href="#panel6-1" data-toggle="tab" class="active "><i class="icon-user"></i>&nbsp;<span>Change Password</span></a></li>
                     <li class="pull-right"><a href="#close" data-dismiss="modal" aria-hidden="true"><i class="icon-remove"></i>&nbsp;<span></span></a></li>
                     <li class="pull-right">
-                        <asp:LinkButton ID="LinkButton1" runat="server" OnClick="lbtnChange_Click" ValidationGroup="ChangePassword" PostBackUrl="/"><i class="icon-save">&nbsp;<span>Change</span></i></asp:LinkButton>
+                        <asp:LinkButton ID="LinkButton1" runat="server" ValidationGroup="ChangePassword" OnClick="lbtnChange_Click"  OnClientClick="lbtnChange_Click" Text="Change" />
                     </li>
                 </ul>
                 <div class="tab-content ">

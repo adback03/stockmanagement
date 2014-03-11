@@ -17,8 +17,9 @@
             <asp:TextBox TextMode="Password" ID="txtConfirmPassword" runat="server" CssClass="input-block-level"></asp:TextBox>
             <asp:RequiredFieldValidator ID="RequiredFieldValidator16" runat="server" ControlToValidate="txtConfirmPassword" ForeColor="Red" ErrorMessage="Confirm password can not be none" ValidationGroup="ChangePassword" Display="Dynamic" />
             <asp:CompareValidator id="CompareValidator1" runat="server" ControlToValidate="txtConfirmPassword" ForeColor="Red" ControlToCompare="txtNewPassword" Operator="Equal" ValidationGroup="ChangePassword" ErrorMessage="Confirm password must be the same with new password" Display="Dynamic" />
-            <asp:Button ID="btnChangePassword" runat="server" Text="Change" CssClass="btn-inverse" OnClick="lbtnChange_Click"/>
             <br />
+            <asp:Button ID="btnChangePassword" runat="server" ValidationGroup="ChangePassword" Text="Change" CssClass="btn-inverse" OnClick="lbtnChange_Click"/>
+            
             <asp:HiddenField ClientIDMode="Static" ID="hfPassword" runat="server" Value="" />
             
             <br />
