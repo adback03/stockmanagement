@@ -7,3 +7,4 @@ StockManagementSystem/DatabaseAccess/obj
 StockManagementSystem/Common/bin
 StockManagementSystem/Common/obj
 *.suo
+packages
