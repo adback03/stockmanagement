@@ -84,7 +84,7 @@ public partial class CompanyControls_AccountOverviewControl : System.Web.UI.User
         cmd.CommandText = "UPDATE Users SET password=@password WHERE user_id=@user_id";
         cmd.Parameters.Add("@user_id", SqlDbType.Int).Value = Account.CurrentUser().UserId;
         cmd.Parameters.Add("@password", SqlDbType.VarChar).Value = password;
-        SqlHelper.ExecuteNonQuery(cmd, Settings.SkyTradeConn);
+        SqlHelper.ExecuteNonQuery(cmd, Settings.StockMarketConn);
     }
 
     protected void lbtnUpdate_Click(object sender, EventArgs e)
