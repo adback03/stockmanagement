@@ -163,7 +163,7 @@ public partial class Controls_AccountOverviewControl : System.Web.UI.UserControl
         cmd.Parameters.Add("@account_number", SqlDbType.VarChar).Value = sAccount;
         cmd.Parameters.Add("@routing_number", SqlDbType.VarChar).Value = sRouting;
         SqlHelper.ExecuteNonQuery(cmd, Settings.SkyTradeConn);
-        Response.Redirect("/");
+        Response.Redirect(Request.ApplicationPath);
     }
 
     private void GenerateQuickStats()

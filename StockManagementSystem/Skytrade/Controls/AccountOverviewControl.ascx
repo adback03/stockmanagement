@@ -67,7 +67,7 @@
                     <li><a href="#panel6-2" data-toggle="tab"><i class="icon-money"></i>&nbsp;<span>Billing Information</span></a></li>
                     <li class="pull-right"><a href="#close" data-dismiss="modal" aria-hidden="true"><i class="icon-remove"></i>&nbsp;<span></span></a></li>
                     <li class="pull-right">
-                        <asp:LinkButton ID="lbtnUpdate" runat="server" OnClick="lbtnUpdate_Click" PostBackUrl="/" ValidationGroup="Register"><i class="icon-save">&nbsp;<span>Save</span></i></asp:LinkButton>
+                        <asp:LinkButton ID="lbtnUpdate" runat="server" OnClick="lbtnUpdate_Click" ValidationGroup="Register"><i class="icon-save">&nbsp;<span>Save</span></i></asp:LinkButton>
                     </li>
                 </ul>
                 <div class="tab-content ">
@@ -299,7 +299,7 @@
                     <li class="active"><a href="#panel6-1" data-toggle="tab" class="active "><i class="icon-user"></i>&nbsp;<span>Change Password</span></a></li>
                     <li class="pull-right"><a href="#close" data-dismiss="modal" aria-hidden="true"><i class="icon-remove"></i>&nbsp;<span></span></a></li>
                     <li class="pull-right">
-                        <asp:LinkButton ID="LinkButton1" runat="server" OnClick="lbtnChange_Click" ValidationGroup="ChangePassword" PostBackUrl="/"><i class="icon-save">&nbsp;<span>Change</span></i></asp:LinkButton>
+                        <asp:LinkButton ID="LinkButton1" runat="server" OnClick="lbtnChange_Click" ValidationGroup="ChangePassword"><i class="icon-save">&nbsp;<span>Change</span></i></asp:LinkButton>
                     </li>
                 </ul>
                 <div class="tab-content ">
