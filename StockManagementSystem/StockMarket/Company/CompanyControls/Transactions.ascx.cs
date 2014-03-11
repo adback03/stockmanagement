@@ -28,7 +28,7 @@ public partial class Company_CompanyControls_BuyStock : System.Web.UI.UserContro
     /// <param name="status">The status of the transaction to pull data from</param>
     private void BindData(string status)
     {
-        gvTransactions.DataSource = StockMarket.GetTransactionDetailsByStatus(status);
+        gvTransactions.DataSource = StockMarket.GetTransactionDetailsByStatusAndUser(status);
         gvTransactions.DataBind();
         lblMessage.Text = String.Empty;
     }
