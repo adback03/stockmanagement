@@ -64,9 +64,16 @@ public static class SkyTrade
 
     public static int GetTotalUnreadMessages()
     {
-        SqlCommand cmd = new SqlCommand();
-        cmd.CommandText = "SELECT COUNT(*) FROM messages WHERE to_user = " + Account.CurrentUser().UserId + " AND archived = 0";
-        return int.Parse(SqlHelper.ExecuteScalar(cmd, Settings.SkyTradeConn));
+        try
+        {
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandText = "SELECT COUNT(*) FROM messages WHERE to_user = " + Account.CurrentUser().UserId + " AND archived = 0";
+            return int.Parse(SqlHelper.ExecuteScalar(cmd, Settings.SkyTradeConn));
+        }
+        catch
+        {
+            return 0;
+        }
     }
 
     public static void UpdateMessageArchiveStatus(int messageId, bool archive)

@@ -64,9 +64,16 @@ public static class StockMarket
 
     public static int GetTotalUnreadMessages()
     {
-        SqlCommand cmd = new SqlCommand();
-        cmd.CommandText = "SELECT COUNT(*) FROM messages WHERE to_user = " + Account.CurrentUser().UserId + " AND archived = 0";
-        return int.Parse(SqlHelper.ExecuteScalar(cmd, Settings.StockMarketConn));
+        try
+        {
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandText = "SELECT COUNT(*) FROM messages WHERE to_user = " + Account.CurrentUser().UserId + " AND archived = 0";
+            return int.Parse(SqlHelper.ExecuteScalar(cmd, Settings.StockMarketConn));
+        }
+        catch
+        {
+            return 0;
+        }
     }
 
     public static void UpdateMessageArchiveStatus(int messageId, bool archive)
