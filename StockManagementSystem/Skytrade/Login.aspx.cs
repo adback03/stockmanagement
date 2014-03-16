@@ -34,10 +34,10 @@ public partial class Login : System.Web.UI.Page
             switch (Account.CurrentUser().Type)
             {
                 case Enums.SkyTradeType.Client:
-                    Response.Redirect(Request.ApplicationPath);
+                    App.RedirectToRoot();
                     break;
                 case Enums.SkyTradeType.Staff:
-                    Response.Redirect("Staff");
+                    App.Redirect("Staff");
                     break;
                 default:
                     break;
@@ -46,6 +46,7 @@ public partial class Login : System.Web.UI.Page
         else
         {
             // User login failed
+            App.ShowAlertMessage("We're sorry, the login information your provided is incorrect. Please try again.");
         }
     }
     protected void btnRegister_Click(object sender, EventArgs e)
@@ -109,7 +110,7 @@ public partial class Login : System.Web.UI.Page
         cmd.Parameters.Add("@account_number", SqlDbType.VarChar).Value = sAccount;
         cmd.Parameters.Add("@routing_number", SqlDbType.VarChar).Value = sRouting;
         SqlHelper.ExecuteNonQuery(cmd, Settings.SkyTradeConn);
-        Response.Redirect("Login.aspx?r=s");
+        App.Redirect("Login.aspx?r=s");
     }
 
     /// <summary>

@@ -22,7 +22,7 @@
             </div>
         </div>
         <div class="span4">
-            <h4><i class="icon-question"></i>&nbsp;&nbsp;Billing Information</h4>
+            <h4><i class="icon-question"></i>&nbsp;&nbsp;Bank Information</h4>
             <div class="box">
                 <b>Bank Name: </b><asp:Label ID="lblBank" runat="server" Text="****"></asp:Label><br />
                 <b>Routing Number: </b><asp:Label ID="lblRouting" runat="server" Text="****"></asp:Label><br />
@@ -30,7 +30,7 @@
                 <br />
                 <br />
             </div>
-            <h4><i class="icon-location-arrow"></i>&nbsp;&nbsp;Billing Address</h4>
+            <h4><i class="icon-location-arrow"></i>&nbsp;&nbsp;Bank Address</h4>
             <div class="box">
                 <address>
                     <strong><asp:Label ID="lblBillingName" runat="server" Text="****"></asp:Label></strong><br>

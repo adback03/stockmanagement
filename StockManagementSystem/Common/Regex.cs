@@ -48,7 +48,8 @@ namespace Common
         /// This regex conforms to the US routing number format.
         /// Ensures number is nine digits long and has first two digits that comply with American Bankers Association rules
         /// </summary>
-        public static string RoutingNumber = @"^((0[0-9])|(1[0-2])|(2[1-9])|(3[0-2])|(6[1-9])|(7[0-2])|80)([0-9]{7})$";
+        //public static string RoutingNumber = @"^((0[0-9])|(1[0-2])|(2[1-9])|(3[0-2])|(6[1-9])|(7[0-2])|80)([0-9]{7})$";
+        public static string RoutingNumber = @"^[0-9]{9}$";
 
         /// <summary>
         /// There is no standard for US account numbers. Therefore, simply restrict to digits.
@@ -58,7 +59,7 @@ namespace Common
         /// <summary>
         /// A Ticker Symbol is 4 Capitalized letters
         /// </summary>
-        public static string Ticker = @"^[A-Z]{4}&";
+        public static string Ticker = @"^[A-Z]{4}$";
 
         /// <summary>
         /// Money is stored in the database as a decimal (18,2)

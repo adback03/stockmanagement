@@ -195,7 +195,8 @@ public partial class Company_CompanyControls_BuyStock : System.Web.UI.UserContro
         }
         else
         {
-            ScriptManager.RegisterClientScriptBlock(this.Page, this.GetType(), "MyScript", "alert('Your transaction message must have at least 10 characters.');", true);
+            App.ShowAlertMessage("Your transaction message must have at least 10 characters");
+            //ScriptManager.RegisterClientScriptBlock(this.Page, this.GetType(), "MyScript", "alert('Your transaction message must have at least 10 characters.');", true);
         }
     }
 
