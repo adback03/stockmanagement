@@ -142,6 +142,10 @@ public partial class Login : System.Web.UI.Page
         hfAddress1.Value = Regex.Address;
         revAddress1.ValidationExpression = Regex.Address;
 
+        // Address2
+        hfAddress2.Value = Regex.Address;
+        revAddress2.ValidationExpression = Regex.Address;
+
         // City
         hfCity.Value = Regex.City;
         revCity.ValidationExpression = Regex.City;
@@ -161,9 +165,12 @@ public partial class Login : System.Web.UI.Page
         hfRoutingNumber.Value = Regex.RoutingNumber;
         revRoutingNumber.ValidationExpression = Regex.RoutingNumber;
 
-        // Bank Address
+        // Bank Address1
         revBillingAddress.ValidationExpression = Regex.Address;
 
+        // Bank Address2
+        revBillingAddress2.ValidationExpression = Regex.Address;
+        
         // Billing City
         revBillingCity.ValidationExpression = Regex.City;
 
@@ -185,6 +192,7 @@ public partial class Login : System.Web.UI.Page
         txtEmail.Attributes.Add("onkeyup", "jsFormatEmail(this);");
         txtPhone.Attributes.Add("onkeyup", "jsFormatPhone(this);");
         txtAddress1.Attributes.Add("onkeyup", "jsFormatAddress(this);");
+        txtAddress2.Attributes.Add("onkeyup", "jsFormatAddress(this);");
         txtCity.Attributes.Add("onkeyup", "jsFormatCity(this);");
         txtZip.Attributes.Add("onkeyup", "jsFormatZip(this);");
 
@@ -193,6 +201,7 @@ public partial class Login : System.Web.UI.Page
         txtAcctNumber.Attributes.Add("onkeyup", "jsFormatAccount(this);");
         txtRoutingNumber.Attributes.Add("onkeyup", "jsFormatRouting(this);");
         txtBillingAddress1.Attributes.Add("onkeyup", "jsFormatAddress(this);");
+        txtBillingAddress2.Attributes.Add("onkeyup", "jsFormatAddress(this);");
         txtBillingCity.Attributes.Add("onkeyup", "jsFormatCity(this);");
         txtBillingZip.Attributes.Add("onkeyup", "jsFormatZip(this);");
     }

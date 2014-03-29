@@ -48,16 +48,16 @@ public partial class Controls_BuyStockControl : System.Web.UI.UserControl
         // Reset each color back to the default value
         foreach (GridViewRow r in gvTransactions.Rows)
         {
-            r.BackColor = Color.WhiteSmoke;
+            r.BackColor = Color.Black;
         }
 
         GridViewRow row = gvTransactions.SelectedRow;
         row.BackColor = Color.Turquoise;
         int id = int.Parse(gvTransactions.DataKeys[row.RowIndex].Value.ToString());
-        string ticker = row.Cells[3].Text;
-        int quantityRequested = int.Parse(row.Cells[4].Text);
-        double price = double.Parse(row.Cells[5].Text);
-        string type = row.Cells[6].Text;
+        string ticker = row.Cells[2].Text;
+        int quantityRequested = int.Parse(row.Cells[3].Text);
+        double price = double.Parse(row.Cells[4].Text);
+        string type = row.Cells[5].Text;
 
         // Get the current quantity available for the stock chosen in the table
         int quantityAvailable = SkyTrade.GetQuantityAvailable(ticker);
@@ -195,7 +195,8 @@ public partial class Controls_BuyStockControl : System.Web.UI.UserControl
         }
         else
         {
-            ScriptManager.RegisterClientScriptBlock(this.Page, this.GetType(), "MyScript", "alert('Your transaction message must have at least 10 characters.');", true);
+            App.ShowAlertMessage("Your transaction message must have at least 10 characters");
+            //ScriptManager.RegisterClientScriptBlock(this.Page, this.GetType(), "MyScript", "alert('Your transaction message must have at least 10 characters.');", true);
         }
     }
 
@@ -224,4 +225,6 @@ public partial class Controls_BuyStockControl : System.Web.UI.UserControl
         lbtnOnHold.ForeColor = Color.SlateGray;
         lbtnStatus.ForeColor = Color.Blue;
     }
+
+
 }
