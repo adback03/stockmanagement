@@ -25,6 +25,10 @@
                     <h2 class="heading-2">Thank you for registering.</h2>
                     <h4 class="heading-4">Your request is processing, and you will receive a response shortly.</h4>
                 </asp:Panel>
+                <asp:Panel ID="pnlDuplicated" runat="server" Visible="false">
+                    <h2 class="heading-2">Sorry, your request can not be satisfied.</h2>
+                    <h4 class="heading-4">Your ssn number already exists in our system, please check.</h4>
+                </asp:Panel>
                 
                 <div class="tabbable custom-tabs tabs-left tabs-animated  flat flat-all hide-label-980 shadow track-url auto-scroll dark">
                     <div class="tab-content ">

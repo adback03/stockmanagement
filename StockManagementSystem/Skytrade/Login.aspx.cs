@@ -17,13 +17,15 @@ public partial class Login : System.Web.UI.Page
         InitHiddenFields();
         InitJavascript();
         // Test comment for commit
+        pnlThanks.Visible = false;
+        pnlDuplicated.Visible = false;
         if (Request.Params["r"] != null)
         {
             pnlThanks.Visible = true;
         }
-        else
+        else if(Request.Params["e"] != null)
         {
-            pnlThanks.Visible = false;
+            pnlDuplicated.Visible = true;
         }
     }
 
@@ -89,28 +91,40 @@ public partial class Login : System.Web.UI.Page
         sBillingState += ddlBillingState.SelectedValue;
         sBillingZip += txtBillingZip.Text;
 
-        SqlCommand cmd = new SqlCommand("InsertUser");
-        cmd.CommandType = CommandType.StoredProcedure;
-        cmd.Parameters.Add("@firstname", SqlDbType.VarChar).Value = sFirstName;
-        cmd.Parameters.Add("@lastname", SqlDbType.VarChar).Value = sLastName;
+        SqlCommand cmd = new SqlCommand();
+        cmd.CommandText = "SELECT * FROM Users WHERE ssn=@ssn";
         cmd.Parameters.Add("@ssn", SqlDbType.VarChar).Value = sSocialSecurity;
-        cmd.Parameters.Add("@email", SqlDbType.VarChar).Value = sEmail;
-        cmd.Parameters.Add("@phone", SqlDbType.VarChar).Value = sPhone;
-        cmd.Parameters.Add("@line1", SqlDbType.VarChar).Value = sLine1;
-        cmd.Parameters.Add("@line2", SqlDbType.VarChar).Value = sLine2;
-        cmd.Parameters.Add("@city", SqlDbType.VarChar).Value = sCity;
-        cmd.Parameters.Add("@state", SqlDbType.VarChar).Value = sState;
-        cmd.Parameters.Add("@zip", SqlDbType.VarChar).Value = sZip;
-        cmd.Parameters.Add("@bank_name", SqlDbType.VarChar).Value = sBank;
-        cmd.Parameters.Add("@billing_line1", SqlDbType.VarChar).Value = sBillingLine1;
-        cmd.Parameters.Add("@billing_line2", SqlDbType.VarChar).Value = sBillingLine2;
-        cmd.Parameters.Add("@billing_city", SqlDbType.VarChar).Value = sBillingCity;
-        cmd.Parameters.Add("@billing_state", SqlDbType.VarChar).Value = sBillingState;
-        cmd.Parameters.Add("@billing_zip", SqlDbType.VarChar).Value = sBillingZip;
-        cmd.Parameters.Add("@account_number", SqlDbType.VarChar).Value = sAccount;
-        cmd.Parameters.Add("@routing_number", SqlDbType.VarChar).Value = sRouting;
-        SqlHelper.ExecuteNonQuery(cmd, Settings.SkyTradeConn);
-        App.Redirect("Login.aspx?r=s");
+        DataTable dt = SqlHelper.ReturnAsTable(cmd, Settings.SkyTradeConn);
+        if (dt.Rows.Count != 0)
+        {
+            App.Redirect("Login.aspx?e=s");
+        }
+        else
+        {
+
+            cmd = new SqlCommand("InsertUser");
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add("@firstname", SqlDbType.VarChar).Value = sFirstName;
+            cmd.Parameters.Add("@lastname", SqlDbType.VarChar).Value = sLastName;
+            cmd.Parameters.Add("@ssn", SqlDbType.VarChar).Value = sSocialSecurity;
+            cmd.Parameters.Add("@email", SqlDbType.VarChar).Value = sEmail;
+            cmd.Parameters.Add("@phone", SqlDbType.VarChar).Value = sPhone;
+            cmd.Parameters.Add("@line1", SqlDbType.VarChar).Value = sLine1;
+            cmd.Parameters.Add("@line2", SqlDbType.VarChar).Value = sLine2;
+            cmd.Parameters.Add("@city", SqlDbType.VarChar).Value = sCity;
+            cmd.Parameters.Add("@state", SqlDbType.VarChar).Value = sState;
+            cmd.Parameters.Add("@zip", SqlDbType.VarChar).Value = sZip;
+            cmd.Parameters.Add("@bank_name", SqlDbType.VarChar).Value = sBank;
+            cmd.Parameters.Add("@billing_line1", SqlDbType.VarChar).Value = sBillingLine1;
+            cmd.Parameters.Add("@billing_line2", SqlDbType.VarChar).Value = sBillingLine2;
+            cmd.Parameters.Add("@billing_city", SqlDbType.VarChar).Value = sBillingCity;
+            cmd.Parameters.Add("@billing_state", SqlDbType.VarChar).Value = sBillingState;
+            cmd.Parameters.Add("@billing_zip", SqlDbType.VarChar).Value = sBillingZip;
+            cmd.Parameters.Add("@account_number", SqlDbType.VarChar).Value = sAccount;
+            cmd.Parameters.Add("@routing_number", SqlDbType.VarChar).Value = sRouting;
+            SqlHelper.ExecuteNonQuery(cmd, Settings.SkyTradeConn);
+            App.Redirect("Login.aspx?r=s");
+        }
     }
 
     /// <summary>
