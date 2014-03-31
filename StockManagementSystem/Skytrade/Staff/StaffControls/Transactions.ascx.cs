@@ -85,6 +85,14 @@ public partial class Controls_BuyStockControl : System.Web.UI.UserControl
             }
         }
 
+        //if lblWarning.Visible set to true previously
+        //sell should reset lblWarning.Visible to false
+        if (type == "Sell")
+        {
+            lblQuantity.ForeColor = Color.Blue;
+            lblWarning.Visible = false;
+        }
+
     }
 
     /// <summary>
