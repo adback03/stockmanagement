@@ -171,6 +171,10 @@
                                         <asp:TextBox ID="txtZip" runat="server" CssClass="input-block-level"></asp:TextBox>             
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator8" runat="server" ControlToValidate="txtZip" ErrorMessage="Zip" ValidationGroup="Register" Display="None" />
                                         <asp:RegularExpressionValidator runat="server" ID="revZip" ControlToValidate="txtZip" ErrorMessage="Zip" Display="None" ValidationGroup="Register" />                
+                                        <div>
+                                            <p class="alert-info">If you are a staff member at SkyTrade, by signing up as employee you can receive additional benefits.</p>
+                                            <label style="font-weight:bold">I Work for SkyTrade <asp:CheckBox ID="chkIsStaff" runat="server" /></label>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

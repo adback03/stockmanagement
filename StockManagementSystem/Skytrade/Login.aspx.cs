@@ -75,6 +75,7 @@ public partial class Login : System.Web.UI.Page
         string sBillingCity = "";
         string sBillingState = "";
         string sBillingZip = "";
+        int userType = (int)Enums.SkyTradeType.Client;
 
         sFirstName += txtFirstName.Text;
         sLastName += txtLastName.Text;
@@ -94,6 +95,7 @@ public partial class Login : System.Web.UI.Page
         sBillingCity += txtBillingCity.Text;
         sBillingState += ddlBillingState.SelectedValue;
         sBillingZip += txtBillingZip.Text;
+        userType = (chkIsStaff.Checked == true) ? (int)Enums.SkyTradeType.Staff : (int)Enums.SkyTradeType.Client;
 
         SqlCommand cmd = new SqlCommand();
         cmd.CommandText = "SELECT * FROM Users WHERE ssn=@ssn";
@@ -126,6 +128,7 @@ public partial class Login : System.Web.UI.Page
             cmd.Parameters.Add("@billing_zip", SqlDbType.VarChar).Value = sBillingZip;
             cmd.Parameters.Add("@account_number", SqlDbType.VarChar).Value = sAccount;
             cmd.Parameters.Add("@routing_number", SqlDbType.VarChar).Value = sRouting;
+            cmd.Parameters.Add("@type_id", SqlDbType.Int).Value = userType;
             SqlHelper.ExecuteNonQuery(cmd, Settings.SkyTradeConn);
             App.Redirect("Login.aspx?r=s");
         }
