@@ -27,6 +27,10 @@ public partial class Login : System.Web.UI.Page
         {
             pnlDuplicated.Visible = true;
         }
+        else if (Request.Params["d"] != null)
+        {
+            pnlDeactived.Visible = true;
+        }
     }
 
     protected void lbtnLogin_Click(object sender, EventArgs e)

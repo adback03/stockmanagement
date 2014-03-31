@@ -97,5 +97,23 @@ public static class SkyTrade
         cmd.Parameters.Add("@user_id", SqlDbType.Int).Value = Account.CurrentUser().UserId;
         return SqlHelper.ReturnAsTable(cmd, Settings.SkyTradeConn);
     }
+
+    public static DataTable GetPendingTransaction()
+    {
+        SqlCommand cmd = new SqlCommand();
+        cmd.CommandText = "SELECT * FROM Transactions WHERE user_id=@user_id AND status_id=@status_id";
+        cmd.Parameters.Add("@user_id", SqlDbType.Int).Value = Account.CurrentUser().UserId;
+        cmd.Parameters.Add("@status_id", SqlDbType.Int).Value = 1;
+        return SqlHelper.ReturnAsTable(cmd, Settings.SkyTradeConn);
+    }
+
+    public static DataTable GetOnHoldTransaction()
+    {
+        SqlCommand cmd = new SqlCommand();
+        cmd.CommandText = "SELECT * FROM Transactions WHERE user_id=@user_id AND status_id=@status_id";
+        cmd.Parameters.Add("@user_id", SqlDbType.Int).Value = Account.CurrentUser().UserId;
+        cmd.Parameters.Add("@status_id", SqlDbType.Int).Value = 4;
+        return SqlHelper.ReturnAsTable(cmd, Settings.SkyTradeConn);
+    }
 }
 

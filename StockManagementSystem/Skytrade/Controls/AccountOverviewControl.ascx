@@ -1,5 +1,8 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="AccountOverviewControl.ascx.cs" Inherits="Controls_AccountOverviewControl" %>
 
+<asp:Panel ID="pnlNotQualified" runat="server" Visible="false">
+    <h5 class="heading-2" style="color:red;">You are not qualified for deactiving.</h5>
+</asp:Panel>
 <div class="tab-pane active" id="account">
     <div class="row-fluid">
         <div class="span4">
@@ -52,6 +55,7 @@
             </div>
             <a href="#TabsModal" role="button" class="btn btn-large btn-inverse " data-toggle="modal">Edit Account</a>
             <a href="#PasswordModal" role="button" class="btn btn-large btn-inverse " data-toggle="modal">Change Password</a>
+            <a href="#DeactiveModal" role="button" class="btn btn-large btn-inverse " data-toggle="modal">Deactive Account</a>
         </div>
     </div>
 </div>
@@ -289,7 +293,7 @@
     </div>
 </div>
 
-<%--This is the entire popup form that handles editing a user's account information --%>
+<%--This is the entire popup form that handles changing password--%>
 <div id="PasswordModal" class="modal hide modal-form" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="row-fluid">
         <div class="span7 offset3">
@@ -321,6 +325,42 @@
                                 <asp:TextBox TextMode="Password" ID="txtConfirmPassword" runat="server" CssClass="input-block-level"></asp:TextBox>
                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator16" runat="server" ControlToValidate="txtConfirmPassword" ForeColor="Red" ErrorMessage="Confirm password can not be none" ValidationGroup="ChangePassword" Display="Dynamic" />
                                 <asp:CompareValidator id="CompareValidator1" runat="server" ControlToValidate="txtConfirmPassword" ForeColor="Red" ControlToCompare="txtNewPassword" Operator="Equal" ValidationGroup="ChangePassword" ErrorMessage="Confirm password must be the same with new password" Display="Dynamic" />
+                                <br />
+                                <br />
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%--This is the entire popup form that handles deactive--%>
+<div id="DeactiveModal" class="modal hide modal-form" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="row-fluid">
+        <div class="span7 offset3">
+
+            <div class="tabbable custom-tabs tabs-animated  flat flat-all hide-label-980 shadow tabs-top">
+                <ul class="nav nav-tabs">
+                    <li class="active"><a href="#panel6-1" data-toggle="tab" class="active "><i class="icon-user"></i>&nbsp;<span>Deactive</span></a></li>
+                    <li class="pull-right"><a href="#close" data-dismiss="modal" aria-hidden="true"><i class="icon-remove"></i>&nbsp;<span></span></a></li>
+                    <li class="pull-right">
+                        <asp:LinkButton ID="LinkButton2" runat="server" OnClick="lbtnDeactive_Click" ValidationGroup="Deactive"><i class="icon-save">&nbsp;<span>Deactive</span></i></asp:LinkButton>
+                    </li>
+                </ul>
+                <div class="tab-content ">
+                    <div class="tab-pane active" id="panel8-1">
+                        <div class="row-fluid">
+                            <div class="span6">
+                                <h4><i class="icon-user"></i>&nbsp;&nbsp; Deactive</h4>
+
+                                <label>Password</label>
+
+                                <asp:TextBox TextMode="Password" ID="txtPassword" runat="server" CssClass="input-block-level"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator17" runat="server" ControlToValidate="txtPassword" ForeColor="Red" ErrorMessage="Old password can not be none." ValidationGroup="Deactive" Display="Dynamic"/>
+                                <asp:CompareValidator id="CompareValidator3" runat="server" ControlToValidate="txtPassword" ForeColor="Red" Operator="Equal" ValidationGroup="Deactive" ErrorMessage="Old password is not correct" Display="Dynamic" />
                                 <br />
                                 <br />
                             </div>

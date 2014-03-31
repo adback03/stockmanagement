@@ -23,6 +23,10 @@ public partial class Controls_AccountOverviewControl : System.Web.UI.UserControl
             Bind_Data();
             
         }
+        if (Request.Params["q"] != null)
+        {
+            pnlNotQualified.Visible = true;
+        }
     }
 
     protected void Bind_Data()
@@ -84,6 +88,39 @@ public partial class Controls_AccountOverviewControl : System.Web.UI.UserControl
         cmd.Parameters.Add("@address_id", SqlDbType.Int).Value = aid;
         DataTable dt = SqlHelper.ReturnAsTable(cmd, Settings.SkyTradeConn);
         return dt.Rows[0];
+    }
+
+    protected void lbtnDeactive_Click(object sender, EventArgs e)
+    {
+        DataTable stock = SkyTrade.GetStockQuantityByUser();
+        DataTable pending = SkyTrade.GetPendingTransaction();
+        DataTable onhold = SkyTrade.GetOnHoldTransaction();
+        bool qualified = true;
+        if (pending.Rows.Count > 0 || onhold.Rows.Count > 0)
+        {
+            qualified = false;
+        }
+        foreach (DataRow dr in stock.Rows)
+        {
+            int quantity = Convert.ToInt32(dr["total_quantity"]);
+            if (quantity != 0)
+            {
+                qualified = false;
+                break;
+            }
+        }
+        if (qualified)
+        {
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandText = "UPDATE Users SET status_id=@status_id WHERE user_id=@user_id";
+            cmd.Parameters.Add("@user_id", SqlDbType.Int).Value = Account.CurrentUser().UserId;
+            cmd.Parameters.Add("@status_id", SqlDbType.Int).Value = 3;
+            SqlHelper.ExecuteNonQuery(cmd, Settings.SkyTradeConn);
+            Session["User"] = null;
+            Response.Redirect("Login.aspx?d=s");
+        }
+        Response.Redirect(Request.ApplicationPath+"?q=f");
+
     }
 
     protected void lbtnChange_Click(object sender, EventArgs e)
@@ -237,6 +274,7 @@ public partial class Controls_AccountOverviewControl : System.Web.UI.UserControl
         revNewPassword.ValidationExpression = Regex.Password;
 
         CompareValidator2.ValueToCompare = Account.CurrentUser().Password;
+        CompareValidator3.ValueToCompare = Account.CurrentUser().Password;
     }
 
     /// <summary>

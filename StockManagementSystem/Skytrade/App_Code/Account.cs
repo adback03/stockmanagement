@@ -93,7 +93,7 @@ public static class Account
         
         // check if the user exists in the admin table, and if they do, validate password.
         SqlCommand cmd = new SqlCommand();
-        cmd.CommandText = "SELECT * FROM Users WHERE username = '"+ sUsername + "' and password = '" + sPassword + "'";
+        cmd.CommandText = "SELECT * FROM Users WHERE username = '"+ sUsername + "' and password = '" + sPassword + "' and status_id = 2";
         DataTable dtResults = SqlHelper.ReturnAsTable(cmd, Settings.SkyTradeConn);
 
         if (dtResults.Rows.Count > 0)
