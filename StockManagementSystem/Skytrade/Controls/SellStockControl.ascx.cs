@@ -15,13 +15,16 @@ public partial class Controls_SellStockControl : System.Web.UI.UserControl
     protected void Page_Load(object sender, EventArgs e)
     {
         InitJavascript();
-        ddlStock.DataSource = SkyTrade.GetStockQuantityByUser();
-        ddlStock.DataTextField = "ticker";
-        ddlStock.DataValueField = "total_quantity";
-        ddlStock.DataBind();
-
-        gvStock.DataSource = SkyTrade.GetStockQuantityByUser();
-        gvStock.DataBind();
+        if (!Page.IsPostBack)
+        {
+            ddlStock.DataSource = SkyTrade.GetStockQuantityByUser();
+            ddlStock.DataTextField = "ticker";
+            ddlStock.DataValueField = "total_quantity";
+            ddlStock.DataBind();
+    
+            gvStock.DataSource = SkyTrade.GetStockQuantityByUser();
+            gvStock.DataBind();
+        }
     }
 
     private void InitJavascript()
