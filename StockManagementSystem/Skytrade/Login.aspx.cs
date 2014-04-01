@@ -128,7 +128,7 @@ public partial class Login : System.Web.UI.Page
             cmd.Parameters.Add("@billing_zip", SqlDbType.VarChar).Value = sBillingZip;
             cmd.Parameters.Add("@account_number", SqlDbType.VarChar).Value = sAccount;
             cmd.Parameters.Add("@routing_number", SqlDbType.VarChar).Value = sRouting;
-            cmd.Parameters.Add("@type_id", SqlDbType.Int).Value = userType;
+            cmd.Parameters.Add("@user_type", SqlDbType.Int).Value = userType;
             SqlHelper.ExecuteNonQuery(cmd, Settings.SkyTradeConn);
             App.Redirect("Login.aspx?r=s");
         }
