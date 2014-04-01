@@ -52,7 +52,7 @@ public static class SkyTrade
         cmd.Parameters.Add("@ticker", SqlDbType.VarChar).Value = ticker;
         cmd.Parameters.Add("@quantity", SqlDbType.Int).Value = quantity;
         cmd.Parameters.Add("@transaction_type_id", SqlDbType.Int).Value = type;
-        cmd.Parameters.Add("@discount", SqlDbType.Bit).Value = discount;
+        cmd.Parameters.Add("@discount", SqlDbType.Bit).Value = (discount == true) ? 1 : 0;
         SqlHelper.ExecuteNonQuery(cmd, Settings.SkyTradeConn);
     }
 
