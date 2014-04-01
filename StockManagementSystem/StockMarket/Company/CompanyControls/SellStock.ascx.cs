@@ -15,13 +15,16 @@ public partial class Company_CompanyControls_SellStock : System.Web.UI.UserContr
     protected void Page_Load(object sender, EventArgs e)
     {
         InitJavascript();
-        ddlStock.DataSource = StockMarket.GetStockQuantityByUser();
-        ddlStock.DataTextField = "ticker";
-        ddlStock.DataValueField = "total_quantity";
-        ddlStock.DataBind();
+        if (!Page.IsPostBack)
+        {
+            ddlStock.DataSource = StockMarket.GetStockQuantityByUser();
+            ddlStock.DataTextField = "ticker";
+            ddlStock.DataValueField = "total_quantity";
+            ddlStock.DataBind();
 
-        gvStock.DataSource = StockMarket.GetStockQuantityByUser();
-        gvStock.DataBind();
+            gvStock.DataSource = StockMarket.GetStockQuantityByUser();
+            gvStock.DataBind();
+        }
     }
 
     private void InitJavascript()
