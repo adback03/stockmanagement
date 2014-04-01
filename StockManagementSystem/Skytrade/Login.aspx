@@ -107,7 +107,6 @@
                                         <asp:RegularExpressionValidator runat="server" ID="revAddress1" ControlToValidate="txtAddress1" ErrorMessage="Address1" Display="None" ValidationGroup="Register" />
                                         <label>Address2</label>
                                         <asp:TextBox ID="txtAddress2" runat="server" CssClass="input-block-level"></asp:TextBox>
-                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator16" runat="server" ControlToValidate="txtAddress2" ErrorMessage="Address2" ValidationGroup="Register" Display="None" />
                                         <asp:RegularExpressionValidator runat="server" ID="revAddress2" ControlToValidate="txtAddress2" ErrorMessage="Address2" Display="None" ValidationGroup="Register" />
                                         <label>City</label>
                                         <asp:TextBox ID="txtCity" runat="server" CssClass="input-block-level"></asp:TextBox>
@@ -171,6 +170,10 @@
                                         <asp:TextBox ID="txtZip" runat="server" CssClass="input-block-level"></asp:TextBox>             
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator8" runat="server" ControlToValidate="txtZip" ErrorMessage="Zip" ValidationGroup="Register" Display="None" />
                                         <asp:RegularExpressionValidator runat="server" ID="revZip" ControlToValidate="txtZip" ErrorMessage="Zip" Display="None" ValidationGroup="Register" />                
+                                        <div>
+                                            <p class="alert-info">If you are a staff member at SkyTrade, by signing up as employee you can receive additional benefits.</p>
+                                            <label style="font-weight:bold">I Work for SkyTrade <asp:CheckBox ID="chkIsStaff" runat="server" /></label>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -199,8 +202,7 @@
                                         <asp:RegularExpressionValidator runat="server" ID="revBillingAddress" ControlToValidate="txtBillingAddress1" ErrorMessage="Billing Address 1" Display="None" ValidationGroup="Register" />   
                                         <label>Address2</label>
                                         <asp:TextBox ID="txtBillingAddress2" runat="server" CssClass="input-block-level"></asp:TextBox> 
-                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator13" runat="server" ControlToValidate="txtBillingAddress2" ErrorMessage="Billing Address 2" ValidationGroup="Register" Display="None" />
-                                        <asp:RegularExpressionValidator runat="server" ID="revBillingAddress2" ControlToValidate="txtBillingAddress1" ErrorMessage="Billing Address 2" Display="None" ValidationGroup="Register" />
+                                        <asp:RegularExpressionValidator runat="server" ID="revBillingAddress2" ControlToValidate="txtBillingAddress2" ErrorMessage="Billing Address 2" Display="None" ValidationGroup="Register" />
                                         <label>City</label>
                                         <asp:TextBox ID="txtBillingCity" runat="server" CssClass="input-block-level"></asp:TextBox>
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator14" runat="server" ControlToValidate="txtBillingCity" ErrorMessage="Billing City" ValidationGroup="Register" Display="None" />
@@ -322,7 +324,9 @@
 
     // Format Address 2
     function jsFormatAddress(txt) {
-        ValidateField(txt, document.getElementById('hfAddress2').value);
+        if (!txt.value.match("")) {
+            ValidateField(txt, document.getElementById('hfAddress2').value);
+        }
     }
 
     // Format City

@@ -1,7 +1,7 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="AccountOverviewControl.ascx.cs" Inherits="Controls_AccountOverviewControl" %>
 
 <asp:Panel ID="pnlNotQualified" runat="server" Visible="false">
-    <h5 class="heading-2" style="color:red;">You are not qualified for deactiving.</h5>
+    <h5 class="heading-2" style="color:red;">You are not qualified for deactivating.</h5>
 </asp:Panel>
 <div class="tab-pane active" id="account">
     <div class="row-fluid">

@@ -100,7 +100,6 @@
                                         <asp:RegularExpressionValidator runat="server" ID="revAddress1" ControlToValidate="txtAddress1" ErrorMessage="Address1" Display="None" ValidationGroup="Register" />
                                         <label>Address2</label>
                                         <asp:TextBox ID="txtAddress2" runat="server" CssClass="input-block-level"></asp:TextBox>
-                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator13" runat="server" ControlToValidate="txtAddress2" ErrorMessage="Address2" ValidationGroup="Register" Display="None" />
                                         <asp:RegularExpressionValidator runat="server" ID="revAddress2" ControlToValidate="txtAddress2" ErrorMessage="Address2" Display="None" ValidationGroup="Register" />
                                         <label>City</label>
                                         <asp:TextBox ID="txtCity" runat="server" CssClass="input-block-level"></asp:TextBox>
@@ -192,7 +191,6 @@
                                         <asp:RegularExpressionValidator runat="server" ID="revBillingAddress" ControlToValidate="txtBillingAddress1" ErrorMessage="Billing Address 1" Display="None" ValidationGroup="Register" />   
                                         <label>Address2</label>
                                         <asp:TextBox ID="txtBillingAddress2" runat="server" CssClass="input-block-level"></asp:TextBox> 
-                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator16" runat="server" ControlToValidate="txtBillingAddress2" ErrorMessage="Billing Address 2" ValidationGroup="Register" Display="None" />
                                         <asp:RegularExpressionValidator runat="server" ID="revBillingAddress2" ControlToValidate="txtBillingAddress2" ErrorMessage="Billing Address 2" Display="None" ValidationGroup="Register" />   
                                         <label>City</label>
                                         <asp:TextBox ID="txtBillingCity" runat="server" CssClass="input-block-level"></asp:TextBox>
@@ -315,7 +313,9 @@
 
     // Format Address 2
     function jsFormatAddress(txt) {
-        ValidateField(txt, document.getElementById('hfAddress2').value);
+        if (!txt.value.match("")) {
+            ValidateField(txt, document.getElementById('hfAddress2').value);
+        }
     }
 
     // Format City

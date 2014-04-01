@@ -46,7 +46,7 @@ public partial class Login : System.Web.UI.Page
         else
         {
             // User login failed
-            App.ShowAlertMessage("We're sorry, the login information your provided is incorrect. Please try again.");
+            App.ShowAlertMessage("We're sorry, the login information you provided is incorrect. Please try again.");
         }
     }
     protected void btnRegister_Click(object sender, EventArgs e)

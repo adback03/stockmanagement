@@ -44,7 +44,7 @@ public static class SkyTrade
         SqlHelper.ExecuteNonQuery(cmd, Settings.SkyTradeConn);
     }
 
-    public static void InsertTransaction(string ticker, int quantity, Enums.TransactionType type)
+    public static void InsertTransaction(string ticker, int quantity, Enums.TransactionType type, bool discount)
     {
         SqlCommand cmd = new SqlCommand("InsertTransaction");
         cmd.CommandType = CommandType.StoredProcedure;
@@ -52,6 +52,7 @@ public static class SkyTrade
         cmd.Parameters.Add("@ticker", SqlDbType.VarChar).Value = ticker;
         cmd.Parameters.Add("@quantity", SqlDbType.Int).Value = quantity;
         cmd.Parameters.Add("@transaction_type_id", SqlDbType.Int).Value = type;
+        cmd.Parameters.Add("@discount", SqlDbType.Bit).Value = (discount == true) ? 1 : 0;
         SqlHelper.ExecuteNonQuery(cmd, Settings.SkyTradeConn);
     }
 
@@ -114,6 +115,15 @@ public static class SkyTrade
         cmd.Parameters.Add("@user_id", SqlDbType.Int).Value = Account.CurrentUser().UserId;
         cmd.Parameters.Add("@status_id", SqlDbType.Int).Value = 4;
         return SqlHelper.ReturnAsTable(cmd, Settings.SkyTradeConn);
+    }
+
+    public static Enums.SkyTradeType GetUserType()
+    {
+        SqlCommand cmd = new SqlCommand();
+        cmd.CommandText = "SELECT type_id FROM Users WHERE user_id = @user_id";
+        cmd.Parameters.Add("@user_id", SqlDbType.Int).Value = Account.CurrentUser().UserId;
+        int type = int.Parse(SqlHelper.ExecuteScalar(cmd, Settings.SkyTradeConn));
+        return (Enums.SkyTradeType)type;
     }
 }
 

@@ -4,8 +4,6 @@
 <%@ Register Src="~/Controls/BuyStockControl.ascx" TagPrefix="uc1" TagName="BuyStockControl" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="Body" runat="server">
-    <asp:UpdatePanel runat="server">
-        <ContentTemplate>
             <div class="row-fluid" id="demo-2">
                 <div class="span10 offset1">
                     <h2 class="heading-2">Welcome to Sky Trade</h2>
@@ -16,13 +14,10 @@
                             <li><a href="#contact" data-toggle="tab"><i class="icon-envelope-alt"></i>&nbsp;<span>Contact Us</span></a></li>
                         </ul>
                         <div class="tab-content ">
-
                             <uc1:AccountOverviewControl runat="server" ID="AccountOverviewControl" />
                             <uc1:ContactControl runat="server" ID="ContactControl" />
                         </div>
                     </div>
                 </div>
             </div>
-        </ContentTemplate>
-    </asp:UpdatePanel>          
 </asp:Content>
