@@ -202,7 +202,7 @@
                                         <asp:RegularExpressionValidator runat="server" ID="revBillingAddress" ControlToValidate="txtBillingAddress1" ErrorMessage="Billing Address 1" Display="None" ValidationGroup="Register" />   
                                         <label>Address2</label>
                                         <asp:TextBox ID="txtBillingAddress2" runat="server" CssClass="input-block-level"></asp:TextBox> 
-                                        <asp:RegularExpressionValidator runat="server" ID="revBillingAddress2" ControlToValidate="txtBillingAddress1" ErrorMessage="Billing Address 2" Display="None" ValidationGroup="Register" />
+                                        <asp:RegularExpressionValidator runat="server" ID="revBillingAddress2" ControlToValidate="txtBillingAddress2" ErrorMessage="Billing Address 2" Display="None" ValidationGroup="Register" />
                                         <label>City</label>
                                         <asp:TextBox ID="txtBillingCity" runat="server" CssClass="input-block-level"></asp:TextBox>
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator14" runat="server" ControlToValidate="txtBillingCity" ErrorMessage="Billing City" ValidationGroup="Register" Display="None" />
