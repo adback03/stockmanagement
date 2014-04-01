@@ -360,7 +360,7 @@
 
                                 <asp:TextBox TextMode="Password" ID="txtPassword" runat="server" CssClass="input-block-level"></asp:TextBox>
                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator17" runat="server" ControlToValidate="txtPassword" ForeColor="Red" ErrorMessage="Old password can not be none." ValidationGroup="Deactive" Display="Dynamic"/>
-                                <asp:CompareValidator id="CompareValidator3" runat="server" ControlToValidate="txtPassword" ForeColor="Red" Operator="Equal" ValidationGroup="Deactive" ErrorMessage="Old password is not correct" Display="Dynamic" />
+                                <asp:CompareValidator id="CompareValidator3" runat="server" ControlToValidate="txtPassword" ForeColor="Red" Operator="Equal" ValidationGroup="Deactive" ErrorMessage="Password is not correct" Display="Dynamic" />
                                 <br />
                                 <br />
                             </div>
