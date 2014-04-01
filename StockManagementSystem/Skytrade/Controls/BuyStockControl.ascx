@@ -29,6 +29,10 @@
             <asp:DropDownList ID="ddlStock" runat="server" CssClass="input-block-level"></asp:DropDownList>
             <label>Quantity To Purchase</label>
             <asp:TextBox ID="txtQuantityPurchase" runat="server" CssClass="input-block-level"></asp:TextBox>
+            <asp:Panel runat="server" ID="pnlDiscount">
+                <p class="alert-info">All employees have the option to purchase their stock at a 10% discount. *Note - This stock cannot be sold for 6 months.</p>
+                <p>Use Employee Discount! <asp:CheckBox ID="chkDiscount" runat="server" /></p>
+            </asp:Panel>
             <asp:Button ID="btnSubmit" runat="server" Text="Submit Request" CssClass="btn-inverse" OnClick="btnSubmit_Click" />
         </div>
     </div>

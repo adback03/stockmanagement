@@ -16,7 +16,6 @@
                             <li><a href="#contact" data-toggle="tab"><i class="icon-envelope-alt"></i>&nbsp;<span>Contact Us</span></a></li>
                         </ul>
                         <div class="tab-content ">
-
                             <uc1:AccountOverviewControl runat="server" ID="AccountOverviewControl" />
                             <uc1:ContactControl runat="server" ID="ContactControl" />
                         </div>

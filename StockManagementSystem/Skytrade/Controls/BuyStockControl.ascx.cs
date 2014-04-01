@@ -29,6 +29,16 @@ public partial class Controls_BuyStockControl : System.Web.UI.UserControl
             ddlStock.DataTextField = "Ticker";
             ddlStock.DataSource = dt;
             ddlStock.DataBind();
+
+            // If the user is a staff member, display the discount information
+            if (SkyTrade.GetUserType() == Enums.SkyTradeType.Staff)
+            {
+                pnlDiscount.Visible = true;
+            }
+            else
+            {
+                pnlDiscount.Visible = false;
+            }
         }
     }
     //checks that input is valid number
@@ -39,7 +49,7 @@ public partial class Controls_BuyStockControl : System.Web.UI.UserControl
     //on button click inserts transactions to db
     protected void btnSubmit_Click(object sender, EventArgs e)
     {
-        SkyTrade.InsertTransaction(ddlStock.SelectedItem.Text, int.Parse(txtQuantityPurchase.Text), Enums.TransactionType.Buy);
+        SkyTrade.InsertTransaction(ddlStock.SelectedItem.Text, int.Parse(txtQuantityPurchase.Text), Enums.TransactionType.Buy, chkDiscount.Checked);
         Response.Redirect(Request.Url.ToString(), true);
     }
 

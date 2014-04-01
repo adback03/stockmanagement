@@ -40,7 +40,7 @@ public partial class Controls_SellStockControl : System.Web.UI.UserControl
         }
         else
         {
-            SkyTrade.InsertTransaction(ddlStock.SelectedItem.Text, stockToSell, Enums.TransactionType.Sell);
+            SkyTrade.InsertTransaction(ddlStock.SelectedItem.Text, stockToSell, Enums.TransactionType.Sell, false);
             Response.Redirect(Request.Url.ToString(), true);
         }
     }
