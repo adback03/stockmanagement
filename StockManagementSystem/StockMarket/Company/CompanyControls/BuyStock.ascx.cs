@@ -40,8 +40,24 @@ public partial class Company_CompanyControls_BuyStock : System.Web.UI.UserContro
 
     protected void btnSubmit_Click(object sender, EventArgs e)
     {
-        StockMarket.InsertTransaction(ddlStock.SelectedItem.Text, int.Parse(txtQuantityPurchase.Text), Enums.TransactionType.Buy);
-        Response.Redirect(Request.Url.ToString(), true);
+        // Get ticker selected
+        string tckr = ddlStock.SelectedItem.Text;
+        // Get the current quantity available for the stock chosen in the table
+        int quantityAvailable = StockMarket.GetQuantityAvailable(tckr);
+        // quantity Company wants to buy
+        int qty = Int16.Parse( txtQuantityPurchase.Text );
+
+        // if qty is not 0 and less or equal to available amount
+        if(qty != 0 && qty <= quantityAvailable) 
+        {
+            StockMarket.InsertTransaction(ddlStock.SelectedItem.Text, int.Parse(txtQuantityPurchase.Text), Enums.TransactionType.Buy);
+            Response.Redirect(Request.Url.ToString(), true);
+        } 
+        else 
+        {
+            // Company picked invalid amount
+            App.ShowAlertMessage("Quantity must be greater than 0 and less or equal to available quantity.");
+        }
     }
 
     /// <summary>

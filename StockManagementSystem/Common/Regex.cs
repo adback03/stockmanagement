@@ -21,7 +21,7 @@ namespace Common
         /// <summary>
         /// No standard format for an address. Have at least a letter or number
         /// </summary>
-        public static string Address = @"[a-zA-Z0-9 ]+";
+        public static string Address = @"^[a-zA-Z0-9 ]+$";
 
         /// <summary>
         /// Validates an email address.
