@@ -49,12 +49,22 @@ public partial class Controls_BuyStockControl : System.Web.UI.UserControl
     //on button click inserts transactions to db
     protected void btnSubmit_Click(object sender, EventArgs e)
     {
+        // quantity Client wants to buy
+        int qty;
         // Get ticker selected
         string tckr = ddlStock.SelectedItem.Text;
         // Get the current quantity available for the stock chosen in the table
         int quantityAvailable = SkyTrade.GetQuantityAvailable(tckr);
-        // quantity Client wants to buy
-        int qty = Int16.Parse(txtQuantityPurchase.Text);
+
+        if (txtQuantityPurchase.Text == "")
+        {
+            qty = 0;
+        }
+        else
+        {
+            // quantity Client wants to buy
+            qty = int.Parse(txtQuantityPurchase.Text);
+        }
 
         // if qty is not 0 and less or equal to available amount
         if (qty != 0 && qty <= quantityAvailable)

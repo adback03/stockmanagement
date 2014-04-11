@@ -37,7 +37,7 @@ public partial class Company_CompanyControls_SellStock : System.Web.UI.UserContr
         int stockToSell = int.Parse(txtQuantitySell.Text);
         int stockAvailable = int.Parse(ddlStock.SelectedItem.Value);
 
-        if (stockToSell > stockAvailable || stockToSell == 0)
+        if (stockToSell > stockAvailable || stockToSell == 0 || stockToSell == null)
         {
             ScriptManager.RegisterClientScriptBlock(this.Page, this.GetType(), "MyScript", "alert('You cannot sell 0 stocks or more stocks than what you currently own.');", true);
         }
