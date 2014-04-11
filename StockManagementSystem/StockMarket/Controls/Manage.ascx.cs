@@ -92,15 +92,26 @@ public partial class Controls_Manage : System.Web.UI.UserControl
         string sName = txtName.Text;
         int iQuantity = int.Parse(txtQuantity.Text);
         double dMarketPrice = double.Parse(txtMarketPrice.Text);
-
-        SqlCommand cmd = new SqlCommand("InsertStock");
-        cmd.CommandType = CommandType.StoredProcedure;
+        
+        // Check is tckr is used
+        SqlCommand cmd = new SqlCommand();
+        cmd.CommandText = "SELECT * FROM Stock WHERE ticker=@ticker";
         cmd.Parameters.Add("@ticker", SqlDbType.VarChar).Value = sTicker;
-        cmd.Parameters.Add("@name", SqlDbType.VarChar).Value = sName;
-        cmd.Parameters.Add("@quantity", SqlDbType.Int).Value = iQuantity;
-        cmd.Parameters.Add("@price", SqlDbType.Decimal).Value = dMarketPrice;
-
-        SqlHelper.ExecuteNonQuery(cmd, Settings.StockMarketConn);
-        BindData();
+        DataTable dt = SqlHelper.ReturnAsTable(cmd, Settings.SkyTradeConn);
+        if (dt.Rows.Count != 0)
+        {
+            App.ShowAlertMessage("Ticker is already in use. Please choose a different ticker symbol.");
+        }
+        else
+        {
+            cmd = new SqlCommand("InsertStock");
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add("@ticker", SqlDbType.VarChar).Value = sTicker;
+            cmd.Parameters.Add("@name", SqlDbType.VarChar).Value = sName;
+            cmd.Parameters.Add("@quantity", SqlDbType.Int).Value = iQuantity;
+            cmd.Parameters.Add("@price", SqlDbType.Decimal).Value = dMarketPrice;
+            SqlHelper.ExecuteNonQuery(cmd, Settings.StockMarketConn);
+            BindData();
+        }
     }
 }
