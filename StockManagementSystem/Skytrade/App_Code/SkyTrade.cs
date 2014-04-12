@@ -125,5 +125,14 @@ public static class SkyTrade
         int type = int.Parse(SqlHelper.ExecuteScalar(cmd, Settings.SkyTradeConn));
         return (Enums.SkyTradeType)type;
     }
+
+    public static DataTable GetDiscountSellQuantity(string ticker)
+    {
+        SqlCommand cmd = new SqlCommand("GetDiscountSellQuantity");
+        cmd.CommandType = CommandType.StoredProcedure;
+        cmd.Parameters.Add("@user_id", SqlDbType.Int).Value = Account.CurrentUser().UserId;
+        cmd.Parameters.Add("@ticker", SqlDbType.VarChar).Value = ticker;
+        return SqlHelper.ReturnAsTable(cmd, Settings.SkyTradeConn);
+    }
 }
 

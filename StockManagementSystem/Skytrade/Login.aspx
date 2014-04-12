@@ -322,13 +322,6 @@
         ValidateField(txt, document.getElementById('hfAddress1').value);
     }
 
-    // Format Address 2
-    function jsFormatAddress(txt) {
-        if (!txt.value.match("")) {
-            ValidateField(txt, document.getElementById('hfAddress2').value);
-        }
-    }
-
     // Format City
     function jsFormatCity(txt) {
         ValidateField(txt, document.getElementById('hfCity').value);
