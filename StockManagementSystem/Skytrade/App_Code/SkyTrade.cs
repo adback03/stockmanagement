@@ -5,6 +5,9 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Net;
+using System.Net.Mail;
+using System.Web;
 
 using Common;
 using DatabaseAccess;
@@ -157,6 +160,50 @@ public static class SkyTrade
         cmd.Parameters.Add("@user_id", SqlDbType.Int).Value = Account.CurrentUser().UserId;
         cmd.Parameters.Add("@ticker", SqlDbType.VarChar).Value = ticker;
         return SqlHelper.ReturnAsTable(cmd, Settings.SkyTradeConn);
+    }
+
+    public static String generateUsername(String first, String last)
+    {
+        if (first == null || first.Length == 0 || last == null || last.Length == 0)
+            return null;
+        String username = last + "." + first.Substring(0, 4);
+        String temp = username;
+        int num = 0;
+        while (true)
+        {
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandText = "SELECT * FROM Users WHERE username = @username";
+            cmd.Parameters.Add("@username", SqlDbType.VarChar).Value = temp;
+            DataTable dt = SqlHelper.ReturnAsTable(cmd, Settings.SkyTradeConn);
+            if (dt.Rows.Count == 0)
+                break;
+            num++;
+            temp = username + num;
+        }
+        return temp.ToLower();
+    }
+
+    public static String generatePassword()
+    {
+        String password = "";
+        Random r = new Random();
+        for (int i = 0; i < 6; i++)
+        {
+            password += r.Next(10);
+        }
+        return password;
+    }
+
+    public static void sendMail(string to, string head, string content)
+    {
+        var message = new MailMessage("skytradesky@gmail.com", to);
+        string body = content;
+        message.Subject = head;
+        message.Body = body;
+        SmtpClient mailer = new SmtpClient("smtp.gmail.com", 587);
+        mailer.Credentials = new NetworkCredential("skytradesky@gmail.com", "skytradesky...");
+        mailer.EnableSsl = true;
+        mailer.Send(message);
     }
 }
 
