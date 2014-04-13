@@ -289,23 +289,23 @@
         </div>
     </div>
 
-        <%--This is the entire popup form that handles reactive--%>
+        <%--This is the entire popup form that handles reactivate--%>
 <div id="ReactiveModal" class="modal hide modal-form" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="row-fluid">
-        <div class="span7 offset3">
+        <div class="span3 offset4">
 
             <div class="tabbable custom-tabs tabs-animated  flat flat-all hide-label-980 shadow tabs-top">
                 <ul class="nav nav-tabs">
-                    <li class="active"><a href="#panel6-1" data-toggle="tab" class="active "><i class="icon-user"></i>&nbsp;<span>Reactive</span></a></li>
+                    <li class="active"><a href="#panel6-1" data-toggle="tab" class="active "><i class="icon-user"></i>&nbsp;<span>Reactivate </span></a></li>
                     <li class="pull-right"><a href="#close" data-dismiss="modal" aria-hidden="true"><i class="icon-remove"></i>&nbsp;<span></span></a></li>
                     <li class="pull-right">
-                        <asp:LinkButton ID="LinkButton2" runat="server" OnClick="btnReactive_Click" ValidationGroup="Reactive"><i class="icon-save">&nbsp;<span>Reactive</span></i></asp:LinkButton>
+                        <asp:LinkButton ID="LinkButton2" runat="server" OnClick="btnReactive_Click" ValidationGroup="Reactive"><i class="icon-save">&nbsp;<span>Reactivate</span></i></asp:LinkButton>
                     </li>
                 </ul>
                 <div class="tab-content ">
                     <div class="tab-pane active" id="panel8-1">
                         <div class="row-fluid">
-                            <div class="span6">
+                            <div class="span12">
                                 <h4><i class="icon-user"></i>&nbsp;&nbsp; Reactive</h4>
 
                                 <label>Account</label>
@@ -332,7 +332,7 @@
                 <%--This is the entire popup form that handles reactive--%>
 <div id="ResetModal" class="modal hide modal-form" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="row-fluid">
-        <div class="span7 offset3">
+        <div class="span3 offset4">
 
             <div class="tabbable custom-tabs tabs-animated  flat flat-all hide-label-980 shadow tabs-top">
                 <ul class="nav nav-tabs">
@@ -345,7 +345,7 @@
                 <div class="tab-content ">
                     <div class="tab-pane active" id="panel8-2">
                         <div class="row-fluid">
-                            <div class="span6">
+                            <div class="span12">
                                 <h4><i class="icon-user"></i>&nbsp;&nbsp; Reset</h4>
 
                                 <label>Account</label>

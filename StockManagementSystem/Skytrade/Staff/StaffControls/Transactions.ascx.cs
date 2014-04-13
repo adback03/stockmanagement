@@ -48,11 +48,11 @@ public partial class Controls_BuyStockControl : System.Web.UI.UserControl
         // Reset each color back to the default value
         foreach (GridViewRow r in gvTransactions.Rows)
         {
-            r.BackColor = Color.Black;
+            r.BackColor = Color.Empty;
         }
 
         GridViewRow row = gvTransactions.SelectedRow;
-        row.BackColor = Color.Turquoise;
+        row.BackColor = Color.SlateGray;
         int id = int.Parse(gvTransactions.DataKeys[row.RowIndex].Value.ToString());
         string ticker = row.Cells[2].Text;
         int quantityRequested = int.Parse(row.Cells[3].Text);
