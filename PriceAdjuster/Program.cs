@@ -21,10 +21,12 @@ namespace PriceAdjuster
             DataTable dt = GetAllTickers();
             foreach (DataRow dr in dt.Rows)
             {
-                double currentPrice = GetPrice(dr["ticker"].ToString());
+                string ticker = dr["ticker"].ToString();
+                double currentPrice = GetPrice(ticker);
                 currentPrice += RandomDouble() * RandomPosOrNeg();
-                UpdatePrice(dr["ticker"].ToString(), currentPrice, connStockMarket);
-                UpdatePrice(dr["ticker"].ToString(), currentPrice, connSkyTrade);
+                UpdatePrice(ticker, currentPrice, connStockMarket);
+                UpdatePrice(ticker, currentPrice, connSkyTrade);
+                UpdateStockHistory(ticker, currentPrice);
                 //break;
             }
         }
@@ -73,6 +75,16 @@ namespace PriceAdjuster
             SqlCommand cmd = new SqlCommand();
             cmd.CommandText = "UPDATE Stock SET price = " + price + " WHERE ticker = '" + ticker + "'";
             SqlHelper.ExecuteNonQuery(cmd, connection);
+        }
+
+        private static void UpdateStockHistory(string ticker, double price)
+        {
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandText = "INSERT INTO PriceHistory (ticker, price, timestamp) VALUES (@ticker, @price, @timestamp)";
+            cmd.Parameters.Add("@ticker", SqlDbType.VarChar).Value = ticker;
+            cmd.Parameters.Add("@price", SqlDbType.Decimal).Value = Math.Round(price, 2);
+            cmd.Parameters.Add("@timestamp", SqlDbType.DateTime).Value = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+            SqlHelper.ExecuteNonQuery(cmd, connStockMarket);
         }
     }
 }
