@@ -1,5 +1,5 @@
-StockManagementSystem/StockMarket/Bin
-StockManagementSystem/SkyTrade/Bin
+StockManagementSystem/StockMarket/bin
+StockManagementSystem/SkyTrade/bin
 StockManagementSystem/GoogleChart/obj
 StockManagementSystem/GoogleChart/bin
 StockManagementSystem/DatabaseAccess/bin
@@ -8,3 +8,5 @@ StockManagementSystem/Common/bin
 StockManagementSystem/Common/obj
 *.suo
 packages
+PriceAdjuster/bin
+PriceAdjuster/obj
