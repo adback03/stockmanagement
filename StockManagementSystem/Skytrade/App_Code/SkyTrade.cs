@@ -134,5 +134,29 @@ public static class SkyTrade
         cmd.Parameters.Add("@ticker", SqlDbType.VarChar).Value = ticker;
         return SqlHelper.ReturnAsTable(cmd, Settings.SkyTradeConn);
     }
+
+    /// <summary>
+    /// Get a list of all the activer tickers in Skytrade
+    /// </summary>
+    public static DataTable GetAllTickers()
+    {
+        SqlCommand cmd = new SqlCommand();
+        cmd.CommandText = "SELECT ticker FROM Stock";
+        return SqlHelper.ReturnAsTable(cmd, Settings.SkyTradeConn);
+    }
+
+    /// <summary>
+    /// Get the profit margin for a particular stock.
+    /// </summary>
+    /// <param name="ticker"></param>
+    /// <returns>Datatable with amount spent, amount earned, and total profit</returns>
+    public static DataTable GetProfitByStock(string ticker)
+    {
+        SqlCommand cmd = new SqlCommand("GetProfitByStock");
+        cmd.CommandType = CommandType.StoredProcedure;
+        cmd.Parameters.Add("@user_id", SqlDbType.Int).Value = Account.CurrentUser().UserId;
+        cmd.Parameters.Add("@ticker", SqlDbType.VarChar).Value = ticker;
+        return SqlHelper.ReturnAsTable(cmd, Settings.SkyTradeConn);
+    }
 }
 

@@ -33,6 +33,8 @@
                 <b>Account Number: </b><asp:Label ID="lblAccount" runat="server" Text="****"></asp:Label><br />
                 <br />
                 <br />
+                <br />
+                <br />
             </div>
             <h4><i class="icon-location-arrow"></i>&nbsp;&nbsp;Bank Address</h4>
             <div class="box">
@@ -53,6 +55,10 @@
             <div class="box">
                 <p>To view your complete Sky Trade stats, <a href="#">click here.</a></p>
             </div>
+        </div>
+    </div>
+    <div class="row-fluid">
+        <div class="span12">
             <a href="#TabsModal" role="button" class="btn btn-large btn-inverse " data-toggle="modal">Edit Account</a>
             <a href="#PasswordModal" role="button" class="btn btn-large btn-inverse " data-toggle="modal">Change Password</a>
             <a href="#DeactiveModal" role="button" class="btn btn-large btn-inverse " data-toggle="modal">Deactive Account</a>
