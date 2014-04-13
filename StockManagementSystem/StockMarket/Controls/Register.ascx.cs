@@ -45,7 +45,7 @@ public partial class Staff_StaffControls_Register : System.Web.UI.UserControl
             DataRow dr = dt.Rows[index];
             if (e.CommandName == "Approve")
             {
-                String username = generateUsername((String)dr["firstname"], (String)dr["lastname"]);
+                String username = generateUsername((String)dr["companyname"]);
                 String password = generatePassword();
                 SqlCommand cmd = new SqlCommand("UPDATE Users SET status_id=@status_id, username=@username, password=@password WHERE user_id = @user_id");
                 cmd.Parameters.Add("@user_id", SqlDbType.Int).Value = (int)dr["user_id"];
@@ -74,21 +74,13 @@ public partial class Staff_StaffControls_Register : System.Web.UI.UserControl
         BindData();
     }
 
-    private String generateUsername(String first, String last)
+    private String generateUsername(String company)
     {
-        if (first == null || first.Length == 0 || last == null || last.Length == 0)
+        if (company == null || company.Length == 0)
             return null;
 
         String username = "";
-
-        if (first.Length > 3)
-        {
-            username = last + "." + first.Substring(0, 4);
-        }
-        else
-        {
-            username = last + "." + first;
-        }
+        username = company.ToLower();
         
         String temp = username;
         int num = 0;

@@ -43,11 +43,11 @@ public partial class Controls_SellStockControl : System.Web.UI.UserControl
 
         if (stockToSell >= stockAvailable || stockToSell == 0 || stockToSell == null)
         {
-            ScriptManager.RegisterClientScriptBlock(this.Page, this.GetType(), "MyScript", "alert('You cannot sell 0 stocks or more stocks than what you currently own.');", true);
+            App.ShowAlertMessage("You cannot sell 0 stocks or more stocks than what you currently own.");
         }
         else
         {
-            //SkyTrade.InsertTransaction(ddlStock.SelectedItem.Text, stockToSell, Enums.TransactionType.Sell, false);
+            SkyTrade.InsertTransaction(lblTicker.Text, stockToSell, Enums.TransactionType.Sell, false);
             Response.Redirect(Request.Url.ToString(), true);
         }
     }

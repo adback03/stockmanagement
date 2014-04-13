@@ -44,8 +44,8 @@ public partial class Controls_StatsControl : System.Web.UI.UserControl
         GoogleChart chart = new GoogleChart();
         chart.elementId = "chart_div_byStock";
         chart.title = "Stocks Profit Margin ";
-        chart.width = 350;
-        chart.height = 350;
+        chart.width = 750;
+        chart.height = 400;
         chart.addColumn("string", "Stock Type");
         chart.addColumn("number", "Spent");
         chart.addColumn("number", "Earned");

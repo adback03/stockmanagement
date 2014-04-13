@@ -162,6 +162,13 @@ public static class SkyTrade
         return SqlHelper.ReturnAsTable(cmd, Settings.SkyTradeConn);
     }
 
+    public static double GetCompanyStats(Enums.TransactionType type)
+    {
+        SqlCommand cmd = new SqlCommand();
+        cmd.CommandText = "SELECT SUM(price * quantity) as earned FROM Transactions WHERE transaction_type_id = " + (int)type + " and status_id = 2";
+        return double.Parse(SqlHelper.ExecuteScalar(cmd, Settings.SkyTradeConn));
+    }
+
     public static String generateUsername(String first, String last)
     {
         if (first == null || first.Length == 0 || last == null || last.Length == 0)

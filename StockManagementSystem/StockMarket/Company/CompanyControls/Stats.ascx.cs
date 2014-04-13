@@ -13,6 +13,7 @@ public partial class Company_CompanyControls_Stats : System.Web.UI.UserControl
     {
         GeneratePriceHistoryGraph("divGOOG", "GOOG", ltChartGOOG);
         GeneratePriceHistoryGraph("divTWTR", "TWTR", ltChartTWTR);
+        GeneratePriceHistoryGraph("divWMT", "WMT", ltChartWMT);
     }
 
     private void GeneratePriceHistoryGraph(string divId, string ticker, Literal lt)
@@ -30,10 +31,10 @@ public partial class Company_CompanyControls_Stats : System.Web.UI.UserControl
         {
             double price = double.Parse(priceHistory["price"].ToString());
             string time = priceHistory["timestamp"].ToString();
-            if (dt.Rows.IndexOf(priceHistory) > 0 && dt.Rows.IndexOf(priceHistory) != dt.Rows.Count - 1)
-            {
-                time = "";
-            }
+            //if (dt.Rows.IndexOf(priceHistory) > 0 && dt.Rows.IndexOf(priceHistory) != dt.Rows.Count - 1)
+            //{
+            //    time = "";
+            //}
             chart.addRow("'" + time + "', " + price);
         }
 
