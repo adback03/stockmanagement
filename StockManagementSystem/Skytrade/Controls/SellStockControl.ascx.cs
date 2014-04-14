@@ -41,7 +41,7 @@ public partial class Controls_SellStockControl : System.Web.UI.UserControl
         int stockToSell = int.Parse(txtQuantitySell.Text);
         int stockAvailable = int.Parse(lblAvailable.Text);
 
-        if (stockToSell >= stockAvailable || stockToSell == 0 || stockToSell == null)
+        if (stockToSell > stockAvailable || stockToSell == 0 || stockToSell == null)
         {
             App.ShowAlertMessage("You cannot sell 0 stocks or more stocks than what you currently own.");
         }
