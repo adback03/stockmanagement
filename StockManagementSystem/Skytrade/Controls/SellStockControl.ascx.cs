@@ -18,15 +18,20 @@ public partial class Controls_SellStockControl : System.Web.UI.UserControl
         InitJavascript();
         if (!Page.IsPostBack)
         {
-            gvStock.DataSource = SkyTrade.GetStockQuantityByUser();
-            gvStock.DataBind();
+            DataBind();
 
-            foreach (GridViewRow row in gvStock.Rows)
+        }
+    }
+
+    private void DataBind()
+    {
+        gvStock.DataSource = SkyTrade.GetStockQuantityByUser();
+        gvStock.DataBind();
+        foreach (GridViewRow row in gvStock.Rows)
+        {
+            if (int.Parse(gvStock.DataKeys[row.RowIndex]["discount"].ToString()) == 1)
             {
-                if (int.Parse(gvStock.DataKeys[row.RowIndex]["discount"].ToString()) == 1)
-                {
-                    row.BackColor = Color.DarkBlue;
-                }
+                row.BackColor = Color.DarkBlue;
             }
         }
     }
@@ -100,5 +105,10 @@ public partial class Controls_SellStockControl : System.Web.UI.UserControl
 
         lblTicker.Text = ticker;
         lblAvailable.Text = qtyAvailable.ToString();
+    }
+
+    protected void lbtnRefresh_Click(object sender, EventArgs e)
+    {
+        DataBind();
     }
 }

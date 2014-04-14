@@ -6,6 +6,7 @@
             <div class="row-fluid">
                 <div class="span8">
                     <h4><i class="icon-money"></i>&nbsp;&nbsp;Stocks Owned</h4>
+                    <asp:LinkButton ID="lbtnRefresh" runat="server" OnClick="lbtnRefresh_Click"><i class="icon-refresh"></i>&nbsp;&nbsp;Refresh</asp:LinkButton>
                     <asp:GridView ID="gvStock"
                         runat="server" 
                         CssClass="row-fluid table table- table-bordered table-condensed" 
