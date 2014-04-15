@@ -59,6 +59,7 @@
                                     <div class="box">
                                         Reactivate your account? <a href="#ReactiveModal" data-toggle="modal" >Click Here!</a>
                                     </div>
+                                    <a href="#TermModal" data-toggle="modal">Terms and condition</a>
                                 </div>
                             </div>
                         </div>
@@ -348,7 +349,7 @@
                             <div class="span6">
                                 <h4><i class="icon-user"></i>&nbsp;&nbsp; Reset</h4>
 
-                                <label>Account</label>
+                                <label>Username</label>
 
                                 <asp:TextBox ID="resetAccount" runat="server" CssClass="input-block-level"></asp:TextBox>
                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator30" runat="server" ControlToValidate="resetAccount" ForeColor="Red" ErrorMessage="Account can not be none." ValidationGroup="Reset" Display="Dynamic"/>
@@ -362,6 +363,39 @@
                             </div>
                         </div>
                     </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="TermModal" class="modal hide modal-form" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="row-fluid">
+        <div class="span7 offset3">
+
+            <div class="tabbable custom-tabs tabs-animated  flat flat-all hide-label-980 shadow tabs-top">
+                <ul class="nav nav-tabs">
+                    <li class="active"><a href="#panel6-1" data-toggle="tab" class="active "><i class="icon-user"></i>&nbsp;<span>Term and condition</span></a></li>
+                    <li class="pull-right"><a href="#close" data-dismiss="modal" aria-hidden="true"><i class="icon-remove"></i>&nbsp;<span></span></a></li>
+                </ul>
+                <div class="tab-content ">
+                <b>    
+                    The fund's prospectus contains its investment objectives, risks, charges, expenses and other important information and should be read and considered carefully before investing. For a current prospectus, please contact us.
+                </b>
+                <br />
+                <b>
+                    SkyTrade credits and offers may be subject to U.S. withholding taxes and reporting at retail value. Taxes related to these credits and offers are the customer's responsibility.
+                </b>
+                <br />
+                1. All transaction will be calculated with an additional $1.00 to make the trade for each stock bought.
+                <br />
+                SkyTrade Securities ratings for Online Broker by SmartMoney Magazine, May 2012 Broker Survey, based on the following categories: Trading Tools (5 stars), Customer Service (4 stars), 
+                Banking Services (4 stars), Mutual Funds & Investment Products (4 stars), Research (5 stars), and Commissions and Fees (2 stars). SmartMoney is a registered trademark, a joint publishing 
+                venture between Dow Jones & Company, Inc. and HearstSM Partnership. SkyTrade Securities ratings for Barron's annual ranking of the Best Online Brokers (March 12, 2012), based on Trade 
+                Experience and Technology, Usability, Mobile, Range of Offerings, Research Amenities, Portfolio Analysis & Reports, Customer Service & Education and Costs. SkyTrade overall ranked #10.
+                SkyTrade Securities ratings for Online Broker by Kiplinger's Personal Finance, November 2012 Online Broker Survey, based on the following categories: Investment Choices (5 stars), Customer Service (5 stars), User Experience (4.5 stars), 
+                Research and Tools (4 stars), Banking (3.5 stars), and Fees & Commissions (2.5 stars). © 2012 The Kiplinger Washington Editors. All rights reserved.
 
                 </div>
             </div>
