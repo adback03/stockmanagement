@@ -293,7 +293,7 @@
         <%--This is the entire popup form that handles reactivate--%>
 <div id="ReactiveModal" class="modal hide modal-form" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="row-fluid">
-        <div class="span3 offset4">
+        <div class="span4 offset4">
 
             <div class="tabbable custom-tabs tabs-animated  flat flat-all hide-label-980 shadow tabs-top">
                 <ul class="nav nav-tabs">
@@ -331,10 +331,10 @@
     </div>
 </div>
 
-                <%--This is the entire popup form that handles reactive--%>
+                <%--This is the entire popup form that handles reset password--%>
 <div id="ResetModal" class="modal hide modal-form" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="row-fluid">
-        <div class="span3 offset4">
+        <div class="span4 offset4">
 
             <div class="tabbable custom-tabs tabs-animated  flat flat-all hide-label-980 shadow tabs-top">
                 <ul class="nav nav-tabs">
