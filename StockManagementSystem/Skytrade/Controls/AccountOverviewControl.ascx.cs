@@ -131,6 +131,7 @@ public partial class Controls_AccountOverviewControl : System.Web.UI.UserControl
         cmd.Parameters.Add("@user_id", SqlDbType.Int).Value = Account.CurrentUser().UserId;
         cmd.Parameters.Add("@password", SqlDbType.VarChar).Value = password;
         SqlHelper.ExecuteNonQuery(cmd, Settings.SkyTradeConn);
+        App.ShowAlertMessage("Your password has been changed successfully.");
     }
 
     protected void lbtnUpdate_Click(object sender, EventArgs e)

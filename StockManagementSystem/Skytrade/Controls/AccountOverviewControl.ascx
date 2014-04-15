@@ -1,7 +1,7 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="AccountOverviewControl.ascx.cs" Inherits="Controls_AccountOverviewControl" %>
 
 <asp:Panel ID="pnlNotQualified" runat="server" Visible="false">
-    <h5 class="heading-2" style="color:red;">You are not qualified for deactivating.</h5>
+    <h5 class="heading-2" style="color:yellow;">Not qualified to close.</h5>
 </asp:Panel>
 <div class="tab-pane active" id="account">
     <div class="row-fluid">
@@ -61,7 +61,7 @@
         <div class="span12">
             <a href="#TabsModal" role="button" class="btn btn-large btn-inverse " data-toggle="modal">Edit Account</a>
             <a href="#PasswordModal" role="button" class="btn btn-large btn-inverse " data-toggle="modal">Change Password</a>
-            <a href="#DeactiveModal" role="button" class="btn btn-large btn-inverse " data-toggle="modal">Deactive Account</a>
+            <a href="#DeactiveModal" role="button" class="btn btn-large btn-inverse " data-toggle="modal">Close Account</a>
         </div>
     </div>
 </div>

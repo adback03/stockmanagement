@@ -143,15 +143,26 @@ public partial class Login : System.Web.UI.Page
         string username = "" + txtReactiveAccount.Text;
         string ssn = "" + txtReactveSSN.Text;
         SqlCommand cmd = new SqlCommand();
-        cmd.CommandText = "SELECT * FROM Users WHERE username=@username AND ssn=@ssn AND status_id=3";
+        cmd.CommandText = "SELECT * FROM Users WHERE username=@username AND ssn=@ssn";
         cmd.Parameters.Add("@username", SqlDbType.VarChar).Value = username;
         cmd.Parameters.Add("@ssn", SqlDbType.VarChar).Value = ssn;
         DataTable dt = SqlHelper.ReturnAsTable(cmd, Settings.SkyTradeConn);
         if (dt.Rows.Count != 0)
         {
-            int id = Convert.ToInt32(dt.Rows[0]["user_id"]);
-            Bind_Data(id);
-            Page.ClientScript.RegisterStartupScript(this.GetType(), "showEditModal", "$(function() { showEditModal(); });", true);
+            DataRow dr = dt.Rows[0];
+            int status_id = Convert.ToInt32(dr["status_id"]);
+            if(status_id == 1 || status_id == 4)
+                App.ShowAlertMessage("Your request is processing, please check your email later.");
+            else if (status_id == 3)
+            {
+                int id = Convert.ToInt32(dt.Rows[0]["user_id"]);
+                Bind_Data(id);
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "showEditModal", "$(function() { showEditModal(); });", true);
+            }
+            else
+            {
+                App.ShowAlertMessage("We're sorry, the username and ssn information you provided is incorrect. Or this account is not deactivated.");
+            }
         }
         else
         {
@@ -277,6 +288,8 @@ public partial class Login : System.Web.UI.Page
         // Social Security
         hfSSN.Value = Regex.SSN;
         revSocialSecurity.ValidationExpression = Regex.SSN;
+        revResetSSN.ValidationExpression = Regex.SSN;
+        revReactiveSSN.ValidationExpression = Regex.SSN;
 
         // Email
         hfEmail.Value = Regex.Email;

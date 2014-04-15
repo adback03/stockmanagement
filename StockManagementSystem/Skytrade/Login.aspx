@@ -309,7 +309,7 @@
                             <div class="span12">
                                 <h4><i class="icon-user"></i>&nbsp;&nbsp; Reactive</h4>
 
-                                <label>Account</label>
+                                <label>Username</label>
 
                                 <asp:TextBox ID="txtReactiveAccount" runat="server" CssClass="input-block-level"></asp:TextBox>
                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator28" runat="server" ControlToValidate="txtReactiveAccount" ForeColor="Red" ErrorMessage="Account can not be none." ValidationGroup="Reactive" Display="Dynamic"/>
@@ -318,6 +318,7 @@
 
                                 <asp:TextBox ID="txtReactveSSN" runat="server" CssClass="input-block-level"></asp:TextBox>
                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator29" runat="server" ControlToValidate="txtReactveSSN" ForeColor="Red" ErrorMessage="SSN can not be none." ValidationGroup="Reactive" Display="Dynamic"/>
+                                <asp:RegularExpressionValidator runat="server" ID="revReactiveSSN" ControlToValidate="txtReactveSSN" ForeColor="Red" ErrorMessage="SSN format should be XXX-XX-XXXX" Display="Dynamic" ValidationGroup="Reactive" />
                                 <br />
                                 <br />
                             </div>
@@ -358,6 +359,7 @@
 
                                 <asp:TextBox ID="resetSSN" runat="server" CssClass="input-block-level"></asp:TextBox>
                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator31" runat="server" ControlToValidate="resetSSN" ForeColor="Red" ErrorMessage="SSN can not be none." ValidationGroup="Reset" Display="Dynamic"/>
+                                <asp:RegularExpressionValidator runat="server" ID="revResetSSN" ControlToValidate="resetSSN" ForeColor="Red" ErrorMessage="SSN format should be XXX-XX-XXXX" Display="Dynamic" ValidationGroup="Reset" />
                                 <br />
                                 <br />
                             </div>
