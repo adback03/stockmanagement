@@ -161,12 +161,12 @@ public partial class Login : System.Web.UI.Page
             }
             else
             {
-                App.ShowAlertMessage("We're sorry, the username and ssn information you provided is incorrect. Or this account is not deactivated.");
+                App.ShowAlertMessage("We're sorry, the username and ssn information you provided is incorrect, or this account is not deactivated.");
             }
         }
         else
         {
-            App.ShowAlertMessage("We're sorry, the username and ssn information you provided is incorrect. Or this account is not deactivated.");
+            App.ShowAlertMessage("We're sorry, the username and ssn information you provided is incorrect, or this account is not deactivated.");
         }
     }
 
@@ -184,7 +184,7 @@ public partial class Login : System.Web.UI.Page
             DataRow dr = dt.Rows[0];
             if (Convert.ToInt32(dr["status_id"]) != 2)
             {
-                App.ShowAlertMessage("Your account is not actived.");
+                App.ShowAlertMessage("Your account is not activated.");
             }
             else
             {

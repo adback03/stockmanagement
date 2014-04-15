@@ -59,7 +59,7 @@
                                     <div class="box">
                                         Reactivate your account? <a href="#ReactiveModal" data-toggle="modal" >Click Here!</a>
                                     </div>
-                                    <a href="#TermModal" data-toggle="modal">Terms and condition</a>
+                                    <a href="#TermModal" data-toggle="modal">Terms and conditions</a>
                                 </div>
                             </div>
                         </div>
@@ -378,7 +378,7 @@
 
             <div class="tabbable custom-tabs tabs-animated  flat flat-all hide-label-980 shadow tabs-top">
                 <ul class="nav nav-tabs">
-                    <li class="active"><a href="#panel6-1" data-toggle="tab" class="active "><i class="icon-user"></i>&nbsp;<span>Term and condition</span></a></li>
+                    <li class="active"><a href="#panel6-1" data-toggle="tab" class="active "><i class="icon-user"></i>&nbsp;<span>Terms and conditions</span></a></li>
                     <li class="pull-right"><a href="#close" data-dismiss="modal" aria-hidden="true"><i class="icon-remove"></i>&nbsp;<span></span></a></li>
                 </ul>
                 <div class="tab-content ">
