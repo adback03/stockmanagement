@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Skytrade(1)", "http://localhost:51616", "{0D524DC6-F66A-4C51-ACF6-AC564D2A4D0B}"
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Skytrade(3)", "http://localhost:51616", "{0D524DC6-F66A-4C51-ACF6-AC564D2A4D0B}"
 	ProjectSection(WebsiteProperties) = preProject
 		UseIISExpress = "true"
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.5"
@@ -26,7 +26,7 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Skytrade(1)", "http://local
 		DefaultWebSiteLanguage = "Visual C#"
 	EndProjectSection
 EndProject
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "StockMarket(2)", "http://localhost:51627", "{B657B579-EB81-406F-9DB9-4DBE9C532153}"
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "StockMarket(1)", "http://localhost:51627", "{B657B579-EB81-406F-9DB9-4DBE9C532153}"
 	ProjectSection(WebsiteProperties) = preProject
 		UseIISExpress = "true"
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.5"
@@ -53,6 +53,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatabaseAccess", "StockMana
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "StockManagementSystem\Common\Common.csproj", "{E3102F65-22EC-44C1-9CFC-600E1A5E87CF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PriceAdjuster", "PriceAdjuster\PriceAdjuster.csproj", "{183BFF4C-47F5-42A7-94E9-286FDD8DB471}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -75,6 +77,10 @@ Global
 		{E3102F65-22EC-44C1-9CFC-600E1A5E87CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E3102F65-22EC-44C1-9CFC-600E1A5E87CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E3102F65-22EC-44C1-9CFC-600E1A5E87CF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{183BFF4C-47F5-42A7-94E9-286FDD8DB471}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{183BFF4C-47F5-42A7-94E9-286FDD8DB471}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{183BFF4C-47F5-42A7-94E9-286FDD8DB471}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{183BFF4C-47F5-42A7-94E9-286FDD8DB471}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

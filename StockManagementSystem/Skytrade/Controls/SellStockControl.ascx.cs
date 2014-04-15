@@ -18,15 +18,20 @@ public partial class Controls_SellStockControl : System.Web.UI.UserControl
         InitJavascript();
         if (!Page.IsPostBack)
         {
-            gvStock.DataSource = SkyTrade.GetStockQuantityByUser();
-            gvStock.DataBind();
+            DataBind();
 
-            foreach (GridViewRow row in gvStock.Rows)
+        }
+    }
+
+    private void DataBind()
+    {
+        gvStock.DataSource = SkyTrade.GetStockQuantityByUser();
+        gvStock.DataBind();
+        foreach (GridViewRow row in gvStock.Rows)
+        {
+            if (int.Parse(gvStock.DataKeys[row.RowIndex]["discount"].ToString()) == 1)
             {
-                if (int.Parse(gvStock.DataKeys[row.RowIndex]["discount"].ToString()) == 1)
-                {
-                    row.BackColor = Color.DarkBlue;
-                }
+                row.BackColor = Color.DarkBlue;
             }
         }
     }
@@ -41,13 +46,13 @@ public partial class Controls_SellStockControl : System.Web.UI.UserControl
         int stockToSell = int.Parse(txtQuantitySell.Text);
         int stockAvailable = int.Parse(lblAvailable.Text);
 
-        if (stockToSell >= stockAvailable || stockToSell == 0 || stockToSell == null)
+        if (stockToSell > stockAvailable || stockToSell == 0 || stockToSell == null)
         {
-            ScriptManager.RegisterClientScriptBlock(this.Page, this.GetType(), "MyScript", "alert('You cannot sell 0 stocks or more stocks than what you currently own.');", true);
+            App.ShowAlertMessage("You cannot sell 0 stocks or more stocks than what you currently own.");
         }
         else
         {
-            //SkyTrade.InsertTransaction(ddlStock.SelectedItem.Text, stockToSell, Enums.TransactionType.Sell, false);
+            SkyTrade.InsertTransaction(lblTicker.Text, stockToSell, Enums.TransactionType.Sell, (bool)Session["discount"]);
             Response.Redirect(Request.Url.ToString(), true);
         }
     }
@@ -81,6 +86,7 @@ public partial class Controls_SellStockControl : System.Web.UI.UserControl
         // If a discount was used on the selected stock, get the quantity available by checking the timestamp
         if (discount == 1)
         {
+            Session["discount"] = true;
             qtyAvailable = 0;
             foreach(DataRow dr in dt.Rows){
                 DateTime transactionDate = DateTime.Parse(dr["timestamp"].ToString());
@@ -97,8 +103,17 @@ public partial class Controls_SellStockControl : System.Web.UI.UserControl
                 btnSubmit.Enabled = false;
             }
         }
+        else
+        {
+            Session["discount"] = false;
+        }
 
         lblTicker.Text = ticker;
         lblAvailable.Text = qtyAvailable.ToString();
+    }
+
+    protected void lbtnRefresh_Click(object sender, EventArgs e)
+    {
+        DataBind();
     }
 }

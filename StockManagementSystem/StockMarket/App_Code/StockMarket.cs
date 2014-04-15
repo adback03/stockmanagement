@@ -97,5 +97,28 @@ public static class StockMarket
         cmd.Parameters.Add("@user_id", SqlDbType.Int).Value = Account.CurrentUser().UserId;
         return SqlHelper.ReturnAsTable(cmd, Settings.StockMarketConn);
     }
+
+    /// <summary>
+    /// Get the profit margin for a particular stock.
+    /// </summary>
+    /// <param name="ticker"></param>
+    /// <returns>Datatable with amount spent, amount earned, and total profit</returns>
+    public static DataTable GetPriceHistory(string ticker)
+    {
+        SqlCommand cmd = new SqlCommand();
+        cmd.CommandText = "SELECT TOP(100) price, timestamp FROM PriceHistory WHERE ticker = @ticker ORDER BY timestamp";
+        cmd.Parameters.Add("@ticker", SqlDbType.VarChar).Value = ticker;
+        return SqlHelper.ReturnAsTable(cmd, Settings.StockMarketConn);
+    }
+
+    /// <summary>
+    /// Get a list of all the activer tickers in Skytrade
+    /// </summary>
+    public static DataTable GetAllTickers()
+    {
+        SqlCommand cmd = new SqlCommand();
+        cmd.CommandText = "SELECT ticker FROM Stock";
+        return SqlHelper.ReturnAsTable(cmd, Settings.StockMarketConn);
+    }
 }
 

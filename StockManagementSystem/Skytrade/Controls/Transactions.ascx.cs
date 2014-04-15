@@ -79,11 +79,11 @@ public partial class Controls_BuyStock : System.Web.UI.UserControl
         // Reset each color back to the default value
         foreach (GridViewRow r in gvTransactions.Rows)
         {
-            r.BackColor = Color.WhiteSmoke;
+            r.BackColor = Color.Empty;
         }
 
         GridViewRow row = gvTransactions.SelectedRow;
-        row.BackColor = Color.Turquoise;
+        row.BackColor = Color.SlateGray;
         int id = int.Parse(gvTransactions.DataKeys[row.RowIndex].Value.ToString());
         lblMessage.Text = SkyTrade.GetTransactionMessage(id);
     }

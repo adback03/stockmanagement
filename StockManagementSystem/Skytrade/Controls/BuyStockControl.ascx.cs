@@ -18,14 +18,11 @@ public partial class Controls_BuyStockControl : System.Web.UI.UserControl
         //loads available stocks to buy
         if (!Page.IsPostBack)
         {
-            SqlCommand cmd = new SqlCommand();
-            cmd.CommandText = "SELECT * FROM Stock";
-            DataTable dt = SqlHelper.ReturnAsTable(cmd, Settings.SkyTradeConn);
-            gvStock.DataSource = dt;
-            gvStock.DataBind();
+            BindData();
 
+            SqlCommand cmd = new SqlCommand();
             cmd.CommandText = "SELECT Ticker FROM Stock";
-            dt = SqlHelper.ReturnAsTable(cmd, Settings.SkyTradeConn);
+            DataTable dt = SqlHelper.ReturnAsTable(cmd, Settings.SkyTradeConn);
             ddlStock.DataTextField = "Ticker";
             ddlStock.DataSource = dt;
             ddlStock.DataBind();
@@ -41,6 +38,16 @@ public partial class Controls_BuyStockControl : System.Web.UI.UserControl
             }
         }
     }
+
+    private void BindData()
+    {
+        SqlCommand cmd = new SqlCommand();
+        cmd.CommandText = "SELECT * FROM Stock";
+        DataTable dt = SqlHelper.ReturnAsTable(cmd, Settings.SkyTradeConn);
+        gvStock.DataSource = dt;
+        gvStock.DataBind();
+    }
+
     //checks that input is valid number
     private void InitJavascript()
     {
@@ -136,5 +143,11 @@ public partial class Controls_BuyStockControl : System.Web.UI.UserControl
         DataTable dt = SqlHelper.ReturnAsTable(cmd, Settings.SkyTradeConn);
         gvStock.DataSource = dt;
         gvStock.DataBind();
+    }
+
+    protected void Timer_Tick(object sender, EventArgs e)
+    {
+        lblUpdateAt.Text = "Stock last updated at: " + DateTime.Now.ToString();
+        BindData();
     }
 }
