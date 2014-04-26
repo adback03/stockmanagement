@@ -47,7 +47,7 @@ public static class SkyTrade
         SqlHelper.ExecuteNonQuery(cmd, Settings.SkyTradeConn);
     }
 
-    public static void InsertTransaction(string ticker, int quantity, Enums.TransactionType type, bool discount)
+    public static void InsertTransaction(string ticker, int quantity, double price, Enums.TransactionType type, bool discount)
     {
         SqlCommand cmd = new SqlCommand("InsertTransaction");
         cmd.CommandType = CommandType.StoredProcedure;
@@ -56,6 +56,7 @@ public static class SkyTrade
         cmd.Parameters.Add("@quantity", SqlDbType.Int).Value = quantity;
         cmd.Parameters.Add("@transaction_type_id", SqlDbType.Int).Value = type;
         cmd.Parameters.Add("@discount", SqlDbType.Bit).Value = (discount == true) ? 1 : 0;
+        cmd.Parameters.Add("@price", SqlDbType.Decimal).Value = price;
         SqlHelper.ExecuteNonQuery(cmd, Settings.SkyTradeConn);
     }
 

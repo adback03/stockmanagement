@@ -23,7 +23,15 @@ namespace PriceAdjuster
             {
                 string ticker = dr["ticker"].ToString();
                 double currentPrice = GetPrice(ticker);
-                currentPrice += RandomDouble() * RandomPosOrNeg();
+                if (currentPrice < 1.0)
+                {
+                    currentPrice += 1.5;
+                }
+                else
+                {
+                    currentPrice += RandomDouble() * RandomPosOrNeg();
+                }
+                
                 UpdatePrice(ticker, currentPrice, connStockMarket);
                 UpdatePrice(ticker, currentPrice, connSkyTrade);
                 UpdateStockHistory(ticker, currentPrice);

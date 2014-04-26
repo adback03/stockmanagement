@@ -121,6 +121,7 @@
                                         <asp:RegularExpressionValidator runat="server" ID="revCity" ControlToValidate="txtCity" ErrorMessage="City" Display="None" ValidationGroup="Register" />
                                         <label>State</label>
                                         <asp:DropDownList id="ddlState" runat="server" CssClass="input-block-level">
+                                            <asp:ListItem Value="NONE">----</asp:ListItem>
                                             <asp:ListItem Value="AL">Alabama</asp:ListItem>
                                             <asp:ListItem Value="AK">Alaska</asp:ListItem>
                                             <asp:ListItem Value="AZ">Arizona</asp:ListItem>
@@ -216,6 +217,7 @@
                                         <asp:RegularExpressionValidator runat="server" ID="revBillingCity" ControlToValidate="txtBillingCity" ErrorMessage="Billing City" Display="None" ValidationGroup="Register" /> 
                                         <label>State</label>
                                         <asp:DropDownList id="ddlBillingState" runat="server" CssClass="input-block-level">
+                                            <asp:ListItem Value="NONE">----</asp:ListItem>
                                             <asp:ListItem Value="AL">Alabama</asp:ListItem>
                                             <asp:ListItem Value="AK">Alaska</asp:ListItem>
                                             <asp:ListItem Value="AZ">Arizona</asp:ListItem>

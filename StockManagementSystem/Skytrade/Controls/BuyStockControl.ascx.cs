@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
 using System.Data.SqlClient;
+using System.Drawing;
 
 using Common;
 using DatabaseAccess;
@@ -19,13 +20,6 @@ public partial class Controls_BuyStockControl : System.Web.UI.UserControl
         if (!Page.IsPostBack)
         {
             BindData();
-
-            SqlCommand cmd = new SqlCommand();
-            cmd.CommandText = "SELECT Ticker FROM Stock";
-            DataTable dt = SqlHelper.ReturnAsTable(cmd, Settings.SkyTradeConn);
-            ddlStock.DataTextField = "Ticker";
-            ddlStock.DataSource = dt;
-            ddlStock.DataBind();
 
             // If the user is a staff member, display the discount information
             if (SkyTrade.GetUserType() == Enums.SkyTradeType.Staff)
@@ -59,9 +53,10 @@ public partial class Controls_BuyStockControl : System.Web.UI.UserControl
         // quantity Client wants to buy
         int qty;
         // Get ticker selected
-        string tckr = ddlStock.SelectedItem.Text;
+        string tckr = lblTicker.Text;
         // Get the current quantity available for the stock chosen in the table
         int quantityAvailable = SkyTrade.GetQuantityAvailable(tckr);
+        double price = double.Parse(lblPrice.Text);
 
         if (txtQuantityPurchase.Text == "")
         {
@@ -76,7 +71,7 @@ public partial class Controls_BuyStockControl : System.Web.UI.UserControl
         // if qty is not 0 and less or equal to available amount
         if (qty != 0 && qty <= quantityAvailable)
         {
-            SkyTrade.InsertTransaction(ddlStock.SelectedItem.Text, int.Parse(txtQuantityPurchase.Text), Enums.TransactionType.Buy, chkDiscount.Checked);
+            SkyTrade.InsertTransaction(lblTicker.Text, int.Parse(txtQuantityPurchase.Text), price, Enums.TransactionType.Buy, chkDiscount.Checked);
             Response.Redirect(Request.Url.ToString(), true);
         }
         else
@@ -149,5 +144,21 @@ public partial class Controls_BuyStockControl : System.Web.UI.UserControl
     {
         lblUpdateAt.Text = "Stock last updated at: " + DateTime.Now.ToString();
         BindData();
+    }
+
+    protected void gvStock_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        foreach (GridViewRow r in gvStock.Rows)
+        {
+            r.BackColor = Color.Empty;
+        }
+
+        GridViewRow row = gvStock.SelectedRow;
+        row.BackColor = Color.SlateGray;
+
+        string ticker = row.Cells[1].Text;
+        string price = row.Cells[4].Text;
+        lblTicker.Text = ticker;
+        lblPrice.Text = price;
     }
 }

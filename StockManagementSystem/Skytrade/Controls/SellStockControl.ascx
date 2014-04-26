@@ -34,6 +34,8 @@
                     <h4><i class="icon-money"></i>&nbsp;&nbsp;Sell Stock</h4>
                     <h5>Stock Type</h5>
                     <asp:Label ID="lblTicker" runat="server" Text="****"></asp:Label>
+                    <h5>Price</h5>
+                    <asp:Label ID="lblPrice" runat="server" Text="****"></asp:Label>
                     <h5>Quantity Available To Sell</h5>
                     <asp:Label ID="lblAvailable" runat="server" Text="****"></asp:Label>
                     <h5>Quantity To Sell</h5>

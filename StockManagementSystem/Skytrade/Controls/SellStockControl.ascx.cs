@@ -45,6 +45,7 @@ public partial class Controls_SellStockControl : System.Web.UI.UserControl
     {
         int stockToSell = int.Parse(txtQuantitySell.Text);
         int stockAvailable = int.Parse(lblAvailable.Text);
+        double price = double.Parse(lblPrice.Text);
 
         if (stockToSell > stockAvailable || stockToSell == 0 || stockToSell == null)
         {
@@ -52,7 +53,7 @@ public partial class Controls_SellStockControl : System.Web.UI.UserControl
         }
         else
         {
-            SkyTrade.InsertTransaction(lblTicker.Text, stockToSell, Enums.TransactionType.Sell, (bool)Session["discount"]);
+            SkyTrade.InsertTransaction(lblTicker.Text, stockToSell, price, Enums.TransactionType.Sell, (bool)Session["discount"]);
             Response.Redirect(Request.Url.ToString(), true);
         }
     }
@@ -79,6 +80,7 @@ public partial class Controls_SellStockControl : System.Web.UI.UserControl
 
         int id = int.Parse(gvStock.DataKeys[row.RowIndex]["transaction_id"].ToString());
         string ticker = row.Cells[2].Text;
+        string price = row.Cells[6].Text;
         int discount = int.Parse(gvStock.DataKeys[row.RowIndex]["discount"].ToString());
         int qtyAvailable = int.Parse(row.Cells[5].Text);
         DataTable dt = SkyTrade.GetDiscountSellQuantity(ticker);
@@ -108,6 +110,7 @@ public partial class Controls_SellStockControl : System.Web.UI.UserControl
             Session["discount"] = false;
         }
 
+        lblPrice.Text = price;
         lblTicker.Text = ticker;
         lblAvailable.Text = qtyAvailable.ToString();
     }

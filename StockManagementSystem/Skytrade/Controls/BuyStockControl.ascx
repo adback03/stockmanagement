@@ -17,7 +17,9 @@
                         AllowSorting="true"
                         AutoGenerateColumns="false"
                         AutoGenerateEditButton="false"
-                        OnSorting="gvStock_Sorting">
+                        OnSorting="gvStock_Sorting"
+                        AutoGenerateSelectButton="true"
+                        OnSelectedIndexChanged="gvStock_SelectedIndexChanged">
                         <Columns>
                             <asp:BoundField DataField="ticker" HeaderText="Ticker" SortExpression="Ticker" ReadOnly="true" />
                             <asp:BoundField DataField="name" HeaderText="Name" SortExpression="Name"  ControlStyle-Width="100px"/>
@@ -29,9 +31,11 @@
                 </div>
                 <div class="span4">
                     <h4><i class="icon-exchange"></i>&nbsp;&nbsp;Make Transaction</h4>
-                    <label>Stock Type</label>
-                    <asp:DropDownList ID="ddlStock" runat="server" CssClass="input-block-level"></asp:DropDownList>
-                    <label>Quantity To Purchase</label>
+                    <h5>Stock Type</h5>
+                    <asp:Label ID="lblTicker" runat="server" Text="****"></asp:Label>
+                    <h5>Price</h5>
+                    <asp:Label ID="lblPrice" runat="server" Text="****"></asp:Label>
+                    <h5>Quantity To Purchase</h5>
                     <asp:TextBox ID="txtQuantityPurchase" runat="server" CssClass="input-block-level"></asp:TextBox>
                     <asp:Panel runat="server" ID="pnlDiscount">
                         <p class="alert-info">All employees have the option to purchase their stock at a 10% discount. *Note - This stock cannot be sold for 6 months.</p>
