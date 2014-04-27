@@ -174,7 +174,7 @@ public static class SkyTrade
     {
         if (first == null || first.Length == 0 || last == null || last.Length == 0)
             return null;
-        String username = last + "." + first.Substring(0, 4);
+        String username = last + "." + (first.Length <= 4?first:first.Substring(0, 4));
         String temp = username;
         int num = 0;
         while (true)

@@ -705,5 +705,9 @@
     {
         $("#TabsModal").modal("show");
     }
+
+    function showRegisterModal() {
+        $("#RegisterModal").modal("show");
+    }
 </script>
 </html>

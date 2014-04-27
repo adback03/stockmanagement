@@ -115,7 +115,8 @@ public partial class Login : System.Web.UI.Page
 
             if (dt.Rows.Count != 0)
             {
-                App.Redirect("Login.aspx?e=s");
+                App.ShowAlertMessage("Your SSN already exists in our system.");
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "showRegisterModal", "$(function() { showRegisterModal(); });", true);
             }
             else
             {

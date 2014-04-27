@@ -61,7 +61,14 @@
         <div class="span12">
             <a href="#TabsModal" role="button" class="btn btn-large btn-inverse " data-toggle="modal">Edit Account</a>
             <a href="#PasswordModal" role="button" class="btn btn-large btn-inverse " data-toggle="modal">Change Password</a>
-            <a href="#DeactiveModal" role="button" class="btn btn-large btn-inverse " data-toggle="modal">Close Account</a>
+            <a id="closeBtn" onclick="switchCloseDiv();" role="button" class="btn btn-large btn-inverse " data-toggle="modal">Close Account</a>
+            <span id="closeDiv" style="visibility:hidden;">
+                <asp:TextBox TextMode="Password" ID="txtPassword" runat="server"></asp:TextBox>
+                <asp:LinkButton ID="LinkButton2" runat="server" OnClick="lbtnDeactive_Click" ValidationGroup="Deactive">Save</asp:LinkButton>
+                <br />
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator17" runat="server" ControlToValidate="txtPassword" ForeColor="Red" ErrorMessage="Password can not be none." ValidationGroup="Deactive" Display="Dynamic"/>
+                <asp:CompareValidator id="CompareValidator3" runat="server" ControlToValidate="txtPassword" ForeColor="Red" Operator="Equal" ValidationGroup="Deactive" ErrorMessage="Password is not correct" Display="Dynamic" />
+            </span>
         </div>
     </div>
 </div>
@@ -343,41 +350,6 @@
     </div>
 </div>
 
-<%--This is the entire popup form that handles deactive--%>
-<div id="DeactiveModal" class="modal hide modal-form" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="row-fluid">
-        <div class="span7 offset3">
-
-            <div class="tabbable custom-tabs tabs-animated  flat flat-all hide-label-980 shadow tabs-top">
-                <ul class="nav nav-tabs">
-                    <li class="active"><a href="#panel6-1" data-toggle="tab" class="active "><i class="icon-user"></i>&nbsp;<span>Deactive</span></a></li>
-                    <li class="pull-right"><a href="#close" data-dismiss="modal" aria-hidden="true"><i class="icon-remove"></i>&nbsp;<span></span></a></li>
-                    <li class="pull-right">
-                        <asp:LinkButton ID="LinkButton2" runat="server" OnClick="lbtnDeactive_Click" ValidationGroup="Deactive"><i class="icon-save">&nbsp;<span>Deactive</span></i></asp:LinkButton>
-                    </li>
-                </ul>
-                <div class="tab-content ">
-                    <div class="tab-pane active" id="panel8-1">
-                        <div class="row-fluid">
-                            <div class="span6">
-                                <h4><i class="icon-user"></i>&nbsp;&nbsp; Deactive</h4>
-
-                                <label>Password</label>
-
-                                <asp:TextBox TextMode="Password" ID="txtPassword" runat="server" CssClass="input-block-level"></asp:TextBox>
-                                <asp:RequiredFieldValidator ID="RequiredFieldValidator17" runat="server" ControlToValidate="txtPassword" ForeColor="Red" ErrorMessage="Old password can not be none." ValidationGroup="Deactive" Display="Dynamic"/>
-                                <asp:CompareValidator id="CompareValidator3" runat="server" ControlToValidate="txtPassword" ForeColor="Red" Operator="Equal" ValidationGroup="Deactive" ErrorMessage="Password is not correct" Display="Dynamic" />
-                                <br />
-                                <br />
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 <script type="text/javascript">
     // Format name
     function jsFormatName(txt) {
@@ -437,5 +409,15 @@
             // Regex does not match, change border to red
         else
             txtBox.style.borderColor = "#ff0000";
+    }
+
+    function switchCloseDiv() {
+        if ($("#closeDiv").css("visibility") == "hidden") {
+            $('a#closeBtn').text('Cancel');
+            $("#closeDiv").css("visibility", "visible");
+        } else {
+            $('a#closeBtn').text('Close Account');
+            $("#closeDiv").css("visibility", "hidden");
+        }
     }
 </script>
