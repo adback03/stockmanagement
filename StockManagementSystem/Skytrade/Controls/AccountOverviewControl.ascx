@@ -66,8 +66,8 @@
                 <asp:TextBox TextMode="Password" ID="txtPassword" runat="server"></asp:TextBox>
                 <asp:LinkButton ID="LinkButton2" runat="server" OnClick="lbtnDeactive_Click" ValidationGroup="Deactive">Save</asp:LinkButton>
                 <br />
-                <asp:RequiredFieldValidator ID="RequiredFieldValidator17" runat="server" ControlToValidate="txtPassword" ForeColor="Red" ErrorMessage="Password can not be none." ValidationGroup="Deactive" Display="Dynamic"/>
-                <asp:CompareValidator id="CompareValidator3" runat="server" ControlToValidate="txtPassword" ForeColor="Red" Operator="Equal" ValidationGroup="Deactive" ErrorMessage="Password is not correct" Display="Dynamic" />
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator17" runat="server" ControlToValidate="txtPassword" ForeColor="Yellow" ErrorMessage="Password can not be none." ValidationGroup="Deactive" Display="Dynamic"/>
+                <asp:CompareValidator id="CompareValidator3" runat="server" ControlToValidate="txtPassword" ForeColor="Yellow" Operator="Equal" ValidationGroup="Deactive" ErrorMessage="Password is not correct" Display="Dynamic" />
             </span>
         </div>
     </div>

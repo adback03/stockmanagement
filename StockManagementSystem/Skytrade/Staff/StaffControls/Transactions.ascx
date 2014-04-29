@@ -69,8 +69,9 @@
                             <h4><i class="icon-edit"></i>&nbsp;&nbsp;Transaction Message</h4>
                             <asp:TextBox ID="txtMessage" runat="server" TextMode="MultiLine" Height="200px" CssClass="input-block-level"></asp:TextBox>
 
-                            <div class="box alert-danger">
-                                <p>Add a personalized message to send to a user when you approve or deny a transaction!</p>
+                            <div class="box">
+                                <p style="color: yellow">Add a personalized message to send to a user
+                                    <br>when you approve or deny a transaction!</p>
                             </div>
                         </div>
                     </div>
