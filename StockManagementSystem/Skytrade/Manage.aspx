@@ -9,7 +9,7 @@
             <div class="row-fluid" id="demo-2">
                 <div class="span10 offset1">
                     <h2 class="heading-2">Welcome to Sky Trade</h2>
-                    <h4 class="heading-4">Mangaing Your Stock Since 1934</h4>
+                    <h4 class="heading-4">Managing Your Stock Since 1934</h4>
                     <div class="tabbable custom-tabs tabs-left tabs-animated  flat flat-all hide-label-980 shadow track-url auto-scroll dark">
                         <ul class="nav nav-tabs">
                             <li class="active"><a href="#buy" data-toggle="tab"><i class="icon-money"></i>&nbsp;<span>Buy Stock</span></a></li>
