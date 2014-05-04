@@ -3,6 +3,8 @@
 <%@ Register Src="~/Controls/BuyStockControl.ascx" TagPrefix="uc1" TagName="BuyStockControl" %>
 <%@ Register Src="~/Controls/SellStockControl.ascx" TagPrefix="uc1" TagName="SellStockControl" %>
 <%@ Register Src="~/Controls/Transactions.ascx" TagPrefix="uc1" TagName="Transactions" %>
+<%@ Register Src="~/Controls/MessagesControl.ascx" TagPrefix="uc1" TagName="MessagesControl" %>
+
 
 
 <asp:Content ID="Content1" ContentPlaceHolderID="Body" Runat="Server">
@@ -20,6 +22,7 @@
                         <div class="tab-content ">
                             <uc1:BuyStockControl runat="server" id="BuyStockControl" />
                             <uc1:SellStockControl runat="server" id="SellStockControl" />
+                            <uc1:MessagesControl runat="server" ID="MessagesControl" />
                             <uc1:Transactions runat="server" ID="Transactions" />
                         </div>
                     </div>

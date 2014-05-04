@@ -120,5 +120,18 @@ public static class StockMarket
         cmd.CommandText = "SELECT ticker FROM Stock";
         return SqlHelper.ReturnAsTable(cmd, Settings.StockMarketConn);
     }
+
+    /// <summary>
+    /// Get the profit margin for a particular stock.
+    /// </summary>
+    /// <param name="ticker"></param>
+    /// <returns>Datatable with amount spent, amount earned, and total profit</returns>
+    public static DataTable GetProfitByStock(string ticker)
+    {
+        SqlCommand cmd = new SqlCommand("GetProfitByStock");
+        cmd.CommandType = CommandType.StoredProcedure;
+        cmd.Parameters.Add("@ticker", SqlDbType.VarChar).Value = ticker;
+        return SqlHelper.ReturnAsTable(cmd, Settings.StockMarketConn);
+    }
 }
 

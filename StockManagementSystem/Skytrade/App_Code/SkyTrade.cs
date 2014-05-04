@@ -91,7 +91,7 @@ public static class SkyTrade
     public static void InsertMessage(int recipient, string message)
     {
         SqlCommand cmd = new SqlCommand();
-        cmd.CommandText = "INSERT INTO Messages (from_user, to_user, message, archived, timestamp) VALUES (" + Account.CurrentUser().UserId + ", " + recipient + ", '" + message + "', 0, " + DateTime.Now + ")";
+        cmd.CommandText = "INSERT INTO Messages (from_user, to_user, message, archived, timestamp) VALUES (" + Account.CurrentUser().UserId + ", " + recipient + ", '" + message + "', 0, '" + DateTime.Now + "')";
         SqlHelper.ExecuteNonQuery(cmd, Settings.SkyTradeConn);
     }
 
