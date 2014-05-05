@@ -18,7 +18,8 @@
                         OnRowEditing="gvStock_RowEditing"
                         OnRowCancelingEdit="gvStock_RowCancelingEdit"
                         OnRowUpdating="gvStock_RowUpdating"
-                        OnPageIndexChanging="gvStock_PageIndexChanging">
+                        OnPageIndexChanging="gvStock_PageIndexChanging"
+                        DataKeyNames="ticker">
                         <Columns>
                             <asp:BoundField DataField="ticker" HeaderText="Ticker" SortExpression="Ticker" ReadOnly="true" />
                             <asp:BoundField DataField="name" HeaderText="Name" SortExpression="Name"  ControlStyle-Width="200px"/>

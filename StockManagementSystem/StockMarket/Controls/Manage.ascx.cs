@@ -34,11 +34,9 @@ public partial class Controls_Manage : System.Web.UI.UserControl
 
     protected void gvStock_RowUpdating(object sender, GridViewUpdateEventArgs e)
     {
-        DataTable dt = (DataTable)Session["AdminStock"];
-        DataRow dr = dt.Rows[e.RowIndex];
         GridViewRow row = gvStock.Rows[e.RowIndex];
 
-        string sTicker = dr["ticker"].ToString();
+        string sTicker = gvStock.DataKeys[e.RowIndex].Value.ToString();
         string sName = ((TextBox)(row.Cells[2].Controls[0])).Text;
         string sQuantity = ((TextBox)(row.Cells[3].Controls[0])).Text;
         string sMarketPrice = ((TextBox)(row.Cells[4].Controls[0])).Text;
@@ -58,10 +56,6 @@ public partial class Controls_Manage : System.Web.UI.UserControl
                     cmd.Parameters.Add("@price", SqlDbType.Decimal).Value = double.Parse(sMarketPrice);
 
                     SqlHelper.ExecuteNonQuery(cmd, Settings.StockMarketConn);
-
-                    dt.Rows[row.DataItemIndex]["name"] = sName;
-                    dt.Rows[row.DataItemIndex]["quantity"] = sQuantity;
-                    dt.Rows[row.DataItemIndex]["price"] = sMarketPrice;
                     gvStock.EditIndex = -1;
 
                     BindData();
