@@ -27,7 +27,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </a>
-                <a class="brand" href="~/" runat="server"><i class="icon-cloud"></i> Sky Trade</a>
+                <a class="brand"><i class="icon-cloud"></i> Sky Trade</a>
                 <div class="nav-collapse collapse navbar-responsive-collapse">
                     <ul class="nav">
                         <li><asp:LinkButton ID="lbtnAccount" runat="server" OnClick="lbtnAccount_Click"><i class="icon-user"></i> Home</asp:LinkButton></li>

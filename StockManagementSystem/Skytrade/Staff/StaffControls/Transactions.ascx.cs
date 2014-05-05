@@ -55,10 +55,10 @@ public partial class Controls_BuyStockControl : System.Web.UI.UserControl
         GridViewRow row = gvTransactions.SelectedRow;
         row.BackColor = Color.SlateGray;
         int id = int.Parse(gvTransactions.DataKeys[row.RowIndex].Value.ToString());
-        string ticker = row.Cells[2].Text;
-        int quantityRequested = int.Parse(row.Cells[3].Text);
-        double price = double.Parse(row.Cells[4].Text);
-        string type = row.Cells[5].Text;
+        string ticker = row.Cells[3].Text;
+        int quantityRequested = int.Parse(row.Cells[4].Text);
+        double price = double.Parse(row.Cells[5].Text);
+        string type = row.Cells[6].Text;
 
         // Get the current quantity available for the stock chosen in the table
         int quantityAvailable = SkyTrade.GetQuantityAvailable(ticker);

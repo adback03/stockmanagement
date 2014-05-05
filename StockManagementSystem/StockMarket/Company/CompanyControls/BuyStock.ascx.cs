@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
 using System.Data.SqlClient;
+using System.Drawing;
 
 using Common;
 using DatabaseAccess;
@@ -20,13 +21,6 @@ public partial class Company_CompanyControls_BuyStock : System.Web.UI.UserContro
         if (!Page.IsPostBack)
         {
             BindData();
-
-            SqlCommand cmd = new SqlCommand();
-            cmd.CommandText = "SELECT Ticker FROM Stock";
-            DataTable dt = SqlHelper.ReturnAsTable(cmd, Settings.StockMarketConn);
-            ddlStock.DataTextField = "Ticker";
-            ddlStock.DataSource = dt;
-            ddlStock.DataBind();
         }
     }
 
@@ -48,7 +42,7 @@ public partial class Company_CompanyControls_BuyStock : System.Web.UI.UserContro
     {
         int qty;
         // Get ticker selected
-        string tckr = ddlStock.SelectedItem.Text;
+        string tckr = lblTicker.Text;
         // Get the current quantity available for the stock chosen in the table
         int quantityAvailable = StockMarket.GetQuantityAvailable(tckr);
 
@@ -65,7 +59,7 @@ public partial class Company_CompanyControls_BuyStock : System.Web.UI.UserContro
         // if qty is not 0 and less or equal to available amount
         if(qty != 0 && qty <= quantityAvailable) 
         {
-            StockMarket.InsertTransaction(ddlStock.SelectedItem.Text, int.Parse(txtQuantityPurchase.Text), Enums.TransactionType.Buy);
+            StockMarket.InsertTransaction(lblTicker.Text, int.Parse(txtQuantityPurchase.Text), Enums.TransactionType.Buy);
             Response.Redirect(Request.Url.ToString(), true);
         } 
         else 
@@ -142,5 +136,21 @@ public partial class Company_CompanyControls_BuyStock : System.Web.UI.UserContro
     {
         gvStock.PageIndex = e.NewPageIndex;
         BindData();
+    }
+
+    protected void gvStock_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        foreach (GridViewRow r in gvStock.Rows)
+        {
+            r.BackColor = Color.Empty;
+        }
+
+        GridViewRow row = gvStock.SelectedRow;
+        row.BackColor = Color.SlateGray;
+
+        string ticker = row.Cells[1].Text;
+        string price = row.Cells[4].Text;
+        lblTicker.Text = ticker;
+        lblPrice.Text = price;
     }
 }

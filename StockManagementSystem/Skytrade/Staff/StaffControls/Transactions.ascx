@@ -26,6 +26,7 @@
                             DataKeyNames="transaction_id">
                             <Columns>
                                 <asp:BoundField DataField="transaction_id" HeaderText="ID" SortExpression="ID" Visible="false" ControlStyle-Width="100px"/>
+                                <asp:BoundField DataField="username" HeaderText="Username" SortExpression="Username" ReadOnly="true" />
                                 <asp:BoundField DataField="ticker" HeaderText="Ticker" SortExpression="Ticker" ReadOnly="true" />
                                 <asp:BoundField DataField="quantity" HeaderText="Quantity" SortExpression="Quantity" ControlStyle-Width="40px"/>
                                 <asp:BoundField DataField="price" HeaderText="Price" SortExpression="MarketPrice" ControlStyle-Width="100px"/>

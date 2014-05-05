@@ -97,7 +97,7 @@ public partial class Controls_Manage : System.Web.UI.UserControl
         SqlCommand cmd = new SqlCommand();
         cmd.CommandText = "SELECT * FROM Stock WHERE ticker=@ticker";
         cmd.Parameters.Add("@ticker", SqlDbType.VarChar).Value = sTicker;
-        DataTable dt = SqlHelper.ReturnAsTable(cmd, Settings.SkyTradeConn);
+        DataTable dt = SqlHelper.ReturnAsTable(cmd, Settings.StockMarketConn);
         if (dt.Rows.Count != 0)
         {
             App.ShowAlertMessage("Ticker is already in use. Please choose a different ticker symbol.");
