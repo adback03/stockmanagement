@@ -167,7 +167,14 @@ public static class SkyTrade
     {
         SqlCommand cmd = new SqlCommand();
         cmd.CommandText = "SELECT SUM(price * quantity) as earned FROM Transactions WHERE transaction_type_id = " + (int)type + " and status_id = 2";
-        return double.Parse(SqlHelper.ExecuteScalar(cmd, Settings.SkyTradeConn));
+        try
+        {
+            return double.Parse(SqlHelper.ExecuteScalar(cmd, Settings.SkyTradeConn));
+        }
+        catch (Exception e)
+        {
+            return 0;
+        }
     }
 
     public static String generateUsername(String first, String last)

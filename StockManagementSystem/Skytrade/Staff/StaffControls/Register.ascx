@@ -9,15 +9,17 @@
                 CssClass="row-fluid table table- table-bordered table-condensed" 
                 HeaderStyle-ForeColor="Black"
                 HeaderStyle-BackColor="White"
-                AllowPaging="true"
+                AllowPaging="false"
                 AllowSorting="true"
                 AutoGenerateColumns="false"
                 OnRowCommand="gvRequest_RowCommand">
                 <Columns>
                     <asp:BoundField DataField="firstname" HeaderText="Firstname" SortExpression="Firstname" ReadOnly="true" />
                     <asp:BoundField DataField="lastname" HeaderText="LastName" SortExpression="LastName"  ControlStyle-Width="100px"/>
-                    <asp:BoundField DataField="ssn" HeaderText="Ssn" SortExpression="Ssn" ControlStyle-Width="40px"/>
-                    <asp:BoundField DataField="email" HeaderText="Email" SortExpression="Email" ControlStyle-Width="100px"/>
+                    <asp:BoundField DataField="ssn" HeaderText="SSN" SortExpression="SSN" ControlStyle-Width="100px"/>
+                    <asp:BoundField DataField="bank_name" HeaderText="Bank Name" SortExpression="BankName" ControlStyle-Width="100px"/>
+                    <asp:BoundField DataField="routing_number" HeaderText="Routing Number" SortExpression="RoutingNumber" ControlStyle-Width="100px"/>
+                    <asp:BoundField DataField="account_number" HeaderText="Account Number" SortExpression="AccountNumber" ControlStyle-Width="100px"/>
                     <asp:ButtonField ButtonType="Button" Text="Approve" CommandName="Approve" Visible="True"/>
                     <asp:ButtonField ButtonType="Button" Text="Deny" CommandName="Deny"  Visible="True" />
                 </Columns>

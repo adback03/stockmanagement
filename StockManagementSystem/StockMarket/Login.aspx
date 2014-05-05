@@ -46,6 +46,9 @@
                                     <div class="box">
                                         Need an account? <a href="#RegisterModal" data-toggle="modal" >Register Here!</a>
                                     </div>
+                                    <div class="box">
+                                        Forget your password? <a href="#ResetModal" data-toggle="modal" >Find Here!</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -53,6 +56,46 @@
                 </div>
             </div>
         </div>
+
+        <div id="ResetModal" class="modal hide modal-form" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="row-fluid">
+        <div class="span4 offset4">
+
+            <div class="tabbable custom-tabs tabs-animated  flat flat-all hide-label-980 shadow tabs-top">
+                <ul class="nav nav-tabs">
+                    <li class="active"><a href="#panel6-1" data-toggle="tab" class="active "><i class="icon-user"></i>&nbsp;<span>Reset</span></a></li>
+                    <li class="pull-right"><a href="#close" data-dismiss="modal" aria-hidden="true"><i class="icon-remove"></i>&nbsp;<span></span></a></li>
+                    <li class="pull-right">
+                        <asp:LinkButton ID="LinkButton1" runat="server" OnClick="btnReset_Click" ValidationGroup="Reset"><i class="icon-save">&nbsp;<span>Reset</span></i></asp:LinkButton>
+                    </li>
+                </ul>
+                <div class="tab-content ">
+                    <div class="tab-pane active" id="panel8-2">
+                        <div class="row-fluid">
+                            <div class="span12">
+                                <h4><i class="icon-user"></i>&nbsp;&nbsp; Reset</h4>
+
+                                <label>Username</label>
+
+                                <asp:TextBox ID="resetAccount" runat="server" CssClass="input-block-level"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator30" runat="server" ControlToValidate="resetAccount" ForeColor="Red" ErrorMessage="Account can not be none." ValidationGroup="Reset" Display="Dynamic"/>
+                                
+                                <label>Email</label>
+
+                                <asp:TextBox ID="resetEmail" runat="server" CssClass="input-block-level"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator13" runat="server" ControlToValidate="resetEmail" ForeColor="Red" ErrorMessage="Email can not be none" ValidationGroup="Reset" Display="Dynamic" />
+                                <asp:RegularExpressionValidator runat="server" ID="revResetEmail" ControlToValidate="resetEmail"  ForeColor="Red" ErrorMessage="Invalid email format" Display="Dynamic" ValidationGroup="Reset" />
+                                <br />
+                                <br />
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
         <div id="RegisterModal" class="modal hide modal-form" tabindex="-1" role="dialog">
             <div class="row-fluid">

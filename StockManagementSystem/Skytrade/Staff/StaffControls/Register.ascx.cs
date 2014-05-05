@@ -30,7 +30,7 @@ public partial class Staff_StaffControls_Register : System.Web.UI.UserControl
     private DataTable GetDataTable()
     {
         SqlCommand cmd = new SqlCommand();
-        cmd.CommandText = "SELECT * FROM Users WHERE status_id = @pending OR status_id = @reactive";
+        cmd.CommandText = "SELECT * FROM Users INNER JOIN BankAccount ON BankAccount.user_id = Users.user_id WHERE status_id = @pending OR status_id = @reactive";
         cmd.Parameters.Add("@pending", SqlDbType.Int).Value = 1;
         cmd.Parameters.Add("@reactive", SqlDbType.Int).Value = 4;
         DataTable dt = SqlHelper.ReturnAsTable(cmd, Settings.SkyTradeConn);
@@ -59,7 +59,7 @@ public partial class Staff_StaffControls_Register : System.Web.UI.UserControl
                 cmd.Parameters.Add("@username", SqlDbType.VarChar).Value = username;
                 cmd.Parameters.Add("@password", SqlDbType.VarChar).Value = password;
                 SqlHelper.ExecuteNonQuery(cmd, Settings.SkyTradeConn);
-                String head = "Congratulations, your request has been approved!";
+                String head = reactive?"Your account has been actived successfully!":"Congratulations, your request has been approved!";
                 String body = "Username: \n" + username + "\nPassword: \n" + password + "\n" + txtMessage.Text;
                 SkyTrade.sendMail((string)dr["email"], head, body);
             }

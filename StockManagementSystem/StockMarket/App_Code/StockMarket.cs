@@ -5,6 +5,9 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Net;
+using System.Net.Mail;
+using System.Web;
 
 using Common;
 using DatabaseAccess;
@@ -132,6 +135,29 @@ public static class StockMarket
         cmd.CommandType = CommandType.StoredProcedure;
         cmd.Parameters.Add("@ticker", SqlDbType.VarChar).Value = ticker;
         return SqlHelper.ReturnAsTable(cmd, Settings.StockMarketConn);
+    }
+
+    public static String generatePassword()
+    {
+        String password = "";
+        Random r = new Random();
+        for (int i = 0; i < 6; i++)
+        {
+            password += r.Next(10);
+        }
+        return password;
+    }
+
+    public static void sendMail(string to, string head, string content)
+    {
+        var message = new MailMessage("skytradesky@gmail.com", to);
+        string body = content;
+        message.Subject = head;
+        message.Body = body;
+        SmtpClient mailer = new SmtpClient("smtp.gmail.com", 587);
+        mailer.Credentials = new NetworkCredential("skytradesky@gmail.com", "skytradesky...");
+        mailer.EnableSsl = true;
+        mailer.Send(message);
     }
 }
 

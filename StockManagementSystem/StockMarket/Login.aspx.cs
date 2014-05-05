@@ -113,6 +113,42 @@ public partial class Login : System.Web.UI.Page
         App.Redirect("Login.aspx?r=s");
     }
 
+
+    protected void btnReset_Click(object sender, EventArgs e)
+    {
+        string username = "" + resetAccount.Text;
+        string email = "" + resetEmail.Text;
+        SqlCommand cmd = new SqlCommand();
+        cmd.CommandText = "SELECT * FROM Users WHERE username=@username AND email=@email";
+        cmd.Parameters.Add("@username", SqlDbType.VarChar).Value = username;
+        cmd.Parameters.Add("@email", SqlDbType.VarChar).Value = email;
+        DataTable dt = SqlHelper.ReturnAsTable(cmd, Settings.StockMarketConn);
+        if (dt.Rows.Count != 0)
+        {
+            DataRow dr = dt.Rows[0];
+            if (Convert.ToInt32(dr["status_id"]) != 2)
+            {
+                App.ShowAlertMessage("Your account is not activated.");
+            }
+            else
+            {
+                String password = StockMarket.generatePassword();
+                SqlCommand update = new SqlCommand("UPDATE Users SET password=@password WHERE user_id = @user_id");
+                update.Parameters.Add("@user_id", SqlDbType.Int).Value = Convert.ToInt32(dr["user_id"]);
+                update.Parameters.Add("@password", SqlDbType.VarChar).Value = password;
+                SqlHelper.ExecuteNonQuery(update, Settings.StockMarketConn);
+                String head = "Your new password!";
+                String body = "Username: \n" + username + "\nPassword: \n" + password;
+                StockMarket.sendMail((string)dr["email"], head, body);
+                App.ShowAlertMessage("Your new password has been sent to your email, please check.");
+            }
+        }
+        else
+        {
+            App.ShowAlertMessage("We're sorry, the username and email information you provided is incorrect.");
+        }
+    }
+
     /// <summary>
     /// Initialize all hidden fields.
     /// These fields all used so that the values of our regexes can be determined
@@ -127,6 +163,7 @@ public partial class Login : System.Web.UI.Page
         // Email
         hfEmail.Value = Regex.Email;
         revEmail.ValidationExpression = Regex.Email;
+        revResetEmail.ValidationExpression = Regex.Email;
 
         //Name
         hfName.Value = Regex.Name;
