@@ -13,7 +13,8 @@
                 AllowSorting="true"
                 AutoGenerateColumns="false"
                 AutoGenerateEditButton="false"
-                OnSorting="gvStock_Sorting">
+                OnSorting="gvStock_Sorting"
+                OnPageIndexChanging="gvStock_PageIndexChanging">
                 <Columns>
                     <asp:BoundField DataField="ticker" HeaderText="Ticker" SortExpression="Ticker" ReadOnly="true" />
                     <asp:BoundField DataField="name" HeaderText="Name" SortExpression="Name"  ControlStyle-Width="100px"/>

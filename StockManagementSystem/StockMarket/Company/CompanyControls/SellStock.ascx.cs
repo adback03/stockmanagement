@@ -22,9 +22,14 @@ public partial class Company_CompanyControls_SellStock : System.Web.UI.UserContr
             ddlStock.DataValueField = "total_quantity";
             ddlStock.DataBind();
 
-            gvStock.DataSource = StockMarket.GetStockQuantityByUser();
-            gvStock.DataBind();
+            BindData();
         }
+    }
+
+    private void BindData()
+    {
+        gvStock.DataSource = StockMarket.GetStockQuantityByUser();
+        gvStock.DataBind();
     }
 
     private void InitJavascript()
@@ -46,5 +51,16 @@ public partial class Company_CompanyControls_SellStock : System.Web.UI.UserContr
             StockMarket.InsertTransaction(ddlStock.SelectedItem.Text, stockToSell, Enums.TransactionType.Sell);
             Response.Redirect(Request.Url.ToString(), true);
         }
+    }
+
+    /// <summary>
+    /// Pagination for selling stocks
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    protected void gvStock_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    {
+        gvStock.PageIndex = e.NewPageIndex;
+        BindData();
     }
 }

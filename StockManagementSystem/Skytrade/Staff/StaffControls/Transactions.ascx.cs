@@ -20,6 +20,7 @@ public partial class Controls_BuyStockControl : System.Web.UI.UserControl
         {
             SetActiveTab(lbtnPending);
             BindData("Pending");
+            Session["TransType"] = "Pending";
         }
     }
 
@@ -37,7 +38,7 @@ public partial class Controls_BuyStockControl : System.Web.UI.UserControl
     protected void gvTransactions_PageIndexChanging(object sender, GridViewPageEventArgs e)
     {
         gvTransactions.PageIndex = e.NewPageIndex;
-        //BindData();
+        BindData(Session["TransType"].ToString());
     }
 
     /// <summary>
@@ -135,6 +136,7 @@ public partial class Controls_BuyStockControl : System.Web.UI.UserControl
     {
         SetActiveTab(lbtnApproved);
         BindData("Approved");
+        Session["TransType"] = "Approved";
         pnlApproveDisapprove.Visible = false;
     }
 
@@ -146,6 +148,7 @@ public partial class Controls_BuyStockControl : System.Web.UI.UserControl
     {
         SetActiveTab(lbtnDenied);
         BindData("Denied");
+        Session["TransType"] = "Denied";
         pnlApproveDisapprove.Visible = false;
     }
 
@@ -157,14 +160,19 @@ public partial class Controls_BuyStockControl : System.Web.UI.UserControl
     {
         SetActiveTab(lbtnPending);
         BindData("Pending");
+        Session["TransType"] = "Pending";
         pnlApproveDisapprove.Visible = true;
     }
 
-
+    /// <summary>
+    /// When the On Hold linked button is fired, 
+    /// update the table to show On Hold transactions.
+    /// </summary>
     protected void lbtnOnHold_Click(object sender, EventArgs e)
     {
         SetActiveTab(lbtnOnHold);
         BindData("On Hold");
+        Session["TransType"] = "On Hold";
         pnlApproveDisapprove.Visible = true;
     }
 
@@ -204,7 +212,6 @@ public partial class Controls_BuyStockControl : System.Web.UI.UserControl
         else
         {
             App.ShowAlertMessage("Your transaction message must have at least 10 characters");
-            //ScriptManager.RegisterClientScriptBlock(this.Page, this.GetType(), "MyScript", "alert('Your transaction message must have at least 10 characters.');", true);
         }
     }
 
@@ -233,6 +240,4 @@ public partial class Controls_BuyStockControl : System.Web.UI.UserControl
         lbtnOnHold.ForeColor = Color.SlateGray;
         lbtnStatus.ForeColor = Color.Blue;
     }
-
-
 }

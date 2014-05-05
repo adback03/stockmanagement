@@ -14,7 +14,8 @@
                 AllowPaging="true"
                 AllowSorting="true"
                 AutoGenerateColumns="false"
-                AutoGenerateEditButton="false">
+                AutoGenerateEditButton="false"
+                OnPageIndexChanging="gvStock_PageIndexChanging">
                 <Columns>
                     <asp:BoundField DataField="ticker" HeaderText="Ticker" SortExpression="Ticker" ReadOnly="true" />
                     <asp:BoundField DataField="bought" HeaderText="Bought" SortExpression="Bought"  ControlStyle-Width="100px"/>

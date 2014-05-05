@@ -1,6 +1,8 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="Register.ascx.cs" Inherits="Staff_StaffControls_Register" %>
 
 <div class="tab-pane active" id="register">
+    <asp:UpdatePanel runat="server">
+            <ContentTemplate>
     <div class="row-fluid">
         <div class="span12">
             <h4><i class="icon-users"></i>&nbsp;&nbsp;Requests to Register</h4>
@@ -9,10 +11,11 @@
                 CssClass="row-fluid table table- table-bordered table-condensed" 
                 HeaderStyle-ForeColor="Black"
                 HeaderStyle-BackColor="White"
-                AllowPaging="false"
+                AllowPaging="true"
                 AllowSorting="true"
                 AutoGenerateColumns="false"
-                OnRowCommand="gvRequest_RowCommand">
+                OnRowCommand="gvRequest_RowCommand"
+                OnPageIndexChanging="gvRequest_PageIndexChanging">
                 <Columns>
                     <asp:BoundField DataField="firstname" HeaderText="Firstname" SortExpression="Firstname" ReadOnly="true" />
                     <asp:BoundField DataField="lastname" HeaderText="LastName" SortExpression="LastName"  ControlStyle-Width="100px"/>
@@ -31,4 +34,6 @@
             <asp:TextBox ID="txtMessage" runat="server" TextMode="MultiLine" Height="200" CssClass="input-block-level"></asp:TextBox>
         </div>
     </div>
+    </ContentTemplate>
+</asp:UpdatePanel>
 </div>

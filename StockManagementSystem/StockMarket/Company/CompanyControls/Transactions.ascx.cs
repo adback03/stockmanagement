@@ -19,6 +19,7 @@ public partial class Company_CompanyControls_BuyStock : System.Web.UI.UserContro
         {
             SetActiveTab(lbtnPending);
             BindData("Pending");
+            Session["TransType"] = "Pending";
         }
     }
 
@@ -37,6 +38,7 @@ public partial class Company_CompanyControls_BuyStock : System.Web.UI.UserContro
     {
         SetActiveTab(lbtnPending);
         BindData("Pending");
+        Session["TransType"] = "Pending";
         pnlMessage.Visible = false;
     }
 
@@ -44,6 +46,7 @@ public partial class Company_CompanyControls_BuyStock : System.Web.UI.UserContro
     {
         SetActiveTab(lbtnApproved);
         BindData("Approved");
+        Session["TransType"] = "Approved";
         pnlMessage.Visible = true;
     }
 
@@ -51,6 +54,7 @@ public partial class Company_CompanyControls_BuyStock : System.Web.UI.UserContro
     {
         SetActiveTab(lbtnDenied);
         BindData("Denied");
+        Session["TransType"] = "Denied";
         pnlMessage.Visible = true;
     }
 
@@ -58,6 +62,7 @@ public partial class Company_CompanyControls_BuyStock : System.Web.UI.UserContro
     {
         SetActiveTab(lbtnOnHold);
         BindData("On Hold");
+        Session["TransType"] = "On Hold";
         pnlMessage.Visible = true;
     }
 
@@ -88,4 +93,9 @@ public partial class Company_CompanyControls_BuyStock : System.Web.UI.UserContro
         lblMessage.Text = StockMarket.GetTransactionMessage(id);
     }
 
+    protected void gvTransactions_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    {
+        gvTransactions.PageIndex = e.NewPageIndex;
+        BindData(Session["TransType"].ToString());
+    }
 }

@@ -123,4 +123,15 @@ public partial class Staff_StaffControls_Register : System.Web.UI.UserControl
         mailer.Send(message);
 
     }
+
+    /// <summary>
+    /// Pagination for registrations
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    protected void gvRequest_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    {
+        gvRequest.PageIndex = e.NewPageIndex;
+        BindData();
+    }
 }

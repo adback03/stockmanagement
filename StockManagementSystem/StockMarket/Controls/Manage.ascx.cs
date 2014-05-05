@@ -114,4 +114,15 @@ public partial class Controls_Manage : System.Web.UI.UserControl
             BindData();
         }
     }
+
+    /// <summary>
+    /// Pagination for managing all stocks in the STock Market
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    protected void gvStock_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    {
+        gvStock.PageIndex = e.NewPageIndex;
+        BindData();
+    }
 }

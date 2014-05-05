@@ -161,4 +161,15 @@ public partial class Controls_BuyStockControl : System.Web.UI.UserControl
         lblTicker.Text = ticker;
         lblPrice.Text = price;
     }
+
+    /// <summary>
+    /// Pagination for buying stocks
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    protected void gvStock_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    {
+        gvStock.PageIndex = e.NewPageIndex;
+        BindData();
+    }
 }

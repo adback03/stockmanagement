@@ -119,4 +119,10 @@ public partial class Controls_SellStockControl : System.Web.UI.UserControl
     {
         DataBind();
     }
+
+    protected void gvStock_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    {
+        gvStock.PageIndex = e.NewPageIndex;
+        DataBind();
+    }
 }

@@ -19,7 +19,8 @@
                         AutoGenerateEditButton="false"
                         OnSorting="gvStock_Sorting"
                         AutoGenerateSelectButton="true"
-                        OnSelectedIndexChanged="gvStock_SelectedIndexChanged">
+                        OnSelectedIndexChanged="gvStock_SelectedIndexChanged"
+                        OnPageIndexChanging="gvStock_PageIndexChanging">
                         <Columns>
                             <asp:BoundField DataField="ticker" HeaderText="Ticker" SortExpression="Ticker" ReadOnly="true" />
                             <asp:BoundField DataField="name" HeaderText="Name" SortExpression="Name"  ControlStyle-Width="100px"/>

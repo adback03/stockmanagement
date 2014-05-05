@@ -19,18 +19,24 @@ public partial class Company_CompanyControls_BuyStock : System.Web.UI.UserContro
 
         if (!Page.IsPostBack)
         {
-            SqlCommand cmd = new SqlCommand();
-            cmd.CommandText = "SELECT * FROM Stock";
-            DataTable dt = SqlHelper.ReturnAsTable(cmd, Settings.StockMarketConn);
-            gvStock.DataSource = dt;
-            gvStock.DataBind();
+            BindData();
 
+            SqlCommand cmd = new SqlCommand();
             cmd.CommandText = "SELECT Ticker FROM Stock";
-            dt = SqlHelper.ReturnAsTable(cmd, Settings.StockMarketConn);
+            DataTable dt = SqlHelper.ReturnAsTable(cmd, Settings.StockMarketConn);
             ddlStock.DataTextField = "Ticker";
             ddlStock.DataSource = dt;
             ddlStock.DataBind();
         }
+    }
+
+    private void BindData()
+    {
+        SqlCommand cmd = new SqlCommand();
+        cmd.CommandText = "SELECT * FROM Stock";
+        DataTable dt = SqlHelper.ReturnAsTable(cmd, Settings.StockMarketConn);
+        gvStock.DataSource = dt;
+        gvStock.DataBind();
     }
 
     private void InitJavascript()
@@ -125,5 +131,16 @@ public partial class Company_CompanyControls_BuyStock : System.Web.UI.UserContro
         DataTable dt = SqlHelper.ReturnAsTable(cmd, Settings.StockMarketConn);
         gvStock.DataSource = dt;
         gvStock.DataBind();
+    }
+
+    /// <summary>
+    /// Pagination for buying stocks
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    protected void gvStock_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    {
+        gvStock.PageIndex = e.NewPageIndex;
+        BindData();
     }
 }

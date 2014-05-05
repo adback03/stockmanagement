@@ -17,10 +17,11 @@
                         AutoGenerateEditButton="true"
                         OnRowEditing="gvStock_RowEditing"
                         OnRowCancelingEdit="gvStock_RowCancelingEdit"
-                        OnRowUpdating="gvStock_RowUpdating">
+                        OnRowUpdating="gvStock_RowUpdating"
+                        OnPageIndexChanging="gvStock_PageIndexChanging">
                         <Columns>
                             <asp:BoundField DataField="ticker" HeaderText="Ticker" SortExpression="Ticker" ReadOnly="true" />
-                            <asp:BoundField DataField="name" HeaderText="Name" SortExpression="Name"  ControlStyle-Width="100px"/>
+                            <asp:BoundField DataField="name" HeaderText="Name" SortExpression="Name"  ControlStyle-Width="200px"/>
                             <asp:BoundField DataField="quantity" HeaderText="Quantity" SortExpression="Quantity" ControlStyle-Width="40px"/>
                             <asp:BoundField DataField="price" HeaderText="Price" SortExpression="MarketPrice" ControlStyle-Width="100px"/>
                         </Columns>
