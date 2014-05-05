@@ -10,7 +10,11 @@ public partial class MasterPage : System.Web.UI.MasterPage
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        
+        if (Account.CurrentUser().Type == Common.Enums.StockMarketType.Admin)
+        {
+            lbtnAccount.Visible = false;
+            lbtnManageStock.Visible = false;
+        }
     }
 
     /// <summary>

@@ -1,6 +1,6 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="Register.ascx.cs" Inherits="Staff_StaffControls_Register" %>
 
-<div class="tab-pane active" id="register">
+<div class="tab-pane" id="register">
     <asp:UpdatePanel runat="server">
             <ContentTemplate>
     <div class="row-fluid">

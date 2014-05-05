@@ -190,7 +190,7 @@ public partial class Company_CompanyControls_BuyStock : System.Web.UI.UserContro
     {
         int user_to = GetUserIdFromTransaction();
         // Make sure a transaction message is supplied
-        if (txtMessage.Text.Length > 10)
+        if (txtMessage.Text.Length >= 10)
         {
             // Update transaction to be approved
             StockMarket.UpdateTransaction(id, status, txtMessage.Text);

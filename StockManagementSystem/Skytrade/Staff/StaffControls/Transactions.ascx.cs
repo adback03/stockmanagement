@@ -81,7 +81,7 @@ public partial class Controls_BuyStockControl : System.Web.UI.UserControl
             }
             else
             {
-                lblQuantity.ForeColor = Color.Blue;
+                lblQuantity.ForeColor = Color.Yellow;
                 lblWarning.Visible = false;
             }
         }
@@ -90,7 +90,7 @@ public partial class Controls_BuyStockControl : System.Web.UI.UserControl
         //sell should reset lblWarning.Visible to false
         if (type == "Sell")
         {
-            lblQuantity.ForeColor = Color.Blue;
+            lblQuantity.ForeColor = Color.Yellow;
             lblWarning.Visible = false;
         }
 
@@ -185,7 +185,7 @@ public partial class Controls_BuyStockControl : System.Web.UI.UserControl
     {
         int user_to = GetUserIdFromTransaction();
         // Make sure a transaction message is supplied
-        if (txtMessage.Text.Length > 10)
+        if (txtMessage.Text.Length >= 10)
         {
             // Update transaction to be approved
             SkyTrade.UpdateTransaction(id, status, txtMessage.Text);

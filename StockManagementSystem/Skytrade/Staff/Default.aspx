@@ -18,8 +18,8 @@
                     <h2 class="heading-2">Sky Trade Administration</h2>
                     <div class="tabbable custom-tabs tabs-left tabs-animated  flat flat-all hide-label-980 shadow track-url auto-scroll dark">
                         <ul class="nav nav-tabs">
-                            <li><a href="#register" data-toggle="tab" class="active "><i class="icon-user"></i>&nbsp;<span>Registrations</span></a></li>
-                            <li><a href="#transactions" data-toggle="tab"><i class="icon-user"></i>&nbsp;<span>Transactions</span></a></li>
+                            <li><a href="#register" data-toggle="tab"><i class="icon-user"></i>&nbsp;<span>Registrations</span></a></li>
+                            <li><a href="#transactions" data-toggle="tab" class="active"><i class="icon-user"></i>&nbsp;<span>Transactions</span></a></li>
                             <li><a href="#changePassword" data-toggle="tab"><i class="icon-user"></i>&nbsp;<span>Change Password</span></a></li>
                             <li><a href="#stats" data-toggle="tab"><i class="icon-star"></i>&nbsp;<span>Company Stats</span></a></li>
                         </ul>

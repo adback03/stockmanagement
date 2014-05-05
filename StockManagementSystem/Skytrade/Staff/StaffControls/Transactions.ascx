@@ -1,6 +1,6 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="Transactions.ascx.cs" Inherits="Controls_BuyStockControl" %>
 
-    <div class="tab-pane" id="transactions">
+    <div class="tab-pane active" id="transactions">
         <asp:UpdatePanel runat="server">
             <ContentTemplate>
                 <div class="row-fluid">
