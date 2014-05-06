@@ -34,11 +34,9 @@ public partial class Controls_Manage : System.Web.UI.UserControl
 
     protected void gvStock_RowUpdating(object sender, GridViewUpdateEventArgs e)
     {
-        DataTable dt = (DataTable)Session["AdminStock"];
-        DataRow dr = dt.Rows[e.RowIndex];
         GridViewRow row = gvStock.Rows[e.RowIndex];
 
-        string sTicker = dr["ticker"].ToString();
+        string sTicker = gvStock.DataKeys[e.RowIndex].Value.ToString();
         string sName = ((TextBox)(row.Cells[2].Controls[0])).Text;
         string sQuantity = ((TextBox)(row.Cells[3].Controls[0])).Text;
         string sMarketPrice = ((TextBox)(row.Cells[4].Controls[0])).Text;
@@ -58,10 +56,6 @@ public partial class Controls_Manage : System.Web.UI.UserControl
                     cmd.Parameters.Add("@price", SqlDbType.Decimal).Value = double.Parse(sMarketPrice);
 
                     SqlHelper.ExecuteNonQuery(cmd, Settings.StockMarketConn);
-
-                    dt.Rows[row.DataItemIndex]["name"] = sName;
-                    dt.Rows[row.DataItemIndex]["quantity"] = sQuantity;
-                    dt.Rows[row.DataItemIndex]["price"] = sMarketPrice;
                     gvStock.EditIndex = -1;
 
                     BindData();
@@ -97,7 +91,7 @@ public partial class Controls_Manage : System.Web.UI.UserControl
         SqlCommand cmd = new SqlCommand();
         cmd.CommandText = "SELECT * FROM Stock WHERE ticker=@ticker";
         cmd.Parameters.Add("@ticker", SqlDbType.VarChar).Value = sTicker;
-        DataTable dt = SqlHelper.ReturnAsTable(cmd, Settings.SkyTradeConn);
+        DataTable dt = SqlHelper.ReturnAsTable(cmd, Settings.StockMarketConn);
         if (dt.Rows.Count != 0)
         {
             App.ShowAlertMessage("Ticker is already in use. Please choose a different ticker symbol.");
@@ -113,5 +107,16 @@ public partial class Controls_Manage : System.Web.UI.UserControl
             SqlHelper.ExecuteNonQuery(cmd, Settings.StockMarketConn);
             BindData();
         }
+    }
+
+    /// <summary>
+    /// Pagination for managing all stocks in the STock Market
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    protected void gvStock_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    {
+        gvStock.PageIndex = e.NewPageIndex;
+        BindData();
     }
 }

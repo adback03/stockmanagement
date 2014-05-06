@@ -54,7 +54,12 @@ public partial class Controls_SellStockControl : System.Web.UI.UserControl
         else
         {
             SkyTrade.InsertTransaction(lblTicker.Text, stockToSell, price, Enums.TransactionType.Sell, (bool)Session["discount"]);
-            Response.Redirect(Request.Url.ToString(), true);
+            App.ShowAlertMessage("Your transaction is currently pending, and you will be notified when it is approved.");
+            lblPrice.Text = "****";
+            lblTicker.Text = "****";
+            lblAvailable.Text = "****";
+            txtQuantitySell.Text = "";
+            DataBind();
         }
     }
 
@@ -117,6 +122,12 @@ public partial class Controls_SellStockControl : System.Web.UI.UserControl
 
     protected void lbtnRefresh_Click(object sender, EventArgs e)
     {
+        DataBind();
+    }
+
+    protected void gvStock_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    {
+        gvStock.PageIndex = e.NewPageIndex;
         DataBind();
     }
 }

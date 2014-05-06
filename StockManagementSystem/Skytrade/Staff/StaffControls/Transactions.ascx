@@ -1,6 +1,6 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="Transactions.ascx.cs" Inherits="Controls_BuyStockControl" %>
 
-    <div class="tab-pane" id="transactions">
+    <div class="tab-pane active" id="transactions">
         <asp:UpdatePanel runat="server">
             <ContentTemplate>
                 <div class="row-fluid">
@@ -26,6 +26,7 @@
                             DataKeyNames="transaction_id">
                             <Columns>
                                 <asp:BoundField DataField="transaction_id" HeaderText="ID" SortExpression="ID" Visible="false" ControlStyle-Width="100px"/>
+                                <asp:BoundField DataField="username" HeaderText="Username" SortExpression="Username" ReadOnly="true" />
                                 <asp:BoundField DataField="ticker" HeaderText="Ticker" SortExpression="Ticker" ReadOnly="true" />
                                 <asp:BoundField DataField="quantity" HeaderText="Quantity" SortExpression="Quantity" ControlStyle-Width="40px"/>
                                 <asp:BoundField DataField="price" HeaderText="Price" SortExpression="MarketPrice" ControlStyle-Width="100px"/>

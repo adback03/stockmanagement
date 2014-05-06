@@ -19,9 +19,7 @@ public partial class Controls_AccountOverviewControl : System.Web.UI.UserControl
         InitJavascript();
         if (!IsPostBack)
         {
-            GenerateQuickStats();
-            Bind_Data();
-            
+            Bind_Data();        
         }
         if (Request.Params["q"] != null)
         {
@@ -29,6 +27,9 @@ public partial class Controls_AccountOverviewControl : System.Web.UI.UserControl
         }
     }
 
+    /// <summary>
+    /// Bind all of the data to our controls.
+    /// </summary>
     protected void Bind_Data()
     {
         DataRow user = GetUser();
@@ -61,6 +62,10 @@ public partial class Controls_AccountOverviewControl : System.Web.UI.UserControl
         lblMailingLineExtra.Text = (String)address["city"] + ", " + (String)address["state"] + ", " + (String)address["zip"];
     }
 
+    /// <summary>
+    /// Get a user 
+    /// </summary>
+    /// <returns></returns>
     private DataRow GetUser()
     {
         int id = Account.CurrentUser().UserId;
@@ -71,6 +76,10 @@ public partial class Controls_AccountOverviewControl : System.Web.UI.UserControl
         return dt.Rows[0];
     }
 
+    /// <summary>
+    /// Get a user's account
+    /// </summary>
+    /// <returns></returns>
     private DataRow GetAccount()
     {
         int id = Account.CurrentUser().UserId;
@@ -81,6 +90,11 @@ public partial class Controls_AccountOverviewControl : System.Web.UI.UserControl
         return dt.Rows[0];
     }
 
+    /// <summary>
+    /// Get the user's address
+    /// </summary>
+    /// <param name="aid"></param>
+    /// <returns></returns>
     private DataRow GetAddress(int aid)
     {
         SqlCommand cmd = new SqlCommand();
@@ -90,16 +104,24 @@ public partial class Controls_AccountOverviewControl : System.Web.UI.UserControl
         return dt.Rows[0];
     }
 
+    /// <summary>
+    /// Deactivate your account
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     protected void lbtnDeactive_Click(object sender, EventArgs e)
     {
         DataTable stock = SkyTrade.GetStockQuantityByUser();
         DataTable pending = SkyTrade.GetPendingTransaction();
         DataTable onhold = SkyTrade.GetOnHoldTransaction();
         bool qualified = true;
+
+        // Make sure a user is allowed to close their account
         if (pending.Rows.Count > 0 || onhold.Rows.Count > 0)
         {
             qualified = false;
         }
+
         foreach (DataRow dr in stock.Rows)
         {
             int quantity = Convert.ToInt32(dr["total_quantity"]);
@@ -123,6 +145,11 @@ public partial class Controls_AccountOverviewControl : System.Web.UI.UserControl
 
     }
 
+    /// <summary>
+    /// Change a user's password
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     protected void lbtnChange_Click(object sender, EventArgs e)
     {
         string password = txtNewPassword.Text;
@@ -134,6 +161,11 @@ public partial class Controls_AccountOverviewControl : System.Web.UI.UserControl
         App.ShowAlertMessage("Your password has been changed successfully.");
     }
 
+    /// <summary>
+    /// Update a user's account information
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     protected void lbtnUpdate_Click(object sender, EventArgs e)
     {
         string sFirstName = "";
@@ -202,19 +234,6 @@ public partial class Controls_AccountOverviewControl : System.Web.UI.UserControl
         cmd.Parameters.Add("@routing_number", SqlDbType.VarChar).Value = sRouting;
         SqlHelper.ExecuteNonQuery(cmd, Settings.SkyTradeConn);
         Response.Redirect(Request.ApplicationPath);
-    }
-
-    private void GenerateQuickStats()
-    {
-        GoogleChart chart = new GoogleChart();
-        chart.title = "Quick Stats";
-        chart.width = 250;
-        chart.height = 200;
-        chart.addColumn("string", "Year");
-        chart.addColumn("number", "Value");
-        chart.addColumn("number", "Profit");
-        chart.addRow("'2014', 2000, 1000");
-        ltChart.Text = chart.generateChart(GoogleChart.ChartType.ColumnChart);
     }
 
     /// <summary>

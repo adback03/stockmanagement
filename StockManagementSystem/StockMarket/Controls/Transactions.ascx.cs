@@ -20,6 +20,7 @@ public partial class Company_CompanyControls_BuyStock : System.Web.UI.UserContro
         {
             SetActiveTab(lbtnPending);
             BindData("Pending");
+            Session["TransType"] = "Pending";
         }
     }
 
@@ -33,11 +34,15 @@ public partial class Company_CompanyControls_BuyStock : System.Web.UI.UserContro
         gvTransactions.DataBind();
     }
 
-    // TODO: PAGINATION
+    /// <summary>
+    /// Pagination for transactions
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     protected void gvTransactions_PageIndexChanging(object sender, GridViewPageEventArgs e)
     {
         gvTransactions.PageIndex = e.NewPageIndex;
-        //BindData();
+        BindData(Session["TransType"].ToString());
     }
 
     /// <summary>
@@ -119,6 +124,10 @@ public partial class Company_CompanyControls_BuyStock : System.Web.UI.UserContro
         UpdateTransaction(int.Parse(lblID.Text), Enums.Status.OnHold);
     }
 
+    /// <summary>
+    /// Get the current user ID from a transaction
+    /// </summary>
+    /// <returns></returns>
     private int GetUserIdFromTransaction()
     {
         SqlCommand cmd = new SqlCommand();
@@ -135,6 +144,7 @@ public partial class Company_CompanyControls_BuyStock : System.Web.UI.UserContro
     {
         SetActiveTab(lbtnApproved);
         BindData("Approved");
+        Session["TransType"] = "Approved";
         pnlApproveDisapprove.Visible = false;
     }
 
@@ -146,6 +156,7 @@ public partial class Company_CompanyControls_BuyStock : System.Web.UI.UserContro
     {
         SetActiveTab(lbtnDenied);
         BindData("Denied");
+        Session["TransType"] = "Denied";
         pnlApproveDisapprove.Visible = false;
     }
 
@@ -157,6 +168,7 @@ public partial class Company_CompanyControls_BuyStock : System.Web.UI.UserContro
     {
         SetActiveTab(lbtnPending);
         BindData("Pending");
+        Session["TransType"] = "Pending";
         pnlApproveDisapprove.Visible = true;
     }
 
@@ -165,6 +177,7 @@ public partial class Company_CompanyControls_BuyStock : System.Web.UI.UserContro
     {
         SetActiveTab(lbtnOnHold);
         BindData("On Hold");
+        Session["TransType"] = "On Hold";
         pnlApproveDisapprove.Visible = true;
     }
 
@@ -177,7 +190,7 @@ public partial class Company_CompanyControls_BuyStock : System.Web.UI.UserContro
     {
         int user_to = GetUserIdFromTransaction();
         // Make sure a transaction message is supplied
-        if (txtMessage.Text.Length > 10)
+        if (txtMessage.Text.Length >= 10)
         {
             // Update transaction to be approved
             StockMarket.UpdateTransaction(id, status, txtMessage.Text);
@@ -200,11 +213,11 @@ public partial class Company_CompanyControls_BuyStock : System.Web.UI.UserContro
 
             ClearFields();
             BindData("Pending");
+            Session["TransType"] = "Pending";
         }
         else
         {
             App.ShowAlertMessage("Your transaction message must have at least 10 characters");
-            //ScriptManager.RegisterClientScriptBlock(this.Page, this.GetType(), "MyScript", "alert('Your transaction message must have at least 10 characters.');", true);
         }
     }
 

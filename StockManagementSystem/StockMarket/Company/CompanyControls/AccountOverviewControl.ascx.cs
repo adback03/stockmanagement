@@ -20,9 +20,9 @@ public partial class CompanyControls_AccountOverviewControl : System.Web.UI.User
         if (!IsPostBack)
         {
             GenerateQuickStats();
-            Bind_Data();
+        Bind_Data();
 
-        }
+    }
     }
 
     protected void Bind_Data()
@@ -164,17 +164,6 @@ public partial class CompanyControls_AccountOverviewControl : System.Web.UI.User
         Response.Redirect(Request.ApplicationPath);
     }
 
-    private void GenerateQuickStats()
-    {
-        GoogleChart chart = new GoogleChart();
-        chart.title = "Quick Stats";
-        chart.width = 250;
-        chart.height = 200;
-        chart.addColumn("string", "Year");
-        chart.addColumn("number", "Value");
-        chart.addColumn("number", "Profit");
-        chart.addRow("'2014', 2000, 1000");
-        ltChart.Text = chart.generateChart(GoogleChart.ChartType.ColumnChart);
     }
 
     private void InitHiddenFields()

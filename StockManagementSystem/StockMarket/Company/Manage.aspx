@@ -7,10 +7,6 @@
 <%@ Register Src="~/Company/CompanyControls/SellStock.ascx" TagPrefix="uc1" TagName="SellStock" %>
 
 
-
-
-
-
 <asp:Content ID="Content1" ContentPlaceHolderID="Body" Runat="Server">
             <div class="row-fluid" id="demo-2">
                 <div class="span10 offset1">
@@ -21,7 +17,6 @@
                             <li><a href="#sell" data-toggle="tab"><i class="icon-briefcase"></i>&nbsp;<span>Sell Stock</span></a></li>
                             <li><a href="#transactions" data-toggle="tab"><i class="icon-briefcase"></i>&nbsp;<span>Transactions</span></a></li>
                             <li><a href="#messages" data-toggle="tab"><i class="icon-inbox"></i>&nbsp;<span>Messages <asp:Label ID="lblMessages" runat="server" ForeColor="#0000CC" /></span></a></li>
-                            <li><a href="#contact" data-toggle="tab"><i class="icon-envelope-alt"></i>&nbsp;<span>Contact Us</span></a></li>
                         </ul>
                         <div class="tab-content ">
                             <uc1:BuyStock runat="server" ID="BuyStock" />

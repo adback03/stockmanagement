@@ -98,4 +98,10 @@ public partial class Staff_StaffControls_Register : System.Web.UI.UserControl
         int index = gvRequest.SelectedIndex;
         index = gvRequest.PageIndex;
     }
+
+    protected void gvRequest_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    {
+        gvRequest.PageIndex = e.NewPageIndex;
+        BindData();
+    }
 }

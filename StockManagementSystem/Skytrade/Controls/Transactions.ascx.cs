@@ -19,6 +19,7 @@ public partial class Controls_BuyStock : System.Web.UI.UserControl
         {
             SetActiveTab(lbtnPending);
             BindData("Pending");
+            Session["TransType"] = "Pending";
         }
     }
 
@@ -37,6 +38,7 @@ public partial class Controls_BuyStock : System.Web.UI.UserControl
     {
         SetActiveTab(lbtnPending);
         BindData("Pending");
+        Session["TransType"] = "Pending";
         pnlMessage.Visible = false;
     }
 
@@ -44,6 +46,7 @@ public partial class Controls_BuyStock : System.Web.UI.UserControl
     {
         SetActiveTab(lbtnApproved);
         BindData("Approved");
+        Session["TransType"] = "Approved";
         pnlMessage.Visible = true;
     }
 
@@ -51,6 +54,7 @@ public partial class Controls_BuyStock : System.Web.UI.UserControl
     {
         SetActiveTab(lbtnDenied);
         BindData("Denied");
+        Session["TransType"] = "Denied";
         pnlMessage.Visible = true;
     }
 
@@ -58,6 +62,7 @@ public partial class Controls_BuyStock : System.Web.UI.UserControl
     {
         SetActiveTab(lbtnOnHold);
         BindData("On Hold");
+        Session["TransType"] = "On Hold";
         pnlMessage.Visible = true;
     }
 
@@ -86,5 +91,11 @@ public partial class Controls_BuyStock : System.Web.UI.UserControl
         row.BackColor = Color.SlateGray;
         int id = int.Parse(gvTransactions.DataKeys[row.RowIndex].Value.ToString());
         lblMessage.Text = SkyTrade.GetTransactionMessage(id);
+    }
+
+    protected void gvTransactions_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    {
+        gvTransactions.PageIndex = e.NewPageIndex;
+        BindData(Session["TransType"].ToString());
     }
 }

@@ -18,6 +18,7 @@
                         AutoGenerateEditButton="false"
                         AutoGenerateSelectButton="true"
                         OnSelectedIndexChanged="gvStock_SelectedIndexChanged"
+                        OnPageIndexChanging="gvStock_PageIndexChanging"
                         DataKeyNames="transaction_id, discount">
                         <Columns>
                             <asp:BoundField DataField="transaction_id" HeaderText="id" SortExpression="ID" ReadOnly="true" Visible="false" />

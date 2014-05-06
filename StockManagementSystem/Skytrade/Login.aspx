@@ -121,7 +121,7 @@
                                         <asp:RegularExpressionValidator runat="server" ID="revCity" ControlToValidate="txtCity" ErrorMessage="City" Display="None" ValidationGroup="Register" />
                                         <label>State</label>
                                         <asp:DropDownList id="ddlState" runat="server" CssClass="input-block-level">
-                                            <asp:ListItem Value="NONE">----</asp:ListItem>
+                                            <asp:ListItem Value="">----</asp:ListItem>
                                             <asp:ListItem Value="AL">Alabama</asp:ListItem>
                                             <asp:ListItem Value="AK">Alaska</asp:ListItem>
                                             <asp:ListItem Value="AZ">Arizona</asp:ListItem>
@@ -174,6 +174,7 @@
                                             <asp:ListItem Value="WI">Wisconsin</asp:ListItem>
                                             <asp:ListItem Value="WY">Wyoming</asp:ListItem>
                                         </asp:DropDownList>
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator32" runat="server" ControlToValidate="ddlState" ErrorMessage="State" ValidationGroup="Register" Display="None" />
                                         <label>Zip</label>
                                         <asp:TextBox ID="txtZip" runat="server" CssClass="input-block-level"></asp:TextBox>             
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator8" runat="server" ControlToValidate="txtZip" ErrorMessage="Zip" ValidationGroup="Register" Display="None" />
@@ -217,7 +218,7 @@
                                         <asp:RegularExpressionValidator runat="server" ID="revBillingCity" ControlToValidate="txtBillingCity" ErrorMessage="Billing City" Display="None" ValidationGroup="Register" /> 
                                         <label>State</label>
                                         <asp:DropDownList id="ddlBillingState" runat="server" CssClass="input-block-level">
-                                            <asp:ListItem Value="NONE">----</asp:ListItem>
+                                            <asp:ListItem Value="">----</asp:ListItem>
                                             <asp:ListItem Value="AL">Alabama</asp:ListItem>
                                             <asp:ListItem Value="AK">Alaska</asp:ListItem>
                                             <asp:ListItem Value="AZ">Arizona</asp:ListItem>
@@ -270,6 +271,7 @@
                                             <asp:ListItem Value="WI">Wisconsin</asp:ListItem>
                                             <asp:ListItem Value="WY">Wyoming</asp:ListItem>
                                         </asp:DropDownList>
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator33" runat="server" ControlToValidate="ddlBillingState" ErrorMessage="Billing State" ValidationGroup="Register" Display="None" />
                                         <label>Zip</label>
                                         <asp:TextBox ID="txtBillingZip" runat="server" CssClass="input-block-level"></asp:TextBox>   
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator15" runat="server" ControlToValidate="txtBillingZip" ErrorMessage="Billing Zip" ValidationGroup="Register" Display="None" />
@@ -464,6 +466,7 @@
                                 <asp:RegularExpressionValidator runat="server" ID="revReCity" ControlToValidate="reCity" ErrorMessage="City" Display="None" ValidationGroup="Reactivate" />
                                 <label>State</label>
                                 <asp:DropDownList id="ddlReState" runat="server" CssClass="input-block-level">
+                                            <asp:ListItem Value="">----</asp:ListItem>
                                             <asp:ListItem Value="AL">Alabama</asp:ListItem>
                                             <asp:ListItem Value="AK">Alaska</asp:ListItem>
                                             <asp:ListItem Value="AZ">Arizona</asp:ListItem>
@@ -516,6 +519,7 @@
                                             <asp:ListItem Value="WI">Wisconsin</asp:ListItem>
                                             <asp:ListItem Value="WY">Wyoming</asp:ListItem>
                                         </asp:DropDownList>
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator34" runat="server" ControlToValidate="ddlReState" ErrorMessage="State" ValidationGroup="Reactivate" Display="None" />
                                 <label>Zip Code</label>
                                 <asp:TextBox ID="reZip" runat="server" CssClass="input-block-level"></asp:TextBox>
                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator21" runat="server" ControlToValidate="reZip" ErrorMessage="Zip" ValidationGroup="Reactivate" Display="None" />
@@ -558,6 +562,7 @@
                                 <asp:RegularExpressionValidator runat="server" ID="revReBillingCity" ControlToValidate="reBillingCity" ErrorMessage="Billing City" Display="None" ValidationGroup="Reactivate" />
                                 <label>State</label>
                                 <asp:DropDownList id="ddlReBillingState" runat="server" CssClass="input-block-level">
+                                            <asp:ListItem Value="">----</asp:ListItem>
                                             <asp:ListItem Value="AL">Alabama</asp:ListItem>
                                             <asp:ListItem Value="AK">Alaska</asp:ListItem>
                                             <asp:ListItem Value="AZ">Arizona</asp:ListItem>
@@ -610,6 +615,7 @@
                                             <asp:ListItem Value="WI">Wisconsin</asp:ListItem>
                                             <asp:ListItem Value="WY">Wyoming</asp:ListItem>
                                         </asp:DropDownList>
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator35" runat="server" ControlToValidate="ddlReBillingState" ErrorMessage="Billing State" ValidationGroup="Reactivate" Display="None" />
                                 <label>Zip Code</label>
                                 <asp:TextBox ID="reBillingZip" runat="server" CssClass="input-block-level"></asp:TextBox>
                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator27" runat="server" ControlToValidate="reBillingZip" ErrorMessage="Billing Zip" ValidationGroup="Reactivate" Display="None" />

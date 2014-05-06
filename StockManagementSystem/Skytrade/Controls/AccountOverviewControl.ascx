@@ -5,7 +5,7 @@
 </asp:Panel>
 <div class="tab-pane active" id="account">
     <div class="row-fluid">
-        <div class="span4">
+        <div class="span6">
             <h4><i class="icon-user"></i>&nbsp;&nbsp; Account Overview</h4>
             <div class="box">
                 <b>Username: </b><asp:Label ID="lblUsername" runat="server" Text="****"></asp:Label><br />
@@ -25,13 +25,12 @@
                 </address>
             </div>
         </div>
-        <div class="span4">
+        <div class="span6">
             <h4><i class="icon-question"></i>&nbsp;&nbsp;Bank Information</h4>
             <div class="box">
                 <b>Bank Name: </b><asp:Label ID="lblBank" runat="server" Text="****"></asp:Label><br />
                 <b>Routing Number: </b><asp:Label ID="lblRouting" runat="server" Text="****"></asp:Label><br />
                 <b>Account Number: </b><asp:Label ID="lblAccount" runat="server" Text="****"></asp:Label><br />
-                <br />
                 <br />
                 <br />
                 <br />
@@ -44,16 +43,6 @@
                     <asp:Label ID="lblBillingLine2" runat="server" Text="****"></asp:Label><br>
                     <asp:Label ID="lblBillingLineExtra" runat="server" Text="****"></asp:Label><br>
                 </address>
-            </div>
-        </div>
-        <div class="span4">
-            <h4><i class="icon-expand-alt"></i>&nbsp;&nbsp;Quick Stats</h4>
-
-            <asp:Literal ID="ltChart" runat="server"></asp:Literal>
-            <div id="chart_div"></div>
-            
-            <div class="box">
-                <p>To view your complete Sky Trade stats, <a href="#">click here.</a></p>
             </div>
         </div>
     </div>

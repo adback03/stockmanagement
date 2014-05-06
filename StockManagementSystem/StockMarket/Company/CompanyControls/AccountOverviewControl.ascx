@@ -2,7 +2,7 @@
 
 <div class="tab-pane active" id="account">
     <div class="row-fluid">
-        <div class="span4">
+        <div class="span6">
             <h4><i class="icon-user"></i>&nbsp;&nbsp;<asp:Label ID="lblCompany" runat="server" Text="****"></asp:Label></h4>
             <div class="box">
                 <b>Username: </b><asp:Label ID="lblUsername" runat="server" Text="****"></asp:Label><br />
@@ -21,7 +21,7 @@
                 </address>
             </div>
         </div>
-        <div class="span4">
+        <div class="span6">
             <h4><i class="icon-question"></i>&nbsp;&nbsp;Bank Information</h4>
             <div class="box">
                 <b>Bank Name: </b><asp:Label ID="lblBank" runat="server" Text="****"></asp:Label><br />
@@ -40,15 +40,9 @@
                 </address>
             </div>
         </div>
-        <div class="span4">
-            <h4><i class="icon-expand-alt"></i>&nbsp;&nbsp;Quick Stats</h4>
-
-            <asp:Literal ID="ltChart" runat="server"></asp:Literal>
-            <div id="chart_div"></div>
-            
-            <div class="box">
-                <p>To view your complete Sky Trade stats, <a href="#">click here.</a></p>
-            </div>
+    </div>
+    <div class="row-fluid">
+        <div class="span12">
             <a href="#TabsModal" role="button" class="btn btn-large btn-inverse " data-toggle="modal">Edit Account</a>
             <a href="#PasswordModal" role="button" class="btn btn-large btn-inverse " data-toggle="modal">Change Password</a>
         </div>

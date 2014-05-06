@@ -22,6 +22,7 @@
                         AutoGenerateEditButton="false"
                         AutoGenerateSelectButton="true"
                         OnSelectedIndexChanged="gvTransactions_SelectedIndexChanged"
+                        OnPageIndexChanging="gvTransactions_PageIndexChanging"
                         DataKeyNames="transaction_id">
                         <Columns>
                             <asp:BoundField DataField="transaction_id" HeaderText="ID" SortExpression="ID" Visible="false" ControlStyle-Width="100px"/>

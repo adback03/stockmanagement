@@ -7,7 +7,6 @@
 <%@ Register Src="~/Company/CompanyControls/Stats.ascx" TagPrefix="uc1" TagName="Stats" %>
 
 
-
 <asp:Content ID="Content1" ContentPlaceHolderID="Body" Runat="Server">
             <div class="row-fluid" id="demo-2">
                 <div class="span10 offset1">
@@ -17,7 +16,6 @@
                             <li class="active"><a href="#account" data-toggle="tab" class="active "><i class="icon-user"></i>&nbsp;<span>Account Overview</span></a></li>
                             <li><a href="#messages" data-toggle="tab"><i class="icon-inbox"></i>&nbsp;<span>Messages <asp:Label ID="lblMessages" runat="server" ForeColor="#0000CC" /></span></a></li>
                             <li><a href="#stats" data-toggle="tab"><i class="icon-star"></i>&nbsp;<span>Stats</span></a></li>
-                            <li><a href="#contact" data-toggle="tab"><i class="icon-envelope-alt"></i>&nbsp;<span>Contact Us</span></a></li>
                         </ul>
                         <div class="tab-content ">
                             <uc1:AccountOverviewControl runat="server" ID="AccountOverviewControl" />

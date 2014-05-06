@@ -12,6 +12,11 @@ public partial class MasterPage : System.Web.UI.MasterPage
     protected void Page_Load(object sender, EventArgs e)
     {
         Settings.Initialize();
+        if (Account.CurrentUser().Type == Common.Enums.SkyTradeType.Staff)
+        {
+            lbtnAccount.Visible = false;
+            lbtnManageStock.Visible = false;
+        }
     }
 
     protected void lbtnAccount_Click(object sender, EventArgs e)
