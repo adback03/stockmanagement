@@ -72,7 +72,11 @@ public partial class Controls_BuyStockControl : System.Web.UI.UserControl
         if (qty != 0 && qty <= quantityAvailable)
         {
             SkyTrade.InsertTransaction(lblTicker.Text, int.Parse(txtQuantityPurchase.Text), price, Enums.TransactionType.Buy, chkDiscount.Checked);
-            Response.Redirect(Request.Url.ToString(), true);
+            App.ShowAlertMessage("Your transaction is currently pending, and you will be notified when it is approved.");
+            BindData();
+            lblPrice.Text = "****";
+            lblTicker.Text = "****";
+            txtQuantityPurchase.Text = "";
         }
         else
         {

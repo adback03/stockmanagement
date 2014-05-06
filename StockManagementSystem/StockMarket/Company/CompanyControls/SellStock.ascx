@@ -15,7 +15,9 @@
                 AllowSorting="true"
                 AutoGenerateColumns="false"
                 AutoGenerateEditButton="false"
-                OnPageIndexChanging="gvStock_PageIndexChanging">
+                OnPageIndexChanging="gvStock_PageIndexChanging"
+                AutoGenerateSelectButton="true"
+                OnSelectedIndexChanged="gvStock_SelectedIndexChanged">
                 <Columns>
                     <asp:BoundField DataField="ticker" HeaderText="Ticker" SortExpression="Ticker" ReadOnly="true" />
                     <asp:BoundField DataField="bought" HeaderText="Bought" SortExpression="Bought"  ControlStyle-Width="100px"/>
@@ -25,14 +27,18 @@
                 </Columns>
             </asp:GridView>
         </div>
-        <div class="span4">
-            <h4><i class="icon-money"></i>&nbsp;&nbsp;Sell Stock</h4>
-            <label>Stock Type</label>
-            <asp:DropDownList ID="ddlStock" runat="server" CssClass="input-block-level"></asp:DropDownList>
-            <label>Quantity To Sell</label>
-            <asp:TextBox ID="txtQuantitySell" runat="server" CssClass="input-block-level"></asp:TextBox>
-            <asp:Button ID="btnSubmit" runat="server" Text="Submit Request" CssClass="btn-inverse" OnClick="btnSubmit_Click"/>
-        </div>
+                <div class="span4">
+                    <h4><i class="icon-money"></i>&nbsp;&nbsp;Sell Stock</h4>
+                    <h5>Stock Type</h5>
+                    <asp:Label ID="lblTicker" runat="server" Text="****"></asp:Label>
+                    <h5>Price</h5>
+                    <asp:Label ID="lblPrice" runat="server" Text="****"></asp:Label>
+                    <h5>Quantity Available To Sell</h5>
+                    <asp:Label ID="lblAvailable" runat="server" Text="****"></asp:Label>
+                    <h5>Quantity To Sell</h5>
+                    <asp:TextBox ID="txtQuantitySell" runat="server" CssClass="input-block-level"></asp:TextBox>
+                    <asp:Button ID="btnSubmit" runat="server" Text="Submit Request" CssClass="btn-inverse" OnClick="btnSubmit_Click"/>
+                </div>
     </div>
         </ContentTemplate>
     </asp:UpdatePanel>

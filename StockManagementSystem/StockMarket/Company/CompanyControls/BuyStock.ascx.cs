@@ -60,7 +60,11 @@ public partial class Company_CompanyControls_BuyStock : System.Web.UI.UserContro
         if(qty != 0 && qty <= quantityAvailable) 
         {
             StockMarket.InsertTransaction(lblTicker.Text, int.Parse(txtQuantityPurchase.Text), Enums.TransactionType.Buy);
-            Response.Redirect(Request.Url.ToString(), true);
+            App.ShowAlertMessage("Your transaction is currently pending, and you will be notified when it is approved.");
+            BindData();
+            lblPrice.Text = "****";
+            lblTicker.Text = "****";
+            txtQuantityPurchase.Text = "";
         } 
         else 
         {
