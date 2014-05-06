@@ -171,12 +171,12 @@ public partial class Login : System.Web.UI.Page
             }
             else
             {
-                App.ShowAlertMessage("We're sorry, the username and ssn information you provided is incorrect, or this account is not deactivated.");
+                App.ShowAlertMessage("We're sorry, the username or ssn information you provided is incorrect, or this account is not deactivated.");
             }
         }
         else
         {
-            App.ShowAlertMessage("We're sorry, the username and ssn information you provided is incorrect, or this account is not deactivated.");
+            App.ShowAlertMessage("We're sorry, the username or ssn information you provided is incorrect, or this account is not deactivated.");
         }
     }
 
@@ -211,7 +211,7 @@ public partial class Login : System.Web.UI.Page
         }
         else
         {
-            App.ShowAlertMessage("We're sorry, the username and ssn information you provided is incorrect.");
+            App.ShowAlertMessage("We're sorry, the username or ssn information you provided is incorrect.");
         }
     }
 

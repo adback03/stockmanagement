@@ -16,7 +16,7 @@
                 <Columns>
                     <asp:BoundField DataField="firstname" HeaderText="Firstname" SortExpression="Firstname" ReadOnly="true" />
                     <asp:BoundField DataField="lastname" HeaderText="LastName" SortExpression="LastName"  ControlStyle-Width="100px"/>
-                    <asp:BoundField DataField="ssn" HeaderText="SSN" SortExpression="SSN" ControlStyle-Width="100px"/>
+                    <asp:BoundField DataField="email" HeaderText="Email" SortExpression="Email" ControlStyle-Width="100px"/>
                     <asp:BoundField DataField="bank_name" HeaderText="Bank Name" SortExpression="BankName" ControlStyle-Width="100px"/>
                     <asp:BoundField DataField="routing_number" HeaderText="Routing Number" SortExpression="RoutingNumber" ControlStyle-Width="100px"/>
                     <asp:BoundField DataField="account_number" HeaderText="Account Number" SortExpression="AccountNumber" ControlStyle-Width="100px"/>

@@ -145,7 +145,7 @@ public partial class Login : System.Web.UI.Page
         }
         else
         {
-            App.ShowAlertMessage("We're sorry, the username and email information you provided is incorrect.");
+            App.ShowAlertMessage("We're sorry, the username or email information you provided is incorrect.");
         }
     }
 

@@ -63,7 +63,7 @@
             <a href="#PasswordModal" role="button" class="btn btn-large btn-inverse " data-toggle="modal">Change Password</a>
             <a id="closeBtn" onclick="switchCloseDiv();" role="button" class="btn btn-large btn-inverse " data-toggle="modal">Close Account</a>
             <span id="closeDiv" style="visibility:hidden;">
-                <asp:TextBox TextMode="Password" ID="txtPassword" runat="server"></asp:TextBox>
+                <asp:TextBox placeholder="Please enter your password." TextMode="Password" ID="txtPassword" runat="server"></asp:TextBox>
                 <asp:LinkButton ID="LinkButton2" runat="server" OnClick="lbtnDeactive_Click" ValidationGroup="Deactive">Save</asp:LinkButton>
                 <br />
                 <asp:RequiredFieldValidator ID="RequiredFieldValidator17" runat="server" ControlToValidate="txtPassword" ForeColor="Yellow" ErrorMessage="Password can not be none." ValidationGroup="Deactive" Display="Dynamic"/>
