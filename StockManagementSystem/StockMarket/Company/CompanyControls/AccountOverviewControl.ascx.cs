@@ -19,10 +19,10 @@ public partial class CompanyControls_AccountOverviewControl : System.Web.UI.User
         InitJavascript();
         if (!IsPostBack)
         {
-            GenerateQuickStats();
+            //GenerateQuickStats();
         Bind_Data();
 
-    }
+        }
     }
 
     protected void Bind_Data()
@@ -162,8 +162,6 @@ public partial class CompanyControls_AccountOverviewControl : System.Web.UI.User
         cmd.Parameters.Add("@routing_number", SqlDbType.VarChar).Value = sRouting;
         SqlHelper.ExecuteNonQuery(cmd, Settings.StockMarketConn);
         Response.Redirect(Request.ApplicationPath);
-    }
-
     }
 
     private void InitHiddenFields()
