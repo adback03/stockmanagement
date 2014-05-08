@@ -30,7 +30,7 @@
                     <h4 class="heading-4">Your ssn number already exists in our system, please check.</h4>
                 </asp:Panel>
                 <asp:Panel ID="pnlDeactived" runat="server" Visible="false">
-                    <h2 class="heading-2">Your account has been deactivated.</h2>
+                    <h2 class="heading-2">Your account has been deactived.</h2>
                 </asp:Panel>
                 
                 <div class="tabbable custom-tabs tabs-left tabs-animated  flat flat-all hide-label-980 shadow track-url auto-scroll dark">
