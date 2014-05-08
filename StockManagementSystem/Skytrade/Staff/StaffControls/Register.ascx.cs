@@ -59,7 +59,7 @@ public partial class Staff_StaffControls_Register : System.Web.UI.UserControl
                 cmd.Parameters.Add("@username", SqlDbType.VarChar).Value = username;
                 cmd.Parameters.Add("@password", SqlDbType.VarChar).Value = password;
                 SqlHelper.ExecuteNonQuery(cmd, Settings.SkyTradeConn);
-                String head = reactive?"Your account has been actived successfully!":"Congratulations, your request has been approved!";
+                String head = reactive?"Your account has been activated successfully!":"Congratulations, your request has been approved!";
                 String body = "Username: \n" + username + "\nPassword: \n" + password + "\n" + txtMessage.Text;
                 SkyTrade.sendMail((string)dr["email"], head, body);
             }
