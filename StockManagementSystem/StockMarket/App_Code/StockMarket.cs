@@ -106,7 +106,7 @@ public static class StockMarket
     public static DataTable GetPriceHistory(string ticker)
     {
         SqlCommand cmd = new SqlCommand();
-        cmd.CommandText = "SELECT price, timestamp FROM PriceHistory WHERE ticker = @ticker ORDER BY timestamp";
+        cmd.CommandText = "SELECT TOP(100) price, timestamp FROM PriceHistory WHERE ticker = @ticker ORDER BY timestamp";
         cmd.Parameters.Add("@ticker", SqlDbType.VarChar).Value = ticker;
         return SqlHelper.ReturnAsTable(cmd, Settings.StockMarketConn);
     }

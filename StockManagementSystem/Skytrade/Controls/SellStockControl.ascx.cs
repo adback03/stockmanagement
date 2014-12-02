@@ -52,7 +52,7 @@ public partial class Controls_SellStockControl : System.Web.UI.UserControl
         }
         else
         {
-            SkyTrade.InsertTransaction(lblTicker.Text, stockToSell, Enums.TransactionType.Sell, false);
+            SkyTrade.InsertTransaction(lblTicker.Text, stockToSell, Enums.TransactionType.Sell, (bool)Session["discount"]);
             Response.Redirect(Request.Url.ToString(), true);
         }
     }
@@ -86,6 +86,7 @@ public partial class Controls_SellStockControl : System.Web.UI.UserControl
         // If a discount was used on the selected stock, get the quantity available by checking the timestamp
         if (discount == 1)
         {
+            Session["discount"] = true;
             qtyAvailable = 0;
             foreach(DataRow dr in dt.Rows){
                 DateTime transactionDate = DateTime.Parse(dr["timestamp"].ToString());
@@ -101,6 +102,10 @@ public partial class Controls_SellStockControl : System.Web.UI.UserControl
                 txtQuantitySell.Enabled = false;
                 btnSubmit.Enabled = false;
             }
+        }
+        else
+        {
+            Session["discount"] = false;
         }
 
         lblTicker.Text = ticker;
